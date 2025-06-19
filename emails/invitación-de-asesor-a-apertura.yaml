@@ -1,0 +1,68 @@
+name: "[PORTAL] Invitaci\xF3n de asesor a apertura"
+description: "Este email se env\xEDa cuando un asesor invita a un cliente a que inicie un proceso\
+  \ de apertura."
+category: PORTAL DE USUARIO
+code: COMPLIF_ADVISOR_INVITE_EXTERNAL_USER
+subtitle: "Configura el mail que el asesor enviar\xE1 a sus clientes para invitarlos a una apertura."
+video_link: ''
+add_advisor_in_copy: false
+id_operating_country: None
+export_data_declared: None
+export_terms_conditions: None
+code_pdf_template: None
+sendgrid_data:
+  from:
+    email: noreply@complif.com
+    name: Notificaciones Complif
+  reply_to:
+    email: noreply@complif.com
+    name: Notificaciones complif
+  subject: Completa tu apertura
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+      <head>
+          <meta charset="UTF-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <title>
+              Mensaje de tu asesor
+          </title>
+      </head>
+      <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f6f6f6;">
+          <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+              <!-- Container Principal -->
+              <div style="background-color: #ffffff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                  <!-- Logo -->
+                  <div style="text-align: center; margin-bottom: 30px;">
+                      <img src="{{logo_url}}" alt="Logo" style="max-width: 180px; height: auto;"/>
+                  </div>
+                  <!-- Saludo -->
+                  <div style="color: #333333; font-size: 16px; margin-bottom: 20px;">
+                      ¡Hola!
+                  </div>
+                  <!-- Mensaje personalizado del asesor -->
+                  <div style="color: #555555; font-size: 16px; line-height: 1.6; margin-bottom: 30px; font-style: italic;">
+                      "{{message}}"
+                  </div>
+                  <!-- Mensaje principal -->
+                  <div style="color: #555555; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
+                      Haciendo click a continuación vas a poder iniciar tu apertura.
+                  </div>
+                  <!-- Botón de acción -->
+                  <div style="text-align: center; margin-bottom: 30px;">
+                      <a href="{{link}}" style="display: inline-block; padding: 14px 30px; background-color: {{primary_color}}; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;"> Comenzar apertura → </a>
+                      </div>
+                      <!-- Información de seguridad -->
+                      <div style="color: #888888; font-size: 14px; line-height: 1.4; margin-bottom: 20px;">
+                          🔒 Por tu seguridad, este enlace es personal y tiene una validez limitada. Si no solicitaste esta invitación o tenés alguna duda, escribime directamente.
+                      </div>
+                      <!-- Footer -->
+                      <div style="text-align: center; padding-top: 20px; color: #999999; font-size: 12px;">
+                          Este es un correo confidencial. No compartir este mensaje.
+                      </div>
+                  </div>
+                  <!-- Closing missing div -->
+              </div>
+              <!-- Closing missing div -->
+          </body>
+      </html>

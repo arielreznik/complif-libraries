@@ -1,0 +1,16 @@
+category: LEGAJOS
+code: COMPLIF_CREATE_CASE_BY_REPRESENTATIVE_EXPIRED
+default_priority: MEDIUM
+description: 'La plantilla **Vencimiento de Representante** sirve para facilitar la
+  gestión ante el vencimiento de la relación de representación entre una persona y
+  una empresa. El caso se generará automáticamente cuando se alcance la fecha de vencimiento
+  (puedes verificarla en la tabla de Representantes). Haciendo uso de esta plantilla
+  podrás mantener tus legajos actualizados.
+
+  '
+id_operating_country: null
+name: Vencimiento de Representante
+resolution_interval: 45 days
+subtitle: Gestiona el vencimiento de la relación de representación entre las personas
+  y las empresas para mantener tus legajos al día.
+video_link: ''

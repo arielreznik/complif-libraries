@@ -1,0 +1,297 @@
+name: "Actualización datos personales"
+type: FORM_LEGAL_TEXT
+subtitle: ""
+video_link: ""
+advisor_action: "NULL"
+autocomplete_with_actual_data: false
+automatic_approval: false
+category: "Acciones sobre personas"
+code: COMPLIF_ACTUALIZACIÓN_DATOS_PERSONALES
+config: |
+  {
+    "form_markdown": "Nombre: **{{person.name}}**",
+    "legal_text": "##### DECLARACION JURADA MODIFICACION DE DATOS PERSONALES\n\n**Sres. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_**\n\n* * *\n\nQuien suscribe, **{{person.name}} ({{submission.data.form.tipo_documento}} N°{{submission.data.form.numero_documento}})** presenta sus datos personales para ser actualizados en mi legajo. Mediante mi firma, declaro bajo juramento que los datos entrgados son fehacientes.\n\nLos saluda atentamente,\n\n{{person.name}}",
+    "schema": {
+      "type": "object",
+      "required": [
+        "tipo_documento",
+        "numero_documento",
+        "fecha_nacimiento",
+        "nacionalidad",
+        "pais_nacimiento",
+        "genero",
+        "estado_civil",
+        "actvidad_economica",
+        "iigg",
+        "iva",
+        "iibb",
+        "es_pep",
+        "es_soi",
+        "es_inversor_calificado",
+        "es_ocde",
+        "es_fatca"
+      ],
+      "properties": {
+        "tipo_documento": {
+          "enum": [
+            "DNI",
+            "LE",
+            "LC",
+            "Pasaporte"
+          ],
+          "type": "string"
+        },
+        "numero_documento": {
+          "type": "number"
+        },
+        "fecha_nacimiento": {
+          "type": "string"
+        },
+        "nacionalidad": {
+          "type": "string"
+        },
+        "pais_nacimiento": {
+          "type": "string"
+        },
+        "genero": {
+          "enum": [
+            "Masculino",
+            "Femenino",
+            "No declarado"
+          ],
+          "type": "string"
+        },
+        "estado_civil": {
+          "enum": [
+            "Casado/a",
+            "Soltero/a",
+            "Divorciado/a",
+            "Viudo/a"
+          ],
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "telefono": {
+          "type": "string",
+          "format": "email"
+        },
+        "actvidad_economica": {
+          "type": "string"
+        },
+        "iigg": {
+          "type": "string",
+          "enum": [
+            "Inscripto",
+            "No inscripto",
+            "Exento",
+            "Extranjero"
+          ]
+        },
+        "iva": {
+          "type": "string",
+          "enum": [
+            "No categorizado",
+            "Responsable inscripto",
+            "Monotributo",
+            "Exento",
+            "Consumidor final",
+            "No inscripto",
+            "No responsable"
+          ]
+        },
+        "iibb": {
+          "type": "string",
+          "enum": [
+            "Inscripto",
+            "No inscripto",
+            "Exento",
+            "Excluido",
+            "Régimen simplificado",
+            "Convenio multilateral",
+            "Consumidor final"
+          ]
+        },
+        "iibb_numero": {
+          "type": "number"
+        },
+        "es_pep": {
+          "enum": [
+            "Si",
+            "No"
+          ],
+          "type": "string"
+        },
+        "es_soi": {
+          "enum": [
+            "Si",
+            "No"
+          ],
+          "type": "string"
+        },
+        "es_inversor_calificado": {
+          "enum": [
+            "Si",
+            "No"
+          ],
+          "type": "string"
+        },
+        "es_ocde": {
+          "enum": [
+            "Si",
+            "No"
+          ],
+          "type": "string"
+        },
+        "es_fatca": {
+          "enum": [
+            "Si",
+            "No"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "ui_schema": {
+      "type": "VerticalLayout",
+      "elements": [
+        {
+          "text": "Datos generales",
+          "type": "Label"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Tipo Documento",
+              "scope": "#/properties/tipo_documento"
+            },
+            {
+              "type": "Control",
+              "label": "Número documento",
+              "scope": "#/properties/numero_documento"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Género",
+              "scope": "#/properties/genero"
+            },
+            {
+              "type": "Control",
+              "label": "Fecha de nacimiento",
+              "scope": "#/properties/fecha_nacimiento"
+            },
+            {
+              "type": "Control",
+              "label": "Estado civil",
+              "scope": "#/properties/estado_civil"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Nacionalidad",
+              "scope": "#/properties/nacionalidad"
+            },
+            {
+              "type": "Control",
+              "label": "País de nacimiento",
+              "scope": "#/properties/pais_nacimiento"
+            }
+          ]
+        },
+        {
+          "text": "Datos laborales e impositivos",
+          "type": "Label"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Actividad económica",
+              "scope": "#/properties/actvidad_economica"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Condición Impuesto a las ganancias",
+              "scope": "#/properties/iigg"
+            },
+            {
+              "type": "Control",
+              "label": "Condición IVA",
+              "scope": "#/properties/iva"
+            },
+            {
+              "type": "Control",
+              "label": "Condición Ingresos Brutos",
+              "scope": "#/properties/iibb"
+            },
+            {
+              "type": "Control",
+              "label": "Número Ingresos Brutos",
+              "scope": "#/properties/iibb_numero"
+            }
+          ]
+        },
+        {
+          "text": "Declaraciones Juradas",
+          "type": "Label"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "¿Es persona expuesta políticamente?",
+              "scope": "#/properties/es_pep"
+            },
+            {
+              "type": "Control",
+              "label": "¿Es sujeto obligado?",
+              "scope": "#/properties/es_soi"
+            },
+            {
+              "type": "Control",
+              "label": "¿Es inversor calificado?",
+              "scope": "#/properties/es_inversor_calificado"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "¿Reside fiscalmente en un país diferente a Argentina?",
+              "scope": "#/properties/es_ocde"
+            },
+            {
+              "type": "Control",
+              "label": "¿Reside fiscalmente en EE.UU conforme FATCA?",
+              "scope": "#/properties/es_fatca"
+            }
+          ]
+        }
+      ]
+    }
+  }
+description: ""
+expiration_days: 60
+instructions: "Por favor, complete los datos solicitados."

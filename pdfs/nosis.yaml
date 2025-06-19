@@ -1,0 +1,320 @@
+name: NOSIS
+code: complif_default_nosis
+config: {}
+description: NOSIS
+entity: nosis
+footer: ''
+header: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+   <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&amp;display=swap" rel="stylesheet"/>
+    <style>
+     /* forma de etiquetado generalizada, todos los componentes de este tipo tendran estos estilos */
+  body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  /* margin: 80px; */
+  padding: 0;
+  margin: 0;
+  color: #333;
+  max-width: 100vw;
+  }
+  /* forma de etiquetado generalizada compuesta, todos los componentes h1 dentro del header tendran estos estilos, los h1 por fuera del header no los tendran */
+  header h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #555;
+  }
+  #myImage {
+  height: 80px;
+  width: 110px;
+  object-fit: contain;
+  }
+  /* forma de aplicar estos estilos a todos los componentes que tengan esta clase */
+  .header {
+  background-color: black;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 100px !important;
+  }
+  /* forma para modificar un solo componente en especifico */
+  #white_text {
+  color: white;
+  margin-right: 5px;
+  font-size: 14px;
+  }
+  .container {
+  height: 100%;
+  max-width: 100vw;
+  padding: 0 20px;
+  box-sizing: border-box;
+  }
+  .information_header_container {
+  background-color: #efeff0;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+  .section_title {
+  font-size: 18px;
+  font-weight: 600;
+  }
+  .section_status {
+  }
+  .section_sub_title {
+  color: #4674a0;
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 18px;
+  margin-bottom: 8px;
+  }
+  .section_information {
+  display: flex;
+  }
+  .section_information_column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  }
+  .information_container {
+  padding: 16px 8px;
+  }
+  .information_title {
+  font-weight: 600;
+  }
+  .information_value {
+  }
+  .information_value_not_found {
+  color: #c8341e;
+  width: 50%;
+  }
+  .divider {
+  width: 100%;
+  background-color: #cacace;
+  height: 0.5px;
+  margin: 15px 0;
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  max-width: 95vw;
+  box-sizing: border-box;
+  }
+  .last_modifications {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  }
+  .debts_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 8px;
+  width: 60%;
+  }
+  th {
+  background-color: #f2f2f2 !important;
+  padding: 10px;
+  text-align: left;
+  border-right: 2px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  }
+  td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  /* Línea entre filas */
+  }
+  .tabla-con-fondo td:first-child,
+  .tabla-con-fondo th:first-child {
+  background-color: #fafafa;
+  }
+  th:last-child {
+  border-right: none;
+  /* Elimina la línea en la última columna */
+  }
+  /* @ckeditor/ckeditor5-page-break/theme/pagebreak.css */
+  .page-break {
+  position: relative;
+  clear: both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+  .execution_container {
+  display: flex;
+  }
+  .execution_info_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  }
+  .image_container {
+  display: flex;
+  align-items: center;
+  }
+  .execution_title {
+  font-size: 15px;
+  font-weight: bold;
+  }
+  .execution_info {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  }
+  .error_container {
+  display: flex;
+  }
+  .error_text {
+  color: #c8341e;
+  margin-right: 15px;
+  }
+  .error {
+  color: #c8341e;
+  }
+  .data_not_found {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #c8341e;
+  }
+    </style>
+   </head>
+   <body>
+    <main>
+     <div class="container">
+      <div class="information_header_container">
+       <div class="section_title">
+        Datos Enviados
+       </div>
+      </div>
+      <div class="information_container">
+       <div class="execution_container">
+        <div class="image_container">
+         <img alt="Your SVG Image" id="myImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAawAAAB2CAMAAACjxFdjAAABL1BMVEX///8OJkeZGx8dP3QAHkINJEQRK1HRICYPKEsII0XCHiQbPXC3HSMAAzdSYHYUMVoAFD0YN2UAGkAaO2y9wsrFy9JveotcaX4ADzsAAC/47/CVFRmlPUAAADMbNVWmrLaIj5yUAADZ3eLl5+ry8/UAACewtLspOVQAAC3CKDCfGyCuHSHKHyUrL0vNoqNIWG+YoKw0RV9mcILr7e86S2TQ1NoAACUAACB6g5KRmqcAABrjyMkZL04AADgAFEQON2/Zubrw3d4AABRkdJGeqbsAMGwABUBIX4YAI2LSq6vao6Tno6WiMTW0AAvPBhLGiowrR3FPYH0AIFNwgJ0oIUGdAADJYWXUSk3UXV/RfoCxYGOXCRDfjpC6bnCrUFIAKFYAAADcd3mzMzbOAAHssbJ4P1Q3AAAVmUlEQVR4nO2da4ObRpaGkUPHIgkKIYDAbQQN1YhsdgIIaEuJlLaT8e7kYo8n2WQz652Znd35/79hqQuXKgoJ6Ha3rdH7xTINh+I8dT1UFYJw0kkn3YN8L9cDxwk0PffBfSfmpE6BPF5lS8mUzUKyLC6y+SZP7ztVJ7UFNCORTVWUpEkpSRIVefnt708F7O2S7y5ltcbUkHT9/ON1ft/pO6mSb8gKlxTUp+99rP7bv2v3ncaTkMBaVrtIYVhn71//YbW/MgTfffH9D99/wdFXd/QY/xQKRGUPKgLrvQ9V1dln5dGPFy9evrjg6I+9UuFpWsBK03J/yJMAnpGiW9vTCPB0rZ+8IakqU9ZL+9MKVmZnBUjBmp799O2ewvXo8flHDz940Nbrw7C8OJqIitmWoorbedDP1/kmKvpDHCv9jJDL+0lcxszlqRMtFtmGS1F3E0ntbTrpbnD85b4akIb1yfWr7n78aFggiERT7MowRYfU3K4O9m9AnKjKfiMzfc/1QbTncp5FM6Kuj7fFIxSwJaOVMidRFKm/6SKp645E5pJ48PIa1nt/W3Rm0LGwgkw+5KUiW8724gLx8lD1AJ0QdeXZPDIPu4ER5VKn7J6dsZ7WlsNNy/z2Rp/0sNSA9Ym46PLaOFh5JPd6liK7dVfBenYQFTayW3Frhs1wfxay6wTpjUGPHTQsg/VuQHEtJU25rupV8puwzqQPOxrXUbBitbeblKSrGnP7+1rZtgsXWMl9L6ck11SiRgKanvYzc5xpjo/9ba+npGBNr1/xs/gYWCt5QL4T+bUDiIY4RNqxPQMwG+fQiVJZ8qgmSa7yQ4/+AF9mILACSb8cScP68LrVho6Fle0fMrRkc+6cbgc6xHZpA7OBiahUw9KpoqlsSv8uxtSuUBxYRs9kMrDe+7ptahSs4W6SW/0k0L8e5RtZjyxXTVgOZUMpc0M0slzxYGl9k8nCen/La6YHwzJGuMl0aRsgG5F5zU1tIBjNamJWtTIflju2yBam2eYZTPu2Fy1Y6p9uAZYzplmXmDw3BnhhpGpVwHJEZ43IqvrFXFhed7D1oHZst2DTG3wL1tlPnAHLQFi5ejbmMSSlOdAbBRyO28qqIR6f+8WsTgYP1mp0JThR2LYZ9AffhvXxqxvDikY2vuqstuFvR2ZedUUsDAla0BLVesDJg+XbYy1P1CXbzPQvWDxYf2iPeTphXXzPYcUpE5LaiuspnOJn16V63X4GSWSCcIURDhEbp7/VbEtiLxV2s0ZwgAerVWb7mS58oM5aUaIB0SoOrOufbwYLJOztRUU1YjZeHhtSa8BbVz9+6xnE4knXLqUg2KzUthFcPg2VuXw57yXXoTIrDxYzLFLNrJfllRu0Q0TBgFLKgfXe8wGwvmjDahUsuSvWrCVsSquixQ49JHveEQvTErYI2ehMuo+lRoPffJCnacMCdKpN4yYzWWYDmgwerJ9a9eAgWEyPWzL3vCpzmDCHOMfH0wVzfLsnrL5hoocqbMOBRV2fdV++XxxYzDiZH0foqXRIl5cH69plTQ6BRcdniup875yBnBlkkA4h0+CIyd7Mq9EtlzRNWx7d9wplrziwqENn20GvUFkNGgvyYH0SsSaHwGJubx6Y38E4mhRDusGRul/eYDl0YZYLNHqzrpK4Q/1e4sCi+hdiy1mDtB4yCODB+tRkH20IrDnluCo+0ymX8gbpeNPjWflguaDhqmsmz0hJP9dxxIFFhS/KinucwKBRDheWzJaGIbCo8ZGkHpyWmFJgxAxe4E+oY6tDNpjOI3Sg1qwGpWVf77XEgUWNjMTZIQt70z1oNMmFpbCvGgbAApSf1a632A1RNYGEmoCcKiiHCxZTtKSiiaPaLGl8w3KoGpRGd12gvENhGqk5L5cLq+XiAbA8qlwfarGg6K6ACbvYGtVx3/V4arrWW/qCR/WvldEzIzmw6FZZHDkmQNL2whJlexElql0GpLiwWvXOAFhMoejxJOmOuiJn3dGrwaGzqFrcloIlSWNniXNg0flg/KhA2B9rkuQVrlK8zVbZAytiHm08rB4+AlS9jULvFKxerQI9UIW5nR7uSWrPSW+seBEMeiq6mmijK9k9r1rEZV37g7XcCUtK7hQWNQBGfffhsNIWLCaAJymTZUtZ1JCx4c3v5MFigu4iz3TT8sxwOuZ3dvfcpQl1xcbshMWGht9FWK22W2qLibPK0yxmncqD1WppDpo2zW0UcHzRDYt9RwlHRHxYbOfpXYQ15kUNnC/q0s/OfZ81IFJem5aXccsbRhcsle02+HIHrDPxGGDpo14+SsqCimVyYTlDgkS1aTtjByGdsNrxsSLvHTGsse9zJbkZmuXPweg5d4yVaDIj2C5Y0rbluMInxwwr7Td1si2zcUc+rFwZNXGhNYerE1Z7uKKr0jHDomY+D5JSR2c7pqKNnCFSeIR6o9IFixMe9sSzo4ZV2BlLq2rfO2AJm9G0GpPlumG1n/noYRWGRtaE1XTuLlgFrZEZQW688j7Basbr9KEzsImk0gWdsARHHNnLaIQcTrCo4Go6H1e4yrf13bCEvOdqJFZy3SU8wWIi4UGiiCP6biq2sQeWIMTL7mWd3ZIWlVdOsFqvLbT5REE7tuwVCwt3svfCwstwFfGAaRaFXQ27T7A475iA7qyixV6JzBYUJEC6H1YhX4vn2X7TMrMCtJ4K8M8Jq/2KZLB8l+6N41DqQVh9lNOL+urY69HBkrZ93EG9xZ+Oe3tLvwLGC+duBRZLpeq93y2s71ibtwKLfq1v9zBCz4tozf7vKWp6LK6sbgmWr7YeEuoYShZthLOwsyVqAlzrTXdfcWYE3hIsOh9UZo4BVkpPRTs8y4G+a+tlUF9RE4FxMPW2YFGvGdUyQHgM1aBAL0Tp2OijIXp6f2sqXV/RsJYw8SdYlHiwmNVZ5oEtg5iV3ruxs8Oc9ozA24JF1dNqaeYoYOXMbJfJ3nmeDCs8q3eMmJYPHrolWCk1NK6K/lHAYurBibTbdF7vszubjPYoPd0Ut3y3BIuuKnbVMrSjgBWzsxyUrcOr3IC+bgVqzXHT+EBML5zFKbkVWD6zNlC9n0Hxm4LlL9iImmRKSTZjlC3V1uMq9ZvzVHfn7CVdirbMsnkFNZRdsDxn3dt0MmEmGlb19HHAahcttLMgK86csHpvBSFIYJC1rxhT5M06HxYwJFPtb5kxXSM/Elij9pdBt6z6+Zoydn8llJDNHljRDXYtIYsvjgmWkI97s1dPNQFjd9JAkhZpN6zR02WQ1HrOzLHAEuLdZLgkqaoEe+9fxVU5w48La+S0QaLG0pqjgTVm8yZJqYfPnG1P+qsKcXFhWV2X9VFzQ7HjgSXMh9KSmovm5jfI/lLV/b/l7YCKSrAZ6Xy7YB1mxexeRu2acXCnc+YRp81Axw1gSfW+RLcNi9686Z5h0ctUe8Gi+n304nN3SIdOSahh8/ityxr74DHLe3CcCIyvBtWEcu09wxKkRhig35YGlFcVZq7Lsm/LI+0Mus4dvYWdKDUyDL0HC9nEa/SGa2ZEe/a+Yc0a91e6I3oNNWuaVhDWX7djFBxJ5pJd4+2Nm+kumfQ2T9Tu02SLhkFbjdQSFXZP9PuGpdfjRXHSK0oHprU/OK+u8pl6aAgqmpyFasJqRNE6UyaMJb3RbpZ1tD8mH0hme8Ox+4YlxGVkVVV77pjkmSTNYntXY6jc3SpdH6g4ExVTiTRerxMkA8fVkmqqbit/bWxipRH6D5SBZUtUlCVnnerdwnrK821kyYVso3f0OzV2dnFF2P1dldyZL2zLbikUM1frnB7jbEO5t2xrsebeX1NlVZJUuTkXxF/Jdn/TlpxtuO9P7x8WfHGh6wO/d5cXlxyck+SzOngFgHZ7ad8HooJ1khjstB2/r2Xd60zm2wDrpJ46wXqHdIL1DukE6x3SCdY7pBOsd0i3AKuefUP06McTrDei24BlPqNPfPb6wQnWm9BtwPoP5kMIT385wXojug1Yv/uVPvHXU8l6MxoAy5f42wFNfvcB9Rn2Z//6LydYb0QDYKWTTlj/2Tzvt4cnWG9GA2CBTlifvfxzfdqfX3aWrNdftYyeNEADYAnbTlgPX/zXI3zOs7/+8vAE6w1pCKxM7IT1+fkvn/33d9/98NmL88+7YT141jZ6Un8NgTVXu2E9+Pzhy4uLFw8/etAN6/zHu3++o9IQWLG5F1bB6IP9sB7f/fMdlYbA0m8I6/Vf7v75jkpDYPnbm8HizZc5aYCGwBKyG1aDp/7FzTQIlnt9E1inJuumGgRLf34TWKcm66YaBCt9dRNYF6da8IYaBEv4+Xo8rPO/cgx6cxf+E83xWkwwM4DgzsicOz9aF1Uv/sTyDE3XjZe2vYUTXZ1Z9VVneAqedRhkO9uMqpmX2qz+gLZnLJTlGv03mOMztEi2lTmeqO7OZ/hH0FwK4Gwti/7ERATvuHbwxD6PpAEl3TcU247Kk8EKPxdc+40+EL1B5gN0xbqcUhgvbHuBp+3mkVumNKpn/Htz095F9ZTKYbC85+NhcfuCuY3uc6niJU6pvARCbJGFvs7lBi6Rs8NC38BZ7TNruV5P5bkgrJ+EoSzKYXiVFS68RE5ybdVwZ3K1S2lm2uVza6aVzJc2WuzkXqKFOMHOXLkzG6+unptkt/v4Sb3MYFPkC1dpbtUtXIpWGF5aErqfbqkwZZcidMxWnrsru/yEoW6a5Ius6VIRVVWxFEhoI6uFbPzMxdMs1uuFhf6jX5b+1i+rfb901Y5cw6z2LBkIS/j2b2NhnT9+xIOFvw0RZhL6N1USIHiyhf84D3O4Qk5LoUDhcitL4XIPKxdAcWBjb4p/UvjU0EdeOIV+3ZgqvhrI0ZJQB4lSEARzG2JyrRj9Fa2qcmy0snAuJnjxYnxZwQIJnHy/sd1Gci1TT1PfldGHRHN7C1DSit8RyheuTLy2NmdkVQJIJA+kIDbhPlwb2Sh++wlKh2NFxZVpZgUIfLm3qm5VsDK0RDUXqwV1A2HlX4+Fxfv6dwXrar1CX01HsIQlXtcEROj2Vb1t1ho9ZFGQyLYyFilDGNbGQuUIhFe4JgvCYEV2JdBJ9g3nFayA+GQRwrPnaoyhULDgqpbAomDh1dgGunMBqzoXz0PJbbKrxjbTdytiBa8xj0xEHq2k0GDdIMxwZaKhcsaDlSt4S3cjLGvXgbCElToO1vmPvIJVwTJyE6YRwyJQ9BBWTav666gG/taDY+AjDCzDwnnZJSscjMtUC3E9SDjmS+grDCu28Pr6FbpqLoMtqrcasAQDJiOym6sPCCwtXCM075fHfQl9ixys8YqqXF4LCf7yTgkLPQaBlaOPl0xDfII1FfiwNHLMCUdstIWTpYyDdcF/O1LBEmZwZ3QMS8MFwUV+bMCKzWmzAemAVWqXFT7Ey6ddq7GOq4RFPh5ewsIuacLyVFOPLWrnSALLD2ECG7CErdL8wkt8qQlrXA9WJQuu0SSwAhuePA3xyWEnLBsf08Oy6R0KS4h3Y2BddIyxalgaLEcYlmCjxcUR2u22UQ2ConVuLI7cD0uHvZMZ3juhB6wUTOCtm7CEQFHkCAhp3UEksEAIM0GjGizaPrPRb5yKgNQLEBZ8ig3qNmBY6cKGVu4ClvCn6+GwOl+O1LCESPJLWDPowXSHugcrFX0XE/ePE9lU621KOLB0TdNwz3h9WXCK8XP2gVX0EgMGlmuqsg8bl+oYgVU4GKAtrNEHNcm206adkfN8SAZICvwNEnE6ncpbdLeNMin+Y80R/TuBBYbDOn/NbbAEClYQuiUsB7YxQYgecKUmWZYlK7wO0NmaZrmOmAMLLC9D8wk6uIW9E09eYj49YPlSRMHyk9BYy0URWtXffWNhZTBpLj7dkBUyVIhDmF8M1NoVsIpTTBWN3zbKIssWsohufSewhPy5NAzWeffr/AasovcFCCzUJhi4K7eiPxQKNopC9vHglSwtCLATctQHwE1FP1jIuzUskMkurIrXwmrRhrUQ6GoQ3XJm4jXOuP4OLFgb4DbLz+S6GnQUNEy4G1iCLkpDYJ2/ftppqgELZkhAeqtTBYAEb7Swokal8O4m6aB1tFnYCa68DgrNZDy06gPLK9JSw9J2sASDhezM6k1eqg4GbrPqDgZxpgJHU6m9gLeOFVOoOhiBDJ+GdDDwJie9YWk3giVoQ2DtY0XBSqcLoGJY61DzyACn0Ruc48cgPfi9sECmosCHLCIn4X56GsML+F136NFiWOZUsGLUZYNb4Ej1MnMCK0cDtgYsfYaS4iuwjXNMBd7aEmHKCazchvUxgZWgAri1cNc9hOVzH6zxXXdi8ZPrvrBeP9g3pakJCxaACYal2a5DdvxowJJN4kYuLEIEw/LkxIGKt7Zf1khFBzET6kExRpBY0P0Ylm6tm7CIq9TGblwEloMyUgNWcOmif8VdClPsonuvYD1KYHkyrEsJrDmClVnIbo6CazxYOmmd16MHxaWTX/3UD9bF472xdgqWb2fk0+9AnEdL3FI0uu4ZglL8w60GNRJSRLBKcoXnipM8BfUzDBv6AcNKUR9B8GURuw8PhiZGWMLKTRwB9LaNnW4xrHQJ42DNNks30VcXdBhUAsqOHLQXNSwRfv2FwEIUBRfHTFyU9XiwwBI318tqlc4KxRbbMtsf6KQEjFA6DOv84o/7zVCwijqfwBJmYvkdg5WyjqF02D+cOLo2K33EwBIW8lzTg5V4JVQDLLgxIyxNM9nw/I2KCimGVfDJNF3LcGVLYAW2WHfTZ7bq6nosStN6byZLdePYUPAQKpenDkpakeTMnmm6I8IOrFZ527TzEpa/FfMKlouixv6lvNb1jYniXbqdIFta8StDRnPIceHo+squP/9pdOjg1jx58vwArPMDxQom8hJliv/B6fG+tEjPK7i6Ih6aheFloW/gY8bm5dVVOCNxzc03pPRkX+KQ/aI4MwxhUM4Ly0wPnnxTOMNfwgtxFMv9EscQI2QY55LZE2xzaX1ZxwYNC56wzX3TLrP2N/bl1RM7wyM5/YkNU3Zlp/DdTnGDqx3MPasvq529nxhCuoV/LtrQJxq8Nbqd9iTD5RCmF5ce7YkFbRV/1/Ev9JbBgEm8mo3dd57S7z/9WuyG9fri8dODJoCOnOMRb3jlD+CVTvM9rBSfrmlVPCH1yFN4OvmhFy0FjgF79ZssfJYWOw4+5uvkb7lTHipuUppsbsTkB06sob+mlbHaMEwjFj5Z03Ay/DJZOBXln+HRlBgix4DmOGSzG1A9ZfkLHfeKJA7cIaRTwJn9dM2Ddf7Ry5d/Oc2VftuU//xKPvugAev884cPf/nx17+fUL2NSvP419/+98EvL+H06f978fjxb3//qiu6dNLboEfPnv3jh++e/uOrE6eTTjrpHdL/A74kzt7AZZ5eAAAAAElFTkSuQmCC" style="height: 40px; width: 120px"/>
+        </div>
+        <div class="execution_info_container">
+         <div class="execution_info">
+          <div class="execution_title">
+           Tipo de ejecución
+          </div>
+          <div>
+           NOSIS
+          </div>
+         </div>
+         <div class="execution_info">
+          <div class="execution_title">
+           Fecha de ejecución
+          </div>
+          <div>
+           {{fecha}}
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        Resultado
+       </div>
+      </div>
+      <div class="information_container">
+       <div class="section_sub_title">
+        Datos Enviados
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          CUIT
+         </div>
+         <div class="information_value">
+          {{body.cuit}}
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="divider">
+      </div>
+      <div class="information_container">
+       <div class="section_title">
+        Información Recibida
+       </div>
+      </div>
+      <div class="information_container">
+       <div style="
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 15px;
+  ">
+        {{#if Contenido.Datos.Variables}} {{#each Contenido.Datos.Variables
+  as |variable|}} {{#ifCond variable.Tipo "==" "XML"}} {{else}}
+        <div style="margin-bottom: 10px">
+         <div class="information_title">
+          {{variable.Descripcion}}
+         </div>
+         {{#if variable.Valor}}
+         <div class="information_value">
+          {{variable.Valor}}
+         </div>
+         {{else}}
+         <div class="information_value_not_found">
+          No hay información
+         </div>
+         {{/if}}
+        </div>
+        {{/ifCond}} {{/each}} {{else}}
+        <div class="data_not_found">
+         No hay información de NOSIS
+        </div>
+        {{/if}}
+       </div>
+       ´
+       <div class="information_container">
+        {{#if Contenido.Datos.Variables}} {{#each Contenido.Datos.Variables
+  as |variable|}} {{#ifCond variable.Tipo "==" "XML"}}
+        <div>
+         <table border="1">
+          <thead>
+           <tr>
+            <th colspan="50">
+             {{variable.Descripcion}}
+            </th>
+           </tr>
+          </thead>
+          <tbody>
+           {{#if (xmlToArray variable.Valor)}} {{#each (xmlToArray
+  variable.Valor)}}
+           <tr>
+            {{#each this as |value|}}
+            <td>
+             {{value}}
+            </td>
+            {{/each}}
+           </tr>
+           {{/each}} {{else}}
+           <tr>
+            <td class="data_not_found" colspan="50" style="border: 0">
+             No hay información
+            </td>
+           </tr>
+           {{/if}}
+          </tbody>
+         </table>
+        </div>
+        {{else}} {{/ifCond}} {{/each}} {{/if}}
+       </div>
+      </div>
+     </div>
+    </main>
+   </body>
+  </html>

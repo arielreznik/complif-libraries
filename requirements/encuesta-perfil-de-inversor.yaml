@@ -1,0 +1,272 @@
+name: "Encuesta Perfil de Inversor"
+type: FORM_LEGAL_TEXT
+subtitle: ""
+video_link: ""
+advisor_action: "NULL"
+autocomplete_with_actual_data: false
+automatic_approval: false
+category: "Acciones sobre cuentas"
+code: COMPLIF_ENCUESTA_PERFIL_DE_INVERSOR
+config: |
+  {
+    "matriz": {
+      "respuestas": {
+        "baja": {
+          "Vendería toda mi inversión": 0,
+          "Vendería parte de mi inversión": 2,
+          "Invertiría más, aprovechando que los precios están bajos": 8,
+          "No haría nada, esperando que mi inversión recupere su valor": 5
+        },
+        "edad": {
+          "Más de 55 años": 0,
+          "Menos de 25 años": 3,
+          "Entre 25 y 35 años": 2,
+          "Entre 36 y 55 años": 1
+        },
+        "plazo": {
+          "Menos de 1 año": 0,
+          "Más de 3 años": 3,
+          "Entre 1 y 3 años": 2
+        },
+        "actitud": {
+          "Aceptaría asumir un alto riesgo para obtener una importante rentabilidad": 8,
+          "Aceptaría un mínimo riesgo si con ello puedo obtener mayor rentabilidad": 2,
+          "No estaría dispuesto a realizar ninguna inversión que implicara arriesgar mi capital": 0,
+          "Estaría dispuesto a asumir una pérdida del 10% si espero tener a mediano o largo plazo una mayor rentabilidad": 4
+        },
+        "perdida": {
+          "Más de 30%": 16,
+          "Entre 0 y 15%": 4,
+          "Entre 15% y 30%": 8
+        },
+        "invirtio": {
+          "No": 0,
+          "Sí": 5
+        },
+        "estrategia": {
+          "Preservar el dinero que se invirtió con una rentabilidad mínima": 0,
+          "Obtener una ganancia significativa, corriendo el riesgo de perder más de la mitad de la inversión inicial": 8,
+          "Tener una ganancia apenas superior a la de un plazo fijo, aunque ese sujeta a una  variación mínima del mercado": 3
+        },
+        "patrimonio": {
+          "Más del 60%": 0,
+          "Menos del 30%": 6,
+          "Entre el 30% y el 60%": 3
+        },
+        "portafolio": {
+          "Acciones / Opciones / Futuros": 4,
+          "Plazo Fijo / Bonos / Dólares": 0,
+          "Bonos / Acciones / Fondos Comunes de Inversión": 2
+        },
+        "conocimiento": {
+          "Nada": 0,
+          "Mucho": 6,
+          "Un poco": 2,
+          "Bastante": 4
+        }
+      },
+      "resultados": [
+        {
+          "perfil": "CONSERVADOR",
+          "puntaje": 19
+        },
+        {
+          "perfil": "MODERADO",
+          "puntaje": 49
+        },
+        {
+          "perfil": "ARRIESGADO",
+          "puntaje": 1000
+        }
+      ]
+    },
+    "schema": {
+      "type": "object",
+      "required": [
+        "edad",
+        "conocimiento",
+        "invirtio",
+        "patrimonio",
+        "portafolio",
+        "plazo",
+        "actitud",
+        "baja",
+        "estrategia",
+        "perdida"
+      ],
+      "properties": {
+        "baja": {
+          "enum": [
+            "Vendería toda mi inversión",
+            "Vendería parte de mi inversión",
+            "No haría nada, esperando que mi inversión recupere su valor",
+            "Invertiría más, aprovechando que los precios están bajos"
+          ],
+          "type": "string"
+        },
+        "edad": {
+          "enum": [
+            "Más de 55 años",
+            "Entre 36 y 55 años",
+            "Entre 25 y 35 años",
+            "Menos de 25 años"
+          ],
+          "type": "string"
+        },
+        "plazo": {
+          "enum": [
+            "Menos de 1 año",
+            "Entre 1 y 3 años",
+            "Más de 3 años"
+          ],
+          "type": "string"
+        },
+        "actitud": {
+          "enum": [
+            "No estaría dispuesto a realizar ninguna inversión que implicara arriesgar mi capital",
+            "Aceptaría un mínimo riesgo si con ello puedo obtener mayor rentabilidad",
+            "Estaría dispuesto a asumir una pérdida del 10% si espero tener a mediano o largo plazo una mayor rentabilidad",
+            "Aceptaría asumir un alto riesgo para obtener una importante rentabilidad"
+          ],
+          "type": "string"
+        },
+        "perdida": {
+          "enum": [
+            "Entre 0 y 15%",
+            "Entre 15% y 30%",
+            "Más de 30%"
+          ],
+          "type": "string"
+        },
+        "invirtio": {
+          "enum": [
+            "No",
+            "Sí"
+          ],
+          "type": "string"
+        },
+        "estrategia": {
+          "enum": [
+            "Preservar el dinero que se invirtió con una rentabilidad mínima",
+            "Tener una ganancia apenas superior a la de un plazo fijo, aunque ese sujeta a una  variación mínima del mercado",
+            "Obtener una ganancia significativa, corriendo el riesgo de perder más de la mitad de la inversión inicial"
+          ],
+          "type": "string"
+        },
+        "patrimonio": {
+          "enum": [
+            "Más del 60%",
+            "Entre el 30% y el 60%",
+            "Menos del 30%"
+          ],
+          "type": "string"
+        },
+        "portafolio": {
+          "enum": [
+            "Plazo Fijo / Bonos / Dólares",
+            "Bonos / Acciones / Fondos Comunes de Inversión",
+            "Acciones / Opciones / Futuros"
+          ],
+          "type": "string"
+        },
+        "conocimiento": {
+          "enum": [
+            "Nada",
+            "Un poco",
+            "Bastante",
+            "Mucho"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "ui_schema": {
+      "type": "VerticalLayout",
+      "elements": [
+        {
+          "text": "Seleccione su edad, si es persona humana o antigüedad, si es persona jurídica",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/edad"
+        },
+        {
+          "text": "¿Cuánto conoce el mercado de capitales y los intrumentos que se operan?",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/conocimiento"
+        },
+        {
+          "text": "¿Ha realizado alguna vez una inversión en el mercado de capitales:",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/invirtio"
+        },
+        {
+          "text": "El capital que piensa invertir ¿qué porcentaje de su patrimonio representa?",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/patrimonio"
+        },
+        {
+          "text": "¿En cuáles instrumentos invertiría?",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/portafolio"
+        },
+        {
+          "text": "¿Cuál es el plazo máximo que Ud. estaría dispuesto a mantener sus inversiones en el mercado de capitales?",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/plazo"
+        },
+        {
+          "text": "De las siguientes afirmaciones, cuál identifica mejor su actitud hacia las inversiones",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/actitud"
+        },
+        {
+          "text": "Si su inversión comienza a perder valor en el mercado, Ud.:",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/baja"
+        },
+        {
+          "text": "¿Cuál de estas alternativas describe mejor su objetivo de inversión?",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/estrategia"
+        },
+        {
+          "text": "Usted soportaría asumir una baja en el valor de sus activos:",
+          "type": "Label"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/perdida"
+        }
+      ]
+    },
+    "legal_text": "## Test del Inversor\n\nYo, {{person.name}}, identificado con **{{person.tax_id_type}}** {{person.tax_id_number}}, declaro bajo juramento que he respondido a la encuesta de perfil de inversor de forma veraz y completa. Comprendo que la información proporcionada en la encuesta es esencial para definir mi perfil como inversor, y por lo tanto, para la evaluación y recomendación de productos financieros y de inversión. Asimismo, declaro que he leído y comprendido la información proporcionada por la entidad financiera acerca de los productos y servicios ofrecidos, incluyendo los riesgos asociados a los mismos, y que he evaluado mi capacidad financiera para invertir en los mismos. Entiendo que la entidad financiera se basará en la información proporcionada en la encuesta para la toma de decisiones de inversión y que cualquier inexactitud o falsedad en mis respuestas podría afectar negativamente dichas decisiones.Por lo tanto, me comprometo a informar a la entidad financiera de cualquier cambio significativo en mi situación financiera o personal que pueda afectar mi perfil como inversor. Firmo la presente declaración jurada en señal de mi compromiso y veracidad en la información proporcionada.\n\n**Según las respuestas mi perfil es {{#perfil submission.data.form template.config.matriz}} {{/perfil}}**"
+  }
+description: ""
+expiration_days: 365
+instructions: "Por favor, complete los datos solicitados."

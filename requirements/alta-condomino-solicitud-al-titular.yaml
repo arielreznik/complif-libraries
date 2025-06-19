@@ -1,0 +1,161 @@
+name: "Alta condomino - Solicitud al titular"
+type: FORM_LEGAL_TEXT
+subtitle: ""
+video_link: ""
+advisor_action: "NULL"
+autocomplete_with_actual_data: false
+automatic_approval: false
+category: "Gestión Condominios"
+code: COMPLIF_ALTA_CONDOMINO_SOLICITUD_AL_TITULAR
+config: |
+  {
+    "form_markdown": "Nombre: {{person.name}}\n\n Comitente: {{accounts.0.number}}",
+    "legal_text": "##### DECLARACION JURADA ALTA DE CONDOMINIO\n\n**Sres. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_**\n\n* * *\n\nMe dirijo a ustedes, como titular de la Cuenta N° **{{accounts.0.number}}**, a fin de solicitar que **{{submission.data.form.primer\\_nombre}} {{submission.data.form.apellido}} ({{submission.data.form.tipo\\_id\\_fiscal}} N° {{submission.data.form.numero\\_id\\_fiscal}})**, sea agregado como condomino de mi cuenta con el rol de **{{submission.data.form.rol}}.** \n\nPresto consentimiento para que la persona sea contactada a los medios compartidos en el presente formulario (Email: **{{submission.data.form.email}}**, Teléfono: **{{submission.data.form.telefono}}**) a fin de completar sus datos personales y cumplir con todo requerimiento normativo necesario para el alta en la cuenta.\n\nCon la firma del presente formulario, acepto que el alta se haga efectiva al momento de cumplir con los requerimientos normativos necesarios.\n\nLos saludo atentamente,\n\n{{person.name}}",
+    "schema": {
+      "type": "object",
+      "required": [
+        "rol",
+        "tipo_id_fiscal",
+        "numero_id_fiscal",
+        "primer_nombre",
+        "apellido",
+        "email",
+        "telefono"
+      ],
+      "properties": {
+        "rol": {
+          "type": "string",
+          "enum": [
+            "CO-TITULAR",
+            "BENEFICIARIO",
+            "AUTORIZADO"
+          ]
+        },
+        "tipo_id_fiscal": {
+          "type": "string",
+          "enum": [
+            "CUIT",
+            "CUIL",
+            "CIE",
+            "CDI",
+            "Pasaporte"
+          ]
+        },
+        "numero_id_fiscal": {
+          "type": "number"
+        },
+        "tipo_documento": {
+          "enum": [
+            "DNI",
+            "LE",
+            "LC",
+            "Pasaporte"
+          ],
+          "type": "string"
+        },
+        "numero_documento": {
+          "type": "number"
+        },
+        "primer_nombre": {
+          "type": "string"
+        },
+        "segundo_nombre": {
+          "type": "string"
+        },
+        "apellido": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "telefono": {
+          "type": "number"
+        },
+        "autorizaciones": {
+          "type": "string"
+        }
+      }
+    },
+    "ui_schema": {
+      "type": "VerticalLayout",
+      "elements": [
+        {
+          "text": "Datos generales",
+          "type": "Label"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Tipo ID Fiscal",
+              "scope": "#/properties/tipo_id_fiscal"
+            },
+            {
+              "type": "Control",
+              "label": "Número ID Fiscal",
+              "scope": "#/properties/numero_id_fiscal"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Primer nombre",
+              "scope": "#/properties/primer_nombre"
+            },
+            {
+              "type": "Control",
+              "label": "Segundo nombre",
+              "scope": "#/properties/segundo_nombre"
+            },
+            {
+              "type": "Control",
+              "label": "Apellido",
+              "scope": "#/properties/apellido"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Rol en la cuenta",
+              "scope": "#/properties/rol"
+            },
+            {
+              "type": "Control",
+              "label": "Autorizaciones del condomino (solo si seleccionó rol AUTORIZADO)",
+              "scope": "#/properties/autorizaciones"
+            }
+          ]
+        },
+        {
+          "text": "Datos de contacto",
+          "type": "Label"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Email",
+              "scope": "#/properties/email"
+            },
+            {
+              "type": "Control",
+              "label": "Teléfono",
+              "scope": "#/properties/telefono"
+            }
+          ]
+        }
+      ]
+    }
+  }
+description: ""
+expiration_days: 30
+instructions: "Por favor, complete los datos solicitados."

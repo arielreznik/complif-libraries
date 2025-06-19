@@ -1,0 +1,13 @@
+category: LEGAJOS
+code: COMPLIF_CREATE_CASE_BY_INVESTOR_PROFILE_EXPIRED
+default_priority: LOW
+description: 'La plantilla **Perfil del Inversor vencido** sirve para el control y
+  gestión de los vencimiendo de los Perfiles del Inversor de sus clientes. Cada vez
+  que uno venza, se generará un caso para su tratemiento.
+
+  '
+id_operating_country: null
+name: Vencimiento de Perfil del Inversor
+resolution_interval: 60 days
+subtitle: Gestiona el vencimiento de los perfiles del inversor de tus clientes
+video_link: ''

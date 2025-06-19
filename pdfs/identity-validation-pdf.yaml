@@ -1,0 +1,170 @@
+name: Identity validation PDF
+code: 
+config: {}
+description: PDF template for identity validation
+entity: identity_verification
+footer: ''
+header: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+   <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+     Verificación de Identidad
+    </title>
+    <style>
+     body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px; /* Set default text to 14px */
+  }
+  h1 {
+  color: #333;
+  font-size: 20px; /* Main title font size set to 20px */
+  text-align: left; /* Changed to left alignment */
+  }
+  h2 {
+  font-size: 16px; /* Section titles set to 16px */
+  }
+  .section {
+  margin-bottom: 20px;
+  }
+  .section-title {
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0 10px 0;
+  }
+  th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  }
+  th {
+  background-color: #f4f4f4;
+  width: 200px;
+  }
+  .code-block {
+  font-family: monospace;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 4px;
+  word-wrap: break-word;
+  }
+  .footer {
+  text-align: center;
+  color: #333;
+  font-size: 0.8em;
+  margin-top: 20px;
+  }
+    </style>
+   </head>
+   <body>
+    <h1>
+     Validación de identidad
+    </h1>
+    <div class="section">
+     <h2 class="section-title">
+      Información Personal
+     </h2>
+     <table>
+      <tr>
+       <th>
+        Nombre Completo
+       </th>
+       <td>
+        {{full_name}}
+       </td>
+      </tr>
+      <tr>
+       <th>
+        Número de Documento (DNI)
+       </th>
+       <td>
+        {{dni}}
+       </td>
+      </tr>
+      <tr>
+       <th>
+        Correo Electrónico
+       </th>
+       <td>
+        {{email}}
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="section">
+     <h2 class="section-title">
+      Detalles de la validación
+     </h2>
+     <table>
+      <tr>
+       <th>
+        Fecha y Hora
+       </th>
+       <td>
+        {{datetime}}
+       </td>
+      </tr>
+      <tr>
+       <th>
+        Dirección IP
+       </th>
+       <td>
+        {{ip}}
+       </td>
+      </tr>
+      <tr>
+       <th>
+        Dispositivo
+       </th>
+       <td>
+        {{device}}
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="section">
+     <h2 class="section-title">
+      Información del Navegador
+     </h2>
+     <table>
+      <tr>
+       <td class="code-block">
+        {{login_info}}
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="section">
+     <h2 class="section-title">
+      Documentos Adjuntos
+     </h2>
+     <table>
+      {{#each attachments}}
+      <tr>
+       <th>
+        UUID Documento ({{document_type}})
+       </th>
+       <td>
+        {{id_document}}
+       </td>
+      </tr>
+      {{/each}}
+     </table>
+    </div>
+   </body>
+  </html>

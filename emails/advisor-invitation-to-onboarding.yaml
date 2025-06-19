@@ -1,0 +1,66 @@
+name: '[PORTAL] Advisor invitation to onboarding'
+description: This email is sent when an advisor invites a client to start an onboarding process.
+category: PORTAL DE USUARIO
+code: COMPLIF_ADVISOR_INVITE_EXTERNAL_USER_US
+subtitle: Configure the email that the advisor will send to their clients to invite them to
+  start an onboarding.
+video_link: ''
+add_advisor_in_copy: false
+id_operating_country: None
+export_data_declared: None
+export_terms_conditions: None
+code_pdf_template: None
+sendgrid_data:
+  from:
+    email: noreply@complif.com
+    name: Complif Notifications
+  reply_to:
+    email: noreply@complif.com
+    name: Complif notifications
+  subject: Complete your onboarding
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+      <head>
+          <meta charset="UTF-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <title>
+              Message from your advisor
+          </title>
+      </head>
+      <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f6f6f6;">
+          <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+              <!-- Main Container -->
+              <div style="background-color: #ffffff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                  <!-- Logo -->
+                  <div style="text-align: center; margin-bottom: 30px;">
+                      <img src="{{logo_url}}" alt="Logo" style="max-width: 180px; height: auto;"/>
+                  </div>
+                  <!-- Greeting -->
+                  <div style="color: #333333; font-size: 16px; margin-bottom: 20px;">
+                      Hello!
+                  </div>
+                  <!-- Advisor custom message -->
+                  <div style="color: #555555; font-size: 16px; line-height: 1.6; margin-bottom: 30px; font-style: italic;">
+                      "{{message}}"
+                  </div>
+                  <!-- Main message -->
+                  <div style="color: #555555; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
+                      Click below to start your onboarding process.
+                  </div>
+                  <!-- Action button -->
+                  <div style="text-align: center; margin-bottom: 30px;">
+                      <a href="{{link}}" style="display: inline-block; padding: 14px 30px; background-color: {{primary_color}}; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;"> Start onboarding â†’ </a>
+                      </div>
+                      <!-- Security info -->
+                      <div style="color: #888888; font-size: 14px; line-height: 1.4; margin-bottom: 20px;">
+                          ðŸ”’ For your security, this link is personal and has limited validity. If you did not request this invitation or have any questions, please contact me directly.
+                      </div>
+                      <!-- Footer -->
+                      <div style="text-align: center; padding-top: 20px; color: #999999; font-size: 12px;">
+                          This is a confidential email. Do not share this message.
+                      </div>
+                  </div>
+              </div>
+          </body>
+      </html>

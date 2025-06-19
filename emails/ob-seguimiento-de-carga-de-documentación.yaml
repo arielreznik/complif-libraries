@@ -1,0 +1,58 @@
+name: "[OB] Seguimiento de carga de documentaci\xF3n"
+description: "Este correo se env\xEDa para recordar al cliente que debe completar la carga de la\
+  \ documentaci\xF3n requerida para su apertura de cuenta."
+category: DOCUMENTACION
+code: COMPLIF_FOLLOWUP_DOC
+subtitle: "Seguimiento de carga de documentaci\xF3n de la apertura."
+video_link: ''
+add_advisor_in_copy: false
+id_operating_country: None
+export_data_declared: None
+export_terms_conditions: None
+code_pdf_template: None
+sendgrid_data:
+  bcc: []
+  cc: []
+  from:
+    email: ''
+    name: ''
+  id_document: ''
+  reply_to:
+    email: ''
+    name: ''
+  subject: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+      <head>
+          <meta charset="UTF-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <title>
+              Email Verification
+          </title>
+          <style>
+              body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f9f9f9; } .container { width: 100%; max-width: 600px; padding: 20px; background-color: #ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center; box-sizing: border-box; } .heading { font-size: 18px; margin-top: 20px; color: #333333; } .subheading { font-size: 14px; margin-top: 10px; color: #777777; } .button { display: inline-block; margin-top: 20px; padding: 10px 20px; color: #ffffff; text-decoration: none; border-radius: 5px; } .code { display: inline-block; margin-top: 20px; padding: 10px; border: 1px solid #cccccc; border-radius: 5px; font-size: 18px; letter-spacing: 5px; background-color: #f3f3f3; } .footer { font-size: 12px; margin-top: 20px; color: #777777; }
+          </style>
+      </head>
+      <body>
+          <div class="container">
+              <table>
+                  <tr>
+                      <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
+                          <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:30% !important; width:30%; height:auto !important;" width="180" alt="" data-proportionally-constrained="true" data-responsive="true" src="{{logo_url}}"/>
+                      </td>
+                  </tr>
+              </table>
+              <div class="heading">
+                  Completa tu apertura
+              </div>
+              <div class="subheading">
+                  Clickeando en el siguiente botón puedes terminar de cargar la documentación necesaria para completar el proceso de apertura o darle seguimiento al estado de los documentos que ya haya subido.
+              </div>
+              <a href="{{onboarding_url}}" class="button" style="background-color: {{primary_color}}; color: #ffffff !important;">Cargar documentación</a>
+                  <div class="footer">
+                      ¿No reconoces esta actividad? Ponte en contacto con soporte.
+                  </div>
+              </div>
+          </body>
+      </html>

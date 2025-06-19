@@ -1,0 +1,120 @@
+name: PDF template for representatives structure
+code: update_representatives
+config: {}
+description: PDF template for representatives structure
+entity: update_representatives
+footer: ''
+header: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="en">
+   <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+     Representatives Table
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js">
+    </script>
+    <style>
+     table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  }
+  th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  }
+  th {
+  background-color: #f2f2f2;
+  }
+    </style>
+   </head>
+   <body>
+    <h2>
+     Empresa: {{legal_person.legal_name}}
+     <br/>
+     Número de identificación: {{legal_person.tax_id_number}}
+    </h2>
+    <h4>
+     Representantes anteriores
+    </h4>
+    <table>
+     <thead>
+      <tr>
+       <th>
+        Nombre
+       </th>
+       <th>
+        Tipo de representación
+       </th>
+       <th>
+        Tipo de firma
+       </th>
+       <th>
+        Email
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      {{#each data.form.parsedRepresentativesOld}}
+      <tr>
+       <td>
+        {{first_name}} {{last_name}}
+       </td>
+       <td>
+        {{representation_type}}
+       </td>
+       <td>
+        {{signature_type}}
+       </td>
+       <td>
+        {{email}}
+       </td>
+      </tr>
+      {{/each}}
+     </tbody>
+    </table>
+    <h4>
+     Representantes actuales
+    </h4>
+    <table>
+     <thead>
+      <tr>
+       <th>
+        Nombre
+       </th>
+       <th>
+        Tipo de representación
+       </th>
+       <th>
+        Tipo de firma
+       </th>
+       <th>
+        Email
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      {{#each data.form.parsedRepresentativesNew}}
+      <tr>
+       <td>
+        {{first_name}} {{last_name}}
+       </td>
+       <td>
+        {{representation_type}}
+       </td>
+       <td>
+        {{signature_type}}
+       </td>
+       <td>
+        {{email}}
+       </td>
+      </tr>
+      {{/each}}
+     </tbody>
+    </table>
+   </body>
+  </html>

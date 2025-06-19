@@ -1,0 +1,868 @@
+name: PDF template for Update People Data
+code: update_human_people
+config: {}
+description: PDF template for Update People Data
+entity: update_human_people
+footer: ''
+header: ''
+html: |
+  <html>
+   <head>
+    <style>
+     body {
+  font-family: Arial, sans-serif;
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  page-break-inside: auto; /* Cambiado */
+  page-break-after: auto;  /* Añadido */
+  }
+  th,
+  td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  page-break-inside: auto; /* Cambiado */
+  page-break-after: auto;  /* Añadido */
+  }
+  th {
+  background-color: #f2f2f2;
+  }
+  h1,
+  h2 {
+  color: #333;
+  }
+    </style>
+   </head>
+   <body>
+    <h1>
+     Datos nuevos
+    </h1>
+    <p style="text-align: center">
+    </p>
+    <figure class="table no-page-break" style="width: 100%">
+     <table "="" class="ck-table-resized no-page-break">
+      <colgroup>
+       <col style="width: 20%"/>
+       <col style="width: 80%"/>
+      </colgroup>
+      <tbody>
+       <tr>
+        <td colspan="2" style="background-color: hsl(0, 0%, 30%)">
+         <p style="text-align: center">
+          <span style="color: hsl(0, 0%, 100%)">
+           <strong>
+            Datos principales
+           </strong>
+          </span>
+         </p>
+        </td>
+       </tr>
+       {{#if data.form.first_name}}
+       <tr>
+        <td>
+         <strong>
+          Nombre
+         </strong>
+        </td>
+        <td>
+         {{data.form.first_name}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.middle_name}}
+       <tr>
+        <td>
+         <strong>
+          Segundo Nombre
+         </strong>
+        </td>
+        <td>
+         {{data.form.middle_name}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.last_name}}
+       <tr>
+        <td>
+         <strong>
+          Apellidos
+         </strong>
+        </td>
+        <td>
+         {{data.form.last_name}}
+        </td>
+       </tr>
+       {{/if}}
+  {{#if data.form.second_last_name}}
+       <tr>
+        <td>
+         <strong>
+          Segundo apellido
+         </strong>
+        </td>
+        <td>
+         {{data.form.second_last_name}}
+        </td>
+       </tr>
+       {{/if}}
+  {{#if data.form.external_code}}
+       <tr>
+        <td>
+         <strong>
+          ID Externo
+         </strong>
+        </td>
+        <td>
+         {{data.form.external_code}}
+        </td>
+       </tr>
+       {{/if}}
+  {{#if data.form.birth_date}}
+       <tr>
+        <td>
+         <strong>
+          Fecha de Nacimiento
+         </strong>
+        </td>
+        <td>
+         {{data.form.birth_date}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.birth_country}}
+       <tr>
+        <td>
+         <strong>
+          País de Nacimiento
+         </strong>
+        </td>
+        <td>
+         {{data.form.birth_country}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.citizenship}}
+       <tr>
+        <td>
+         <strong>
+          Nacionalidad
+         </strong>
+        </td>
+        <td>
+         {{data.form.citizenship}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.gender}}
+       <tr>
+        <td>
+         <strong>
+          Género
+         </strong>
+        </td>
+        <td>
+         {{data.form.gender}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.civil_status}}
+       <tr>
+        <td>
+         <strong>
+          Estado Civil
+         </strong>
+        </td>
+        <td>
+         {{data.form.civil_status}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.tax_id_type}}
+       <tr>
+        <td>
+         <strong>
+          Tipo de Documento Tributario
+         </strong>
+        </td>
+        <td>
+         {{data.form.tax_id_type}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.tax_id_number}}
+       <tr>
+        <td>
+         <strong>
+          Número de Documento Tributario
+         </strong>
+        </td>
+        <td>
+         {{data.form.tax_id_number}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.id_type}}
+       <tr>
+        <td>
+         <strong>
+          Tipo de Documento de Identidad
+         </strong>
+        </td>
+        <td>
+         {{data.form.id_type}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.id_number}}
+       <tr>
+        <td>
+         <strong>
+          Número de Documento de Identidad
+         </strong>
+        </td>
+        <td>
+         {{data.form.id_number}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.economic_activity}}
+       <tr>
+        <td>
+         <strong>
+          Actividad Económica
+         </strong>
+        </td>
+        <td>
+         {{data.form.economic_activity}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.email}}
+       <tr>
+        <td>
+         <strong>
+          Email
+         </strong>
+        </td>
+        <td>
+         {{data.form.email}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.phone}}
+       <tr>
+        <td>
+         <strong>
+          Teléfono
+         </strong>
+        </td>
+        <td>
+         {{data.form.phone}}
+        </td>
+       </tr>
+       {{/if}}
+      </tbody>
+     </table>
+    </figure>
+    {{#if data.form.extra_data }}
+    <figure class="table no-page-break" style="width: 100%">
+     <table "="" class="ck-table-resized no-page-break">
+      <colgroup>
+       <col style="width: 20%"/>
+       <col style="width: 80%"/>
+      </colgroup>
+      <tbody>
+       <tr>
+        <td colspan="2" style="background-color: hsl(0, 0%, 30%)">
+         <p style="text-align: center">
+          <span style="color: hsl(0, 0%, 100%)">
+           <strong>
+            Datos Adicionales
+           </strong>
+          </span>
+         </p>
+        </td>
+       </tr>
+       {{#each data.form.extra_data}}
+       <tr>
+        <td>
+         <p>
+          <strong>
+           {{@key}}
+          </strong>
+         </p>
+        </td>
+        <td>
+         {{this}}
+        </td>
+       </tr>
+       {{/each}}
+      </tbody>
+     </table>
+    </figure>
+    {{/if}}
+    <p>
+    </p>
+    <p>
+    </p>
+    {{#if data.form.addresses}}
+    <figure class="table no-page-break" style="width: 100%">
+     <table "="" class="ck-table-resized no-page-break">
+      <colgroup>
+       <col style="width: 100%"/>
+      </colgroup>
+      <tbody>
+       <tr>
+        <td style="background-color: hsl(0, 0%, 30%)">
+         <p style="text-align: center">
+          <span style="color: hsl(0, 0%, 100%)">
+           <strong>
+            Direcciones
+           </strong>
+          </span>
+         </p>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </figure>
+    {{/if}} {{#each data.form.addresses}}
+    <figure class="table no-page-break" style="width: 100%">
+     <table "="" class="ck-table-resized no-page-break">
+      <colgroup>
+       <col style="width: 20%"/>
+       <col style="width: 80%"/>
+      </colgroup>
+      <tbody>
+       <tr>
+        <td colspan="2">
+         <p style="text-align: center">
+          <strong>
+           Dirección {{this.type}}
+          </strong>
+         </p>
+        </td>
+       </tr>
+       {{#if this.country}}
+       <tr>
+        <td>
+         <strong>
+          País
+         </strong>
+        </td>
+        <td>
+         {{this.country}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.state}}
+       <tr>
+        <td>
+         <strong>
+          Estado/Provincia
+         </strong>
+        </td>
+        <td>
+         {{this.state}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.city}}
+       <tr>
+        <td>
+         <strong>
+          Localidad
+         </strong>
+        </td>
+        <td>
+         {{this.city}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.street}}
+       <tr>
+        <td>
+         <strong>
+          Calle
+         </strong>
+        </td>
+        <td>
+         {{this.street}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.number}}
+       <tr>
+        <td>
+         <strong>
+          Número
+         </strong>
+        </td>
+        <td>
+         {{this.number}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.floor}}
+       <tr>
+        <td>
+         <strong>
+          Piso
+         </strong>
+        </td>
+        <td>
+         {{this.floor}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.apartment}}
+       <tr>
+        <td>
+         <strong>
+          Departamento
+         </strong>
+        </td>
+        <td>
+         {{this.apartment}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.zip_code}}
+       <tr>
+        <td>
+         <strong>
+          Código Postal
+         </strong>
+        </td>
+        <td>
+         {{this.zip_code}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.details}}
+       <tr>
+        <td>
+         <strong>
+          Detalle
+         </strong>
+        </td>
+        <td>
+         {{this.details}}
+        </td>
+       </tr>
+       {{/if}}
+  {{#if this.external_code}}
+       <tr>
+        <td>
+         <strong>
+          ID Externo
+         </strong>
+        </td>
+        <td>
+         {{this.external_code}}
+        </td>
+       </tr>
+       {{/if}}
+      </tbody>
+     </table>
+    </figure>
+    {{/each}}
+    <div style="page-break-after: always">
+    </div>
+    <!-- New Data Section -->
+    <h1>
+     Datos anteriores
+    </h1>
+    <p style="text-align: center">
+    </p>
+    <figure class="table no-page-break" style="width: 100%">
+     <table "="" class="ck-table-resized no-page-break">
+      <colgroup>
+       <col style="width: 20%"/>
+       <col style="width: 80%"/>
+      </colgroup>
+      <tbody>
+       <tr>
+        <td colspan="2" style="background-color: hsl(0, 0%, 30%)">
+         <p style="text-align: center">
+          <span style="color: hsl(0, 0%, 100%)">
+           <strong>
+            Datos principales
+           </strong>
+          </span>
+         </p>
+        </td>
+       </tr>
+       {{#if data.form.first_name}}
+       <tr>
+        <td>
+         <strong>
+          Nombre
+         </strong>
+        </td>
+        <td>
+         {{people.0.first_name}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.middle_name}}
+       <tr>
+        <td>
+         <strong>
+          Segundo Nombre
+         </strong>
+        </td>
+        <td>
+         {{people.0.middle_name}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.last_name}}
+       <tr>
+        <td>
+         <strong>
+          Apellidos
+         </strong>
+        </td>
+        <td>
+         {{people.0.last_name}}
+        </td>
+       </tr>
+       {{/if}}
+  {{#if data.form.second_last_name}}
+       <tr>
+        <td>
+         <strong>
+          Segundo apellido
+         </strong>
+        </td>
+        <td>
+         {{people.0.second_last_name}}
+        </td>
+       </tr>
+       {{/if}}
+  {{#if data.form.external_code}}
+       <tr>
+        <td>
+         <strong>
+          ID Externo
+         </strong>
+        </td>
+        <td>
+         {{people.0.external_code}}
+        </td>
+       </tr>
+       {{/if}}
+  {{#if data.form.birth_date}}
+       <tr>
+        <td>
+         <strong>
+          Fecha de Nacimiento
+         </strong>
+        </td>
+        <td>
+         {{people.0.birth_date}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.birth_country}}
+       <tr>
+        <td>
+         <strong>
+          País de Nacimiento
+         </strong>
+        </td>
+        <td>
+         {{people.0.birth_country}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.citizenship}}
+       <tr>
+        <td>
+         <strong>
+          Nacionalidad
+         </strong>
+        </td>
+        <td>
+         {{people.0.citizenship}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.gender}}
+       <tr>
+        <td>
+         <strong>
+          Género
+         </strong>
+        </td>
+        <td>
+         {{people.0.gender}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.civil_status}}
+       <tr>
+        <td>
+         <strong>
+          Estado Civil
+         </strong>
+        </td>
+        <td>
+         {{people.0.civil_status}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.tax_id_type}}
+       <tr>
+        <td>
+         <strong>
+          Tipo de Documento Tributario
+         </strong>
+        </td>
+        <td>
+         {{people.0.tax_id_type}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.tax_id_number}}
+       <tr>
+        <td>
+         <strong>
+          Número de Documento Tributario
+         </strong>
+        </td>
+        <td>
+         {{people.0.tax_id_number}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.id_type}}
+       <tr>
+        <td>
+         <strong>
+          Tipo de Documento de Identidad
+         </strong>
+        </td>
+        <td>
+         {{people.0.id_type}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.id_number}}
+       <tr>
+        <td>
+         <strong>
+          Número de Documento de Identidad
+         </strong>
+        </td>
+        <td>
+         {{people.0.id_number}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.economic_activity}}
+       <tr>
+        <td>
+         <strong>
+          Actividad Económica
+         </strong>
+        </td>
+        <td>
+         {{people.0.economic_activity}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.email}}
+       <tr>
+        <td>
+         <strong>
+          Email
+         </strong>
+        </td>
+        <td>
+         {{people.0.email}}
+        </td>
+       </tr>
+       {{/if}} {{#if data.form.phone}}
+       <tr>
+        <td>
+         <strong>
+          Teléfono
+         </strong>
+        </td>
+        <td>
+         {{people.0.phone}}
+        </td>
+       </tr>
+       {{/if}}
+      </tbody>
+     </table>
+    </figure>
+    {{#if people.0.extra_data }}
+    <figure class="table no-page-break" style="width: 100%">
+     <table "="" class="ck-table-resized no-page-break">
+      <colgroup>
+       <col style="width: 20%"/>
+       <col style="width: 80%"/>
+      </colgroup>
+      <tbody>
+       <tr>
+        <td colspan="2" style="background-color: hsl(0, 0%, 30%)">
+         <p style="text-align: center">
+          <span style="color: hsl(0, 0%, 100%)">
+           <strong>
+            Datos Adicionales
+           </strong>
+          </span>
+         </p>
+        </td>
+       </tr>
+       {{#each people.0.extra_data}}
+       <tr>
+        <td>
+         <p>
+          <strong>
+           {{@key}}
+          </strong>
+         </p>
+        </td>
+        <td>
+         {{this}}
+        </td>
+       </tr>
+       {{/each}}
+      </tbody>
+     </table>
+    </figure>
+    {{/if}}
+    <p>
+    </p>
+    <p>
+    </p>
+    {{#if people.0.addresses}}
+    <figure class="table no-page-break" style="width: 100%">
+     <table "="" class="ck-table-resized no-page-break">
+      <colgroup>
+       <col style="width: 100%"/>
+      </colgroup>
+      <tbody>
+       <tr>
+        <td style="background-color: hsl(0, 0%, 30%)">
+         <p style="text-align: center">
+          <span style="color: hsl(0, 0%, 100%)">
+           <strong>
+            Direcciones
+           </strong>
+          </span>
+         </p>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </figure>
+    {{/if}} {{#each people.0.addresses}}
+    <figure class="table no-page-break" style="width: 100%">
+     <table "="" class="ck-table-resized no-page-break">
+      <colgroup>
+       <col style="width: 20%"/>
+       <col style="width: 80%"/>
+      </colgroup>
+      <tbody>
+       <tr>
+        <td colspan="2">
+         <p style="text-align: center">
+          <strong>
+           Dirección {{this.type}}
+          </strong>
+         </p>
+        </td>
+       </tr>
+       {{#if this.country}}
+       <tr>
+        <td>
+         <strong>
+          País
+         </strong>
+        </td>
+        <td>
+         {{this.country}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.state}}
+       <tr>
+        <td>
+         <strong>
+          Estado/Provincia
+         </strong>
+        </td>
+        <td>
+         {{this.state}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.city}}
+       <tr>
+        <td>
+         <strong>
+          Localidad
+         </strong>
+        </td>
+        <td>
+         {{this.city}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.street}}
+       <tr>
+        <td>
+         <strong>
+          Calle
+         </strong>
+        </td>
+        <td>
+         {{this.street}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.number}}
+       <tr>
+        <td>
+         <strong>
+          Número
+         </strong>
+        </td>
+        <td>
+         {{this.number}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.floor}}
+       <tr>
+        <td>
+         <strong>
+          Piso
+         </strong>
+        </td>
+        <td>
+         {{this.floor}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.apartment}}
+       <tr>
+        <td>
+         <strong>
+          Departamento
+         </strong>
+        </td>
+        <td>
+         {{this.apartment}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.zip_code}}
+       <tr>
+        <td>
+         <strong>
+          Código Postal
+         </strong>
+        </td>
+        <td>
+         {{this.zip_code}}
+        </td>
+       </tr>
+       {{/if}} {{#if this.details}}
+       <tr>
+        <td>
+         <strong>
+          Detalle
+         </strong>
+        </td>
+        <td>
+         {{this.details}}
+        </td>
+       </tr>
+       {{/if}}
+  {{#if this.external_code}}
+       <tr>
+        <td>
+         <strong>
+          ID Externo
+         </strong>
+        </td>
+        <td>
+         {{this.external_code}}
+        </td>
+       </tr>
+       {{/if}}
+      </tbody>
+     </table>
+    </figure>
+    {{/each}}
+   </body>
+  </html>

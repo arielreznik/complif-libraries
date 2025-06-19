@@ -1,0 +1,16 @@
+name: "Solicitud cierre de cuenta"
+type: LEGAL_TEXT
+subtitle: ""
+video_link: ""
+advisor_action: "NULL"
+autocomplete_with_actual_data: false
+automatic_approval: false
+category: "Acciones sobre cuentas"
+code: COMPLIF_SOLICITUD_CIERRE_DE_CUENTA
+config: |
+  {
+    "legal_text": "At. \n\nComplif SRL\n\n\n\n#### Presente\n\n\n\nNombre:{{person.name}}\n\n\n\nDe mi mayor consideración:\n\n\n\nPor medio de la presente solicito el cierre de mi Cuenta Nº {{accounts.0.number}}. \n\n\n\n\n\nSin otro particular los saluda muy atentamente."
+  }
+description: ""
+expiration_days: 30
+instructions: "Por favor, complete los datos solicitados."

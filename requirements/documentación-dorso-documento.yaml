@@ -1,0 +1,14 @@
+name: "Documentación - Dorso Documento"
+type: FILE_UPLOAD
+subtitle: ""
+video_link: ""
+advisor_action: "NULL"
+autocomplete_with_actual_data: false
+automatic_approval: false
+category: "Documentación"
+code: COMPLIF_DOCUMENTACIÓN_DORSO_DOCUMENTO
+config: |
+  {}
+description: ""
+expiration_days: 365
+instructions: "Por favor, complete los datos solicitados."

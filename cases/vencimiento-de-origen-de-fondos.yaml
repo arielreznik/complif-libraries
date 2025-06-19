@@ -1,0 +1,19 @@
+category: LEGAJOS
+code: COMPLIF_CREATE_CASE_BY_SOF_EXPIRED
+default_priority: MEDIUM
+description: 'La plantilla **Vencimiento de Origen de Fondos** sirve para facilitar
+  la gestión ante el vencimiento de un Origen de Fondos de una persona. El caso se
+  generará automáticamente cuando se alcance la fecha de vencimiento (puedes verificarla
+  en la tabla de Origenes de Fondos o en el legajo de la persona). Utilizando esta
+  plantilla podrás mantener tus perfiles transaccionales actualizados para un mejor
+  monitoreo transaccional. En caso de tener el módulo de requerimientos contratados,
+  podrás vincular el caso un tipo de requerimiento para que se envíe de manera automática
+  sin intervención de un analista.
+
+  '
+id_operating_country: null
+name: Vencimiento de Origen de Fondos
+resolution_interval: 45 days
+subtitle: Gestiona el vencimiento de los Orígenes de Fondos de las personas para mantener
+  tus legajos al día.
+video_link: ''

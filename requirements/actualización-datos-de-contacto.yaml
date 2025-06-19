@@ -1,0 +1,56 @@
+name: "Actualización datos de contacto"
+type: FORM_LEGAL_TEXT
+subtitle: "Contáctate con tus clientes para que puedan renovar sus datos de contacto"
+video_link: ""
+advisor_action: "NULL"
+autocomplete_with_actual_data: false
+automatic_approval: false
+category: "Acciones sobre personas"
+code: COMPLIF_ACTUALIZACION_DATOS_CONTACTO
+config: |
+  {
+    "legal_text": "Hola,\n\nSres. Complif SRL \n\n#### Presente\n\nMe comunico con ustedes para actualizar mi información de contacto que se encuentra a continuación:\n\nEmail: **{{submission.data.form.email}}**\n\nTeléfono: **{{submission.data.form.telefono}}**\n\nMuchas gracias. \n\nLos saluda atentamente,\n\n**{{person.name}}**",
+    "schema": {
+      "properties": {
+        "email": {
+          "format": "email",
+          "type": "string"
+        },
+        "telefono": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "telefono"
+      ],
+      "type": "object"
+    },
+    "ui_schema": {
+      "elements": [
+        {
+          "text": "Datos de contacto",
+          "type": "Label"
+        },
+        {
+          "elements": [
+            {
+              "label": "Email",
+              "scope": "#/properties/email",
+              "type": "Control"
+            },
+            {
+              "label": "Teléfono",
+              "scope": "#/properties/telefono",
+              "type": "Control"
+            }
+          ],
+          "type": "HorizontalLayout"
+        }
+      ],
+      "type": "VerticalLayout"
+    }
+  }
+description: "La plantilla **Actualización datos de contacto** ayuda a recolectar el email y teléfono de su cliente. Utilízala para manter tus contactos al día."
+expiration_days: 60
+instructions: "Por favor, complete los datos solicitados y firme al final de la pantalla."

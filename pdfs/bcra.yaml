@@ -1,0 +1,836 @@
+name: BCRA
+code: complif_default_bcra_deudores
+config: {}
+description: BCRA
+entity: bcra_deudores
+footer: ''
+header: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+   <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&amp;display=swap" rel="stylesheet"/>
+    <style>
+     @page {
+  /* Márgenes de 0 en los costados */
+  margin-left: 0;
+  margin-right: 0;
+  }
+  /* forma de etiquetado generalizada, todos los componentes de este tipo tendran estos estilos */
+  body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  /* margin: 80px; */
+  padding: 0;
+  margin: 0;
+  color: #333;
+  }
+  /* forma de etiquetado generalizada compuesta, todos los componentes h1 dentro del header tendran estos estilos, los h1 por fuera del header no los tendran */
+  header h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #555;
+  }
+  /* forma de aplicar estos estilos a todos los componentes que tengan esta clase */
+  .header {
+  background-color: black;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* position: fixed; */
+  }
+  /* forma para modificar un solo componente en especifico */
+  #white_text {
+  color: white;
+  margin-right: 5px;
+  font-size: 14px;
+  }
+  .container {
+  height: 100%;
+  padding: 20px 20px 0 20px;
+  }
+  .information_header_container {
+  background-color: #EFEFF0;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+  .section_title {
+  font-size: 18px;
+  font-weight: 600;
+  }
+  .section_sub_title {
+  color: #4674A0;
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 18px;
+  margin-bottom: 8px;
+  }
+  .section_information {
+  display: flex;
+  }
+  .section_information_column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  }
+  .information_container {
+  padding: 16px 8px;
+  }
+  .information_title {
+  width: 50%;
+  font-weight: 600;
+  }
+  .information_value {
+  width: 50%;
+  }
+  .divider {
+  width: 100%;
+  background-color: #CACACE;
+  height: 0.5px;
+  margin: 15px 0;
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  }
+  .last_modifications {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  }
+  .debts_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 8px;
+  width: 60%;
+  }
+  th {
+  background-color: #f2f2f2 !important;
+  padding: 10px;
+  text-align: left;
+  border-right: 2px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  }
+  td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  /* Línea entre filas */
+  }
+  .tabla-con-fondo td:first-child,
+  .tabla-con-fondo th:first-child {
+  background-color: #FAFAFA;;
+  }
+  th:last-child {
+  border-right: none;
+  /* Elimina la línea en la última columna */
+  }
+  @media print {
+  /* Forzar salto de página después de cada tabla */
+  /* Alternativamente, para agregar un salto de página específico */
+  .page-break {
+  page-break-before: always;
+  }
+  }
+  .execution_container {
+  display: flex;
+  }
+  .execution_info_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  }
+  .image_container {
+  display: flex;
+  align-items: center;
+  }
+  .execution_title {
+  font-size: 15px;
+  font-weight: bold;
+  }
+  .execution_info {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  }
+  .error_container {
+  display: flex;
+  }
+  .error_text {
+  color: #C8341E;
+  margin-right: 15px;
+  }
+  .error {
+  color: #C8341E;
+  }
+  .data_not_found {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #C8341E;
+  }
+    </style>
+   </head>
+   <body>
+    <main>
+     <div class="container">
+      <div class="information_header_container">
+       <div class="section_title">
+        Ejecución
+       </div>
+       {{#if success}}
+       <div class="image_container">
+        <img alt="success_chip" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDkiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCA0OSAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ5IiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iIzUxOTI3MyIvPgo8cGF0aCBkPSJNMTAuNDk5OSAyLjU4MzMxQzcuNTA5OTIgMi41ODMzMSA1LjA4MzI1IDUuMDA5OTggNS4wODMyNSA3Ljk5OTk4QzUuMDgzMjUgMTAuOTkgNy41MDk5MiAxMy40MTY2IDEwLjQ5OTkgMTMuNDE2NkMxMy40ODk5IDEzLjQxNjYgMTUuOTE2NiAxMC45OSAxNS45MTY2IDcuOTk5OThDMTUuOTE2NiA1LjAwOTk4IDEzLjQ4OTkgMi41ODMzMSAxMC40OTk5IDIuNTgzMzFaTTEwLjQ5OTkgMTIuMzMzM0M4LjExMTE3IDEyLjMzMzMgNi4xNjY1OSAxMC4zODg3IDYuMTY2NTkgNy45OTk5OEM2LjE2NjU5IDUuNjExMjMgOC4xMTExNyAzLjY2NjY1IDEwLjQ5OTkgMy42NjY2NUMxMi44ODg3IDMuNjY2NjUgMTQuODMzMyA1LjYxMTIzIDE0LjgzMzMgNy45OTk5OEMxNC44MzMzIDEwLjM4ODcgMTIuODg4NyAxMi4zMzMzIDEwLjQ5OTkgMTIuMzMzM1pNMTIuOTg2MiA1LjYwNTgxTDkuNDE2NTkgOS4xNzU0TDguMDEzNjcgNy43Nzc5TDcuMjQ5OTIgOC41NDE2NUw5LjQxNjU5IDEwLjcwODNMMTMuNzQ5OSA2LjM3NDk4TDEyLjk4NjIgNS42MDU4MVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNC44Mzg0IDEwLjEyNTVWMTFIMjEuNDQxNFYxMC4xMjU1SDI0LjgzODRaTTIxLjc1MzQgNC42MDE1NlYxMUgyMC42NTA0VjQuNjAxNTZIMjEuNzUzNFpNMjQuMzk0NSA3LjI3MzQ0VjguMTM0NzdIMjEuNDQxNFY3LjI3MzQ0SDI0LjM5NDVaTTI0LjgxNjQgNC42MDE1NlY1LjQ4MDQ3SDIxLjQ0MTRWNC42MDE1NkgyNC44MTY0Wk0yMi4yMjggNC4xNzUyOUwyMy4wODUgMi44NTI1NEgyNC4yODAzTDIzLjA4NSA0LjE3NTI5SDIyLjIyOFpNMjYuNjAyNCA2LjI0NTEyTDI3LjUwNzcgNy44MjI3NUwyOC40MzA1IDYuMjQ1MTJIMjkuNTk1MUwyOC4xNTM3IDguNTc4NjFMMjkuNjUyMiAxMUgyOC40ODc2TDI3LjUyMDggOS4zNTY0NUwyNi41NTQgMTFIMjUuMzg1MUwyNi44NzkyIDguNTc4NjFMMjUuNDQyMiA2LjI0NTEySDI2LjYwMjRaTTMxLjYxMzkgNi4yNDUxMlYxMUgzMC41NTA1VjYuMjQ1MTJIMzEuNjEzOVpNMzAuNDgwMiA0Ljk5NzA3QzMwLjQ4MDIgNC44MzU5NCAzMC41MzI5IDQuNzAyNjQgMzAuNjM4NCA0LjU5NzE3QzMwLjc0NjggNC40ODg3NyAzMC44OTYyIDQuNDM0NTcgMzEuMDg2NiA0LjQzNDU3QzMxLjI3NDEgNC40MzQ1NyAzMS40MjIxIDQuNDg4NzcgMzEuNTMwNCA0LjU5NzE3QzMxLjYzODggNC43MDI2NCAzMS42OTMgNC44MzU5NCAzMS42OTMgNC45OTcwN0MzMS42OTMgNS4xNTUyNyAzMS42Mzg4IDUuMjg3MTEgMzEuNTMwNCA1LjM5MjU4QzMxLjQyMjEgNS40OTgwNSAzMS4yNzQxIDUuNTUwNzggMzEuMDg2NiA1LjU1MDc4QzMwLjg5NjIgNS41NTA3OCAzMC43NDY4IDUuNDk4MDUgMzAuNjM4NCA1LjM5MjU4QzMwLjUzMjkgNS4yODcxMSAzMC40ODAyIDUuMTU1MjcgMzAuNDgwMiA0Ljk5NzA3Wk0zNS4xMTM4IDYuMjQ1MTJWNy4wMTg1NUgzMi40MzMxVjYuMjQ1MTJIMzUuMTEzOFpNMzMuMjA2NiA1LjA4MDU3SDM0LjI2NTZWOS42ODYwNEMzNC4yNjU2IDkuODMyNTIgMzQuMjg2MiA5Ljk0NTMxIDM0LjMyNzIgMTAuMDI0NEMzNC4zNzExIDEwLjEwMDYgMzQuNDMxMiAxMC4xNTE5IDM0LjUwNzMgMTAuMTc4MkMzNC41ODM1IDEwLjIwNDYgMzQuNjcyOSAxMC4yMTc4IDM0Ljc3NTQgMTAuMjE3OEMzNC44NDg3IDEwLjIxNzggMzQuOTE5IDEwLjIxMzQgMzQuOTg2MyAxMC4yMDQ2QzM1LjA1MzcgMTAuMTk1OCAzNS4xMDc5IDEwLjE4NyAzNS4xNDg5IDEwLjE3ODJMMzUuMTUzMyAxMC45ODY4QzM1LjA2NTQgMTEuMDEzMiAzNC45NjI5IDExLjAzNjYgMzQuODQ1NyAxMS4wNTcxQzM0LjczMTUgMTEuMDc3NiAzNC41OTk2IDExLjA4NzkgMzQuNDUwMiAxMS4wODc5QzM0LjIwNzEgMTEuMDg3OSAzMy45OTE3IDExLjA0NTQgMzMuODA0MiAxMC45NjA0QzMzLjYxNjcgMTAuODcyNiAzMy40NzAyIDEwLjczMDUgMzMuMzY0OCAxMC41MzQyQzMzLjI1OTMgMTAuMzM3OSAzMy4yMDY2IDEwLjA3NzEgMzMuMjA2NiA5Ljc1MTk1VjUuMDgwNTdaTTM1Ljc4MzYgOC42NzUyOVY4LjU3NDIyQzM1Ljc4MzYgOC4yMzE0NSAzNS44MzM0IDcuOTEzNTcgMzUuOTMzIDcuNjIwNjFDMzYuMDMyNiA3LjMyNDcxIDM2LjE3NjEgNy4wNjgzNiAzNi4zNjM2IDYuODUxNTZDMzYuNTU0MSA2LjYzMTg0IDM2Ljc4NTUgNi40NjE5MSAzNy4wNTggNi4zNDE4QzM3LjMzMzQgNi4yMTg3NSAzNy42NDM5IDYuMTU3MjMgMzcuOTg5NiA2LjE1NzIzQzM4LjMzODIgNi4xNTcyMyAzOC42NDg4IDYuMjE4NzUgMzguOTIxMyA2LjM0MThDMzkuMTk2NiA2LjQ2MTkxIDM5LjQyOTYgNi42MzE4NCAzOS42MiA2Ljg1MTU2QzM5LjgxMDQgNy4wNjgzNiAzOS45NTU0IDcuMzI0NzEgNDAuMDU1IDcuNjIwNjFDNDAuMTU0NiA3LjkxMzU3IDQwLjIwNDUgOC4yMzE0NSA0MC4yMDQ1IDguNTc0MjJWOC42NzUyOUM0MC4yMDQ1IDkuMDE4MDcgNDAuMTU0NiA5LjMzNTk0IDQwLjA1NSA5LjYyODkxQzM5Ljk1NTQgOS45MjE4OCAzOS44MTA0IDEwLjE3ODIgMzkuNjIgMTAuMzk3OUMzOS40Mjk2IDEwLjYxNDcgMzkuMTk4MSAxMC43ODQ3IDM4LjkyNTYgMTAuOTA3N0MzOC42NTMyIDExLjAyNzggMzguMzQ0MSAxMS4wODc5IDM3Ljk5ODQgMTEuMDg3OUMzNy42NDk4IDExLjA4NzkgMzcuMzM3OCAxMS4wMjc4IDM3LjA2MjQgMTAuOTA3N0MzNi43ODk5IDEwLjc4NDcgMzYuNTU4NSAxMC42MTQ3IDM2LjM2OCAxMC4zOTc5QzM2LjE3NzYgMTAuMTc4MiAzNi4wMzI2IDkuOTIxODggMzUuOTMzIDkuNjI4OTFDMzUuODMzNCA5LjMzNTk0IDM1Ljc4MzYgOS4wMTgwNyAzNS43ODM2IDguNjc1MjlaTTM2Ljg0MjYgOC41NzQyMlY4LjY3NTI5QzM2Ljg0MjYgOC44ODkxNiAzNi44NjQ2IDkuMDkxMzEgMzYuOTA4NiA5LjI4MTc0QzM2Ljk1MjUgOS40NzIxNyAzNy4wMjEzIDkuNjM5MTYgMzcuMTE1MSA5Ljc4MjcxQzM3LjIwODggOS45MjYyNyAzNy4zMjkgMTAuMDM5MSAzNy40NzU0IDEwLjEyMTFDMzcuNjIxOSAxMC4yMDMxIDM3Ljc5NjMgMTAuMjQ0MSAzNy45OTg0IDEwLjI0NDFDMzguMTk0NyAxMC4yNDQxIDM4LjM2NDYgMTAuMjAzMSAzOC41MDgyIDEwLjEyMTFDMzguNjU0NiAxMC4wMzkxIDM4Ljc3NDggOS45MjYyNyAzOC44Njg1IDkuNzgyNzFDMzguOTYyMyA5LjYzOTE2IDM5LjAzMTEgOS40NzIxNyAzOS4wNzUxIDkuMjgxNzRDMzkuMTIxOSA5LjA5MTMxIDM5LjE0NTQgOC44ODkxNiAzOS4xNDU0IDguNjc1MjlWOC41NzQyMkMzOS4xNDU0IDguMzYzMjggMzkuMTIxOSA4LjE2NDA2IDM5LjA3NTEgNy45NzY1NkMzOS4wMzExIDcuNzg2MTMgMzguOTYwOCA3LjYxNzY4IDM4Ljg2NDEgNy40NzExOUMzOC43NzA0IDcuMzI0NzEgMzguNjUwMyA3LjIxMDQ1IDM4LjUwMzggNy4xMjg0MkMzOC4zNjAyIDcuMDQzNDYgMzguMTg4OCA3LjAwMDk4IDM3Ljk4OTYgNy4wMDA5OEMzNy43OTA0IDcuMDAwOTggMzcuNjE3NSA3LjA0MzQ2IDM3LjQ3MTEgNy4xMjg0MkMzNy4zMjc1IDcuMjEwNDUgMzcuMjA4OCA3LjMyNDcxIDM3LjExNTEgNy40NzExOUMzNy4wMjEzIDcuNjE3NjggMzYuOTUyNSA3Ljc4NjEzIDM2LjkwODYgNy45NzY1NkMzNi44NjQ2IDguMTY0MDYgMzYuODQyNiA4LjM2MzI4IDM2Ljg0MjYgOC41NzQyMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=" style="height:25px;"/>
+       </div>
+       {{else}}
+       <div class="error_container">
+        <div class="error_text">
+         {{message}}
+        </div>
+        <div class="image_container">
+         <img alt="error_chip" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDkiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCA0OSAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ5IiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI0M4MzQxRSIvPgo8cGF0aCBkPSJNOS45NTgyNSA5LjYyNTA0SDExLjA0MTZWMTAuNzA4NEg5Ljk1ODI1VjkuNjI1MDRaTTkuOTU4MjUgNS4yOTE3MUgxMS4wNDE2VjguNTQxNzFIOS45NTgyNVY1LjI5MTcxWk0xMC40OTQ1IDIuNTgzMzdDNy41MDQ1IDIuNTgzMzcgNS4wODMyNSA1LjAxMDA0IDUuMDgzMjUgOC4wMDAwNEM1LjA4MzI1IDEwLjk5IDcuNTA0NSAxMy40MTY3IDEwLjQ5NDUgMTMuNDE2N0MxMy40ODk5IDEzLjQxNjcgMTUuOTE2NiAxMC45OSAxNS45MTY2IDguMDAwMDRDMTUuOTE2NiA1LjAxMDA0IDEzLjQ4OTkgMi41ODMzNyAxMC40OTQ1IDIuNTgzMzdaTTEwLjQ5OTkgMTIuMzMzNEM4LjEwNTc1IDEyLjMzMzQgNi4xNjY1OSAxMC4zOTQyIDYuMTY2NTkgOC4wMDAwNEM2LjE2NjU5IDUuNjA1ODcgOC4xMDU3NSAzLjY2NjcxIDEwLjQ5OTkgMy42NjY3MUMxMi44OTQxIDMuNjY2NzEgMTQuODMzMyA1LjYwNTg3IDE0LjgzMzMgOC4wMDAwNEMxNC44MzMzIDEwLjM5NDIgMTIuODk0MSAxMi4zMzM0IDEwLjQ5OTkgMTIuMzMzNFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNC44Mzg0IDEwLjEyNTVWMTFIMjEuNDQxNFYxMC4xMjU1SDI0LjgzODRaTTIxLjc1MzQgNC42MDE1NlYxMUgyMC42NTA0VjQuNjAxNTZIMjEuNzUzNFpNMjQuMzk0NSA3LjI3MzQ0VjguMTM0NzdIMjEuNDQxNFY3LjI3MzQ0SDI0LjM5NDVaTTI0LjgxNjQgNC42MDE1NlY1LjQ4MDQ3SDIxLjQ0MTRWNC42MDE1NkgyNC44MTY0Wk0yNi44NTczIDcuMTUwMzlWMTFIMjUuNzk4MlY2LjI0NTEySDI2LjgwODlMMjYuODU3MyA3LjE1MDM5Wk0yOC4zMTE5IDYuMjE0MzZMMjguMzAzMSA3LjE5ODczQzI4LjIzODYgNy4xODcwMSAyOC4xNjgzIDcuMTc4MjIgMjguMDkyMSA3LjE3MjM2QzI4LjAxODkgNy4xNjY1IDI3Ljk0NTYgNy4xNjM1NyAyNy44NzI0IDcuMTYzNTdDMjcuNjkwOCA3LjE2MzU3IDI3LjUzMTEgNy4xODk5NCAyNy4zOTM0IDcuMjQyNjhDMjcuMjU1NyA3LjI5MjQ4IDI3LjE0IDcuMzY1NzIgMjcuMDQ2MiA3LjQ2MjRDMjYuOTU1NCA3LjU1NjE1IDI2Ljg4NTEgNy42NzA0MSAyNi44MzUzIDcuODA1MThDMjYuNzg1NSA3LjkzOTk0IDI2Ljc1NjIgOC4wOTA4MiAyNi43NDc0IDguMjU3ODFMMjYuNTA1NyA4LjI3NTM5QzI2LjUwNTcgNy45NzY1NiAyNi41MzUgNy42OTk3MSAyNi41OTM2IDcuNDQ0ODJDMjYuNjUyMiA3LjE4OTk0IDI2Ljc0MDEgNi45NjU4MiAyNi44NTczIDYuNzcyNDZDMjYuOTc3NCA2LjU3OTEgMjcuMTI2OCA2LjQyODIyIDI3LjMwNTUgNi4zMTk4MkMyNy40ODcxIDYuMjExNDMgMjcuNjk2NiA2LjE1NzIzIDI3LjkzMzkgNi4xNTcyM0MyNy45OTg0IDYuMTU3MjMgMjguMDY3MiA2LjE2MzA5IDI4LjE0MDUgNi4xNzQ4QzI4LjIxNjYgNi4xODY1MiAyOC4yNzM4IDYuMTk5NzEgMjguMzExOSA2LjIxNDM2Wk0zMC4xOTg5IDcuMTUwMzlWMTFIMjkuMTM5OFY2LjI0NTEySDMwLjE1MDZMMzAuMTk4OSA3LjE1MDM5Wk0zMS42NTM1IDYuMjE0MzZMMzEuNjQ0NyA3LjE5ODczQzMxLjU4MDMgNy4xODcwMSAzMS41MDk5IDcuMTc4MjIgMzEuNDMzOCA3LjE3MjM2QzMxLjM2MDUgNy4xNjY1IDMxLjI4NzMgNy4xNjM1NyAzMS4yMTQgNy4xNjM1N0MzMS4wMzI0IDcuMTYzNTcgMzAuODcyNyA3LjE4OTk0IDMwLjczNSA3LjI0MjY4QzMwLjU5NzMgNy4yOTI0OCAzMC40ODE2IDcuMzY1NzIgMzAuMzg3OSA3LjQ2MjRDMzAuMjk3MSA3LjU1NjE1IDMwLjIyNjcgNy42NzA0MSAzMC4xNzY5IDcuODA1MThDMzAuMTI3MSA3LjkzOTk0IDMwLjA5NzggOC4wOTA4MiAzMC4wODkgOC4yNTc4MUwyOS44NDczIDguMjc1MzlDMjkuODQ3MyA3Ljk3NjU2IDI5Ljg3NjYgNy42OTk3MSAyOS45MzUyIDcuNDQ0ODJDMjkuOTkzOCA3LjE4OTk0IDMwLjA4MTcgNi45NjU4MiAzMC4xOTg5IDYuNzcyNDZDMzAuMzE5IDYuNTc5MSAzMC40Njg0IDYuNDI4MjIgMzAuNjQ3MSA2LjMxOTgyQzMwLjgyODggNi4yMTE0MyAzMS4wMzgzIDYuMTU3MjMgMzEuMjc1NiA2LjE1NzIzQzMxLjM0IDYuMTU3MjMgMzEuNDA4OSA2LjE2MzA5IDMxLjQ4MjEgNi4xNzQ4QzMxLjU1ODMgNi4xODY1MiAzMS42MTU0IDYuMTk5NzEgMzEuNjUzNSA2LjIxNDM2Wk0zMi4xNjA3IDguNjc1MjlWOC41NzQyMkMzMi4xNjA3IDguMjMxNDUgMzIuMjEwNSA3LjkxMzU3IDMyLjMxMDEgNy42MjA2MUMzMi40MDk3IDcuMzI0NzEgMzIuNTUzMiA3LjA2ODM2IDMyLjc0MDcgNi44NTE1NkMzMi45MzEyIDYuNjMxODQgMzMuMTYyNiA2LjQ2MTkxIDMzLjQzNTEgNi4zNDE4QzMzLjcxMDUgNi4yMTg3NSAzNC4wMjEgNi4xNTcyMyAzNC4zNjY3IDYuMTU3MjNDMzQuNzE1NCA2LjE1NzIzIDM1LjAyNTkgNi4yMTg3NSAzNS4yOTg0IDYuMzQxOEMzNS41NzM4IDYuNDYxOTEgMzUuODA2NyA2LjYzMTg0IDM1Ljk5NzEgNi44NTE1NkMzNi4xODc1IDcuMDY4MzYgMzYuMzMyNSA3LjMyNDcxIDM2LjQzMjEgNy42MjA2MUMzNi41MzE4IDcuOTEzNTcgMzYuNTgxNiA4LjIzMTQ1IDM2LjU4MTYgOC41NzQyMlY4LjY3NTI5QzM2LjU4MTYgOS4wMTgwNyAzNi41MzE4IDkuMzM1OTQgMzYuNDMyMSA5LjYyODkxQzM2LjMzMjUgOS45MjE4OCAzNi4xODc1IDEwLjE3ODIgMzUuOTk3MSAxMC4zOTc5QzM1LjgwNjcgMTAuNjE0NyAzNS41NzUyIDEwLjc4NDcgMzUuMzAyOCAxMC45MDc3QzM1LjAzMDMgMTEuMDI3OCAzNC43MjEyIDExLjA4NzkgMzQuMzc1NSAxMS4wODc5QzM0LjAyNjkgMTEuMDg3OSAzMy43MTQ5IDExLjAyNzggMzMuNDM5NSAxMC45MDc3QzMzLjE2NyAxMC43ODQ3IDMyLjkzNTYgMTAuNjE0NyAzMi43NDUxIDEwLjM5NzlDMzIuNTU0NyAxMC4xNzgyIDMyLjQwOTcgOS45MjE4OCAzMi4zMTAxIDkuNjI4OTFDMzIuMjEwNSA5LjMzNTk0IDMyLjE2MDcgOS4wMTgwNyAzMi4xNjA3IDguNjc1MjlaTTMzLjIxOTcgOC41NzQyMlY4LjY3NTI5QzMzLjIxOTcgOC44ODkxNiAzMy4yNDE3IDkuMDkxMzEgMzMuMjg1NyA5LjI4MTc0QzMzLjMyOTYgOS40NzIxNyAzMy4zOTg1IDkuNjM5MTYgMzMuNDkyMiA5Ljc4MjcxQzMzLjU4NiA5LjkyNjI3IDMzLjcwNjEgMTAuMDM5MSAzMy44NTI2IDEwLjEyMTFDMzMuOTk5IDEwLjIwMzEgMzQuMTczNCAxMC4yNDQxIDM0LjM3NTUgMTAuMjQ0MUMzNC41NzE4IDEwLjI0NDEgMzQuNzQxNyAxMC4yMDMxIDM0Ljg4NTMgMTAuMTIxMUMzNS4wMzE4IDEwLjAzOTEgMzUuMTUxOSA5LjkyNjI3IDM1LjI0NTYgOS43ODI3MUMzNS4zMzk0IDkuNjM5MTYgMzUuNDA4MiA5LjQ3MjE3IDM1LjQ1MjIgOS4yODE3NEMzNS40OTkgOS4wOTEzMSAzNS41MjI1IDguODg5MTYgMzUuNTIyNSA4LjY3NTI5VjguNTc0MjJDMzUuNTIyNSA4LjM2MzI4IDM1LjQ5OSA4LjE2NDA2IDM1LjQ1MjIgNy45NzY1NkMzNS40MDgyIDcuNzg2MTMgMzUuMzM3OSA3LjYxNzY4IDM1LjI0MTIgNy40NzExOUMzNS4xNDc1IDcuMzI0NzEgMzUuMDI3NCA3LjIxMDQ1IDM0Ljg4MDkgNy4xMjg0MkMzNC43MzczIDcuMDQzNDYgMzQuNTY1OSA3LjAwMDk4IDM0LjM2NjcgNy4wMDA5OEMzNC4xNjc1IDcuMDAwOTggMzMuOTk0NiA3LjA0MzQ2IDMzLjg0ODIgNy4xMjg0MkMzMy43MDQ2IDcuMjEwNDUgMzMuNTg2IDcuMzI0NzEgMzMuNDkyMiA3LjQ3MTE5QzMzLjM5ODUgNy42MTc2OCAzMy4zMjk2IDcuNzg2MTMgMzMuMjg1NyA3Ljk3NjU2QzMzLjI0MTcgOC4xNjQwNiAzMy4yMTk3IDguMzYzMjggMzMuMjE5NyA4LjU3NDIyWk0zOC42OTI3IDcuMTUwMzlWMTFIMzcuNjMzN1Y2LjI0NTEySDM4LjY0NDRMMzguNjkyNyA3LjE1MDM5Wk00MC4xNDczIDYuMjE0MzZMNDAuMTM4NSA3LjE5ODczQzQwLjA3NDEgNy4xODcwMSA0MC4wMDM4IDcuMTc4MjIgMzkuOTI3NiA3LjE3MjM2QzM5Ljg1NDQgNy4xNjY1IDM5Ljc4MTEgNy4xNjM1NyAzOS43MDc5IDcuMTYzNTdDMzkuNTI2MiA3LjE2MzU3IDM5LjM2NjYgNy4xODk5NCAzOS4yMjg5IDcuMjQyNjhDMzkuMDkxMiA3LjI5MjQ4IDM4Ljk3NTQgNy4zNjU3MiAzOC44ODE3IDcuNDYyNEMzOC43OTA5IDcuNTU2MTUgMzguNzIwNiA3LjY3MDQxIDM4LjY3MDggNy44MDUxOEMzOC42MjEgNy45Mzk5NCAzOC41OTE3IDguMDkwODIgMzguNTgyOSA4LjI1NzgxTDM4LjM0MTIgOC4yNzUzOUMzOC4zNDEyIDcuOTc2NTYgMzguMzcwNSA3LjY5OTcxIDM4LjQyOTEgNy40NDQ4MkMzOC40ODc3IDcuMTg5OTQgMzguNTc1NSA2Ljk2NTgyIDM4LjY5MjcgNi43NzI0NkMzOC44MTI5IDYuNTc5MSAzOC45NjIzIDYuNDI4MjIgMzkuMTQxIDYuMzE5ODJDMzkuMzIyNiA2LjIxMTQzIDM5LjUzMjEgNi4xNTcyMyAzOS43Njk0IDYuMTU3MjNDMzkuODMzOCA2LjE1NzIzIDM5LjkwMjcgNi4xNjMwOSAzOS45NzU5IDYuMTc0OEM0MC4wNTIxIDYuMTg2NTIgNDAuMTA5MiA2LjE5OTcxIDQwLjE0NzMgNi4yMTQzNloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=" style="height:25px;"/>
+        </div>
+       </div>
+       {{/if}}
+      </div>
+      <div class="information_container">
+       <div class="execution_container">
+        <div class="image_container">
+         <img alt="Your SVG Image" id="myImage" src="data:image/png;base64,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" style="height:85px; width: 85px;"/>
+        </div>
+        <div class="execution_info_container">
+         <div class="execution_info">
+          <div class="execution_title">
+           Tipo de Ejecución
+          </div>
+          <div>
+           BCRA - Central de Deudores
+          </div>
+         </div>
+         <div class="execution_info">
+          <div class="execution_title">
+           Fecha de Ejecución
+          </div>
+          <div>
+           {{formatDate created_at "YYYY-MM-DD HH:mm"}}
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        Datos Enviados
+       </div>
+      </div>
+      <div class="information_container">
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          CUIT
+         </div>
+         <div class="information_value">
+          {{tax_id_number}}
+         </div>
+        </div>
+       </div>
+      </div>
+      {{#if success}}
+      <div class="information_header_container">
+       <div class="section_title">
+        Deudas (montos expresados en miles)
+       </div>
+      </div>
+      {{#with metricas.deudas}}
+      <div class="information_container">
+       <div class="section_sub_title">
+        Métricas
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          Monto Total
+         </div>
+         <div class="information_value">
+          {{formatNumber monto_total}}
+         </div>
+         <div class="information_title">
+          Bancos
+         </div>
+         <div class="information_value">
+          {{bancos}}
+         </div>
+         <div class="information_title">
+          Peor Situación
+         </div>
+         <div class="information_value">
+          {{peor_situacion}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Peor Situación &gt;10%
+         </div>
+         <div class="information_value">
+          {{peor_situacion_10_por_ciento}}
+         </div>
+         <div class="information_title">
+          Monto Situación &gt;=3
+         </div>
+         <div class="information_value">
+          {{formatNumber monto_situacion_3_o_mas}}
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="divider">
+      </div>
+      {{#with por_situacion}}
+      <div class="information_container">
+       <div class="section_sub_title">
+        Por Situación
+       </div>
+       <table class="tabla-con-fondo">
+        <thead>
+         <tr>
+          <th>
+          </th>
+          <th>
+           Situación 1
+          </th>
+          <th>
+           Situación 2
+          </th>
+          <th>
+           Situación 3
+          </th>
+          <th>
+           Situación 4
+          </th>
+          <th>
+           Situación 5
+          </th>
+          <th>
+           Situación 6
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           Monto
+          </td>
+          <td>
+           {{formatNumber situacion_1.monto}}
+          </td>
+          <td>
+           {{formatNumber situacion_2.monto}}
+          </td>
+          <td>
+           {{formatNumber situacion_3.monto}}
+          </td>
+          <td>
+           {{formatNumber situacion_4.monto}}
+          </td>
+          <td>
+           {{formatNumber situacion_5.monto}}
+          </td>
+          <td>
+           {{formatNumber situacion_6.monto}}
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Bancos
+          </td>
+          <td>
+           {{situacion_1.bancos}}
+          </td>
+          <td>
+           {{situacion_2.bancos}}
+          </td>
+          <td>
+           {{situacion_3.bancos}}
+          </td>
+          <td>
+           {{situacion_4.bancos}}
+          </td>
+          <td>
+           {{situacion_5.bancos}}
+          </td>
+          <td>
+           {{situacion_6.bancos}}
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      {{/with}}
+  {{/with}}
+      <div class="divider">
+      </div>
+      <div class="information_container">
+       <div class="section_sub_title">
+        Detalle
+       </div>
+       <table>
+        <thead>
+         <tr>
+          <th>
+           Período
+          </th>
+          <th>
+           Monto
+          </th>
+          <th>
+           Entidad
+          </th>
+          <th>
+           Fecha Sit. 1
+          </th>
+          <th>
+           Situación
+          </th>
+          <th>
+           En Revisión
+          </th>
+          <th>
+           Proceso Judicial
+          </th>
+          <th>
+           Días de Atraso
+          </th>
+          <th>
+           Ref.
+          </th>
+          <th>
+           Situación Jurídica
+          </th>
+          <th>
+           Recateg. Oblig.
+          </th>
+          <th>
+           Irrec. por Disp. Técnica
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         {{#if deudas}}
+  {{#each deudas.periodos as |periodo|}}
+  {{#each periodo.entidades as |entidad|}}
+         <tr>
+          <td>
+           {{periodo.periodo}}
+          </td>
+          <td>
+           {{formatNumber entidad.monto}}
+          </td>
+          <td>
+           {{entidad.entidad}}
+          </td>
+          <td>
+           {{#if entidad.fechaSit1}}{{entidad.fechaSit1}}{{else}} - {{/if}}
+          </td>
+          <td>
+           {{entidad.situacion}}
+          </td>
+          <td>
+           {{entidad.diasAtrasoPago}}
+          </td>
+          <td>
+           {{#if entidad.enRevision}}Si{{else}}No{{/if}}
+          </td>
+          <td>
+           {{#if entidad.procesoJud}}Si{{else}}No{{/if}}
+          </td>
+          <td>
+           {{#if entidad.refinanciaciones}}Si{{else}}No{{/if}}
+          </td>
+          <td>
+           {{#if entidad.situacionJuridica}}Si{{else}}No{{/if}}
+          </td>
+          <td>
+           {{#if entidad.recategorizacionOblig}}Si{{else}}No{{/if}}
+          </td>
+          <td>
+           {{#if entidad.irrecDisposicionTecnica}}Si{{else}}No{{/if}}
+          </td>
+         </tr>
+         {{/each}}
+  {{/each}}
+  {{else}}
+         <tr>
+          <td colspan="12">
+           <div class="data_not_found">
+            No se encontraron deudas.
+           </div>
+          </td>
+         </tr>
+         {{/if}}
+        </tbody>
+       </table>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        Deudas Históricas (montos expresados en miles)
+       </div>
+      </div>
+      {{#with metricas.deudas_historicas}}
+      <div class="information_container">
+       <div class="section_sub_title">
+        Métricas
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          Situación 1 Desde
+         </div>
+         <div class="information_value">
+          {{#if situacion_1_desde}}{{situacion_1_desde}}{{else}}-{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Bancarizado
+         </div>
+         <div class="information_value">
+          {{#if bancarizado}}Si{{else}}No{{/if}}
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="divider">
+      </div>
+      <div class="information_container">
+       <div class="section_sub_title">
+        Por Periodo
+       </div>
+       <table class="tabla-con-fondo">
+        <thead>
+         <tr>
+          <th>
+          </th>
+          <th>
+           Últimos 3 Meses
+          </th>
+          <th>
+           Últimos 6 Meses
+          </th>
+          <th>
+           Últimos 12 Meses
+          </th>
+          <th>
+           Últimos 24 Meses
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           Peor Situación
+          </td>
+          <td>
+           {{ultimos_3_meses.peor_situacion}}
+          </td>
+          <td>
+           {{ultimos_6_meses.peor_situacion}}
+          </td>
+          <td>
+           {{ultimos_12_meses.peor_situacion}}
+          </td>
+          <td>
+           {{ultimos_24_meses.peor_situacion}}
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Peor Situación &gt;10%
+          </td>
+          <td>
+           {{ultimos_3_meses.peor_situacion_10_por_ciento}}
+          </td>
+          <td>
+           {{ultimos_6_meses.peor_situacion_10_por_ciento}}
+          </td>
+          <td>
+           {{ultimos_12_meses.peor_situacion_10_por_ciento}}
+          </td>
+          <td>
+           {{ultimos_24_meses.peor_situacion_10_por_ciento}}
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Bancos
+          </td>
+          <td>
+           {{ultimos_3_meses.bancos}}
+          </td>
+          <td>
+           {{ultimos_6_meses.bancos}}
+          </td>
+          <td>
+           {{ultimos_12_meses.bancos}}
+          </td>
+          <td>
+           {{ultimos_24_meses.bancos}}
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Mes Mayor Monto
+          </td>
+          <td>
+           {{formatNumber ultimos_3_meses.mes_mayor_monto}}
+          </td>
+          <td>
+           {{formatNumber ultimos_6_meses.mes_mayor_monto}}
+          </td>
+          <td>
+           {{formatNumber ultimos_12_meses.mes_mayor_monto}}
+          </td>
+          <td>
+           {{formatNumber ultimos_24_meses.mes_mayor_monto}}
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Mes Menor Monto
+          </td>
+          <td>
+           {{formatNumber ultimos_3_meses.mes_menor_monto}}
+          </td>
+          <td>
+           {{formatNumber ultimos_6_meses.mes_menor_monto}}
+          </td>
+          <td>
+           {{formatNumber ultimos_12_meses.mes_menor_monto}}
+          </td>
+          <td>
+           {{formatNumber ultimos_24_meses.mes_menor_monto}}
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      {{/with}}
+      <div class="information_header_container">
+       <div class="section_title">
+        Cheques Rechazados  (montos expresados en miles)
+       </div>
+      </div>
+      <div class="information_container">
+       {{#with metricas.cheques_rechazados}}
+       <div class="section_sub_title">
+        Métricas
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          Cantidad
+         </div>
+         <div class="information_value">
+          {{#if cantidad}}{{cantidad}}{{else}}-{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Monto
+         </div>
+         <div class="information_value">
+          {{#if monto}}{{monto}}{{else}}-{{/if}}
+         </div>
+        </div>
+       </div>
+       {{#if chequesRechazados.causales}}
+       <table class="tabla-con-fondo">
+        <thead>
+         <tr>
+          <th>
+          </th>
+          <th>
+           Cantidad
+          </th>
+          <th>
+           Monto
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           Total No Pagados
+          </td>
+          <td>
+           {{no_pagados.cantidad}}
+          </td>
+          <td>
+           {{formatNumber no_pagados.monto}}
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Sin Fondos No Pagados
+          </td>
+          <td>
+           {{sin_fondos_no_pagados.cantidad}}
+          </td>
+          <td>
+           {{formatNumber sin_fondos_no_pagados.monto}}
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Otra Causa No Pagados
+          </td>
+          <td>
+           {{otra_causa_no_pagados.cantidad}}
+          </td>
+          <td>
+           {{formatNumber otra_causa_no_pagados.monto}}
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Sin Fondos Pagados
+          </td>
+          <td>
+           {{sin_fondos_pagados.cantidad}}
+          </td>
+          <td>
+           {{formatNumber sin_fondos_pagados.monto}}
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Otra Causa Pagados
+          </td>
+          <td>
+           {{otra_causa_pagados.cantidad}}
+          </td>
+          <td>
+           {{formatNumber otra_causa_pagados.monto}}
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       {{/if}}
+      </div>
+      {{/with}}
+      <div class="information_container">
+       <div class="section_sub_title">
+        Detalle
+       </div>
+       <table>
+        <thead>
+         <tr>
+          <th>
+           Causal
+          </th>
+          <th>
+           Entidad
+          </th>
+          <th>
+           Nro Cheque
+          </th>
+          <th>
+           Fecha de Rechazo
+          </th>
+          <th>
+           Monto
+          </th>
+          <th>
+           Cta. Personal
+          </th>
+          <th>
+           Den. Jurídica
+          </th>
+          <th>
+           Fecha de Pago
+          </th>
+          <th>
+           En Revisión
+          </th>
+          <th>
+           Proceso Judicial
+          </th>
+          <th>
+           Estado de Multa
+          </th>
+          <th>
+           Fecha de Pago Multa
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         {{#if chequesRechazados.causales}}
+  {{#each chequesRechazados.causales as |causal|}}
+  {{#each causal.entidades as |entidad|}}
+  {{#each entidad.detalle as |cheque|}}
+         <tr>
+          <td>
+           {{causal.causal}}
+          </td>
+          <td>
+           {{entidad.entidad}}
+          </td>
+          <td>
+           {{cheque.nroCheque}}
+          </td>
+          <td>
+           {{cheque.fechaRechazo}}
+          </td>
+          <td>
+           {{formatNumber cheque.monto}}
+          </td>
+          <td>
+           {{#if cheque.ctaPersonal}}Si{{else}}No{{/if}}
+          </td>
+          <td>
+           {{#if cheque.denomJuridica}}{{cheque.denomJuridica}}{{else}} - {{/if}}
+          </td>
+          <td>
+           {{#if cheque.fechaPago}}{{cheque.fechaPago}}{{else}} - {{/if}}
+          </td>
+          <td>
+           {{#if cheque.enRevision}}Si{{else}}No{{/if}}
+          </td>
+          <td>
+           {{#if cheque.procesoJud}}Si{{else}}No{{/if}}
+          </td>
+          <td>
+           {{#if cheque.estadoMulta}}{{cheque.estadoMulta}}{{else}} - {{/if}}
+          </td>
+          <td>
+           {{#if cheque.fechaPagoMulta}}{{cheque.fechaPagoMulta}}{{else}} - {{/if}}
+          </td>
+         </tr>
+         {{/each}}
+  {{/each}}
+  {{/each}}
+  {{else}}
+         <tr>
+          <td colspan="12">
+           <div class="data_not_found">
+            No se encontraron cheques rechazados.
+           </div>
+          </td>
+         </tr>
+         {{/if}}
+        </tbody>
+       </table>
+      </div>
+      {{/if}}
+     </div>
+    </main>
+   </body>
+  </html>

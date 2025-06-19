@@ -1,0 +1,202 @@
+name: PDF template for shareholder structure
+code: 
+config: {}
+description: PDF template for shareholder structure
+entity: update_shareholder_structure
+footer: ''
+header: ''
+html: |
+  <!DOCTYPE html>
+  <html>
+   <head>
+    <style>
+     table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  }
+  th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  }
+  th {
+  background-color: #f2f2f2;
+  }
+  .legal-entity {
+  margin-bottom: 30px;
+  padding: 15px 0;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  }
+  .shareholder-info {
+  }
+    </style>
+   </head>
+   <body>
+    <h2>
+     {{#with data.form.shareholdersRichData.[0]}}
+  Empresa: {{legal_name}}
+     <br/>
+     Número de identificación: {{tax_id_number}}
+  {{/with}}
+    </h2>
+    <hr style="border: 1px solid black; margin: 20px 0;"/>
+    <h2>
+     Estructura accionaria anterior
+    </h2>
+    {{#each data.form.shareholdersRichDataOld as |legal_people|}}
+    <div class="legal-entity">
+     {{#unless @first}}
+     <h3>
+      {{this.legal_name}}
+     </h3>
+     <p>
+      Número de identificación: {{this.tax_id_number}}
+     </p>
+     <p>
+      Porcentaje de participación: {{this.ownership}}%
+     </p>
+     {{/unless}}
+     <h3>
+      Accionistas:
+     </h3>
+     <div class="shareholder-info">
+      <table>
+       <thead>
+        <tr>
+         <th>
+          Name
+         </th>
+         <th>
+          Tipo
+         </th>
+         <th>
+          Tipo fiscal
+         </th>
+         <th>
+          Número fiscal
+         </th>
+         <th>
+          Porcentaje de participación:
+         </th>
+         <th>
+          Email
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        {{#each legal_people.shareholders as |shareholder|}}
+        <tr>
+         <td>
+          {{this.name}}
+         </td>
+         <td>
+          {{this.type}}
+         </td>
+         <td>
+          {{this.tax_id_type}}
+         </td>
+         <td>
+          {{this.tax_id_number}}
+         </td>
+         <td>
+          {{this.ownership}}%
+         </td>
+         <td>
+          {{this.email}}
+         </td>
+        </tr>
+        {{/each}}
+       </tbody>
+      </table>
+     </div>
+    </div>
+    {{#unless @last}}
+    <hr style="width: 50%; margin: 30px auto; border: 1px solid #808080;"/>
+    {{/unless}}
+  {{/each}}
+    <hr style="border: 1px solid black; margin: 20px 0;"/>
+    <h2>
+     Estructura accionaria nueva
+    </h2>
+    {{#each data.form.shareholdersRichData}}
+    <div class="legal-entity">
+     {{#unless @first}}
+     <h3>
+      {{this.legal_name}}
+     </h3>
+     <p>
+      Número de identificación: {{this.tax_id_number}}
+     </p>
+     <p>
+      Porcentaje de participación: {{this.ownership}}%
+     </p>
+     {{/unless}}
+     <h3>
+      Accionistas:
+     </h3>
+     <div class="shareholder-info">
+      <table>
+       <thead>
+        <tr>
+         <th>
+          Name
+         </th>
+         <th>
+          Tipo
+         </th>
+         <th>
+          Tipo fiscal
+         </th>
+         <th>
+          Número fiscal
+         </th>
+         <th>
+          Porcentaje de participación:
+         </th>
+         <th>
+          Email
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        {{#each this.shareholders as |shareholder|}}
+        <tr>
+         <td>
+          {{#ifCond shareholder.name "==" null}}
+  {{#ifCond shareholder.type "==" "HUMAN"}}
+  {{shareholder.first_name}} {{shareholder.middle_name}} {{shareholder.last_name}}
+  {{else}}
+  {{shareholder.legal_name}}
+  {{/ifCond}}
+  {{/ifCond}}
+  {{this.name}}
+         </td>
+         <td>
+          {{this.type}}
+         </td>
+         <td>
+          {{this.tax_id_type}}
+         </td>
+         <td>
+          {{this.tax_id_number}}
+         </td>
+         <td>
+          {{this.ownership}}%
+         </td>
+         <td>
+          {{this.email}}
+         </td>
+        </tr>
+        {{/each}}
+       </tbody>
+      </table>
+     </div>
+    </div>
+    {{#unless @last}}
+    <hr style="width: 50%; margin: 30px auto; border: 1px solid #808080;"/>
+    {{/unless}}
+  {{/each}}
+   </body>
+  </html>

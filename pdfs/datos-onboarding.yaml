@@ -1,0 +1,1228 @@
+name: Datos Onboarding
+code: 
+config: {}
+description: Datos Onboarding
+entity: onboarding_celeri
+footer: ''
+header: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+   <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&amp;display=swap" rel="stylesheet"/>
+    <style>
+     @page {
+  margin-left: 0;
+  margin-right: 0;
+  }
+  body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+  color: #333;
+  max-width: 100vw;
+  }
+  header h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #555;
+  }
+  #myImage {
+  height: 60px;
+  width: 110px;
+  object-fit: contain;
+  }
+  .header {
+  background-color: black;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 100px !important;
+  }
+  #white_text {
+  color: white;
+  margin-right: 5px;
+  font-size: 14px;
+  }
+  .container {
+  height: 100%;
+  max-width: 100vw;
+  padding: 0 20px;
+  box-sizing: border-box;
+  }
+  .information_header_container {
+  background-color: #efeff0;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  }
+  .section_title {
+  font-size: 20px;
+  font-weight: 600;
+  }
+  .section_sub_title {
+  color: {{#if organization.primary_color}}{{organization.primary_color}}{{else}}#4674a0{{/if}};
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 18px;
+  margin-bottom: 8px;
+  border: 1px solid #efeff0;
+  padding: 8px;
+  }
+  .section_sub_title_2 {
+  color: {{#if organization.primary_color}}{{organization.primary_color}}{{else}}#4674a0{{/if}};
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 16px;
+  margin-bottom: 8px;
+  }
+  .section_information {
+  display: flex;
+  }
+  .section_information_column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  }
+  .information_container {
+  padding: 16px 8px;
+  }
+  .information_title {
+  font-weight: 600;
+  }
+  .divider {
+  width: 100%;
+  background-color: #cacace;
+  height: 0.5px;
+  margin: 15px 0;
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 40px auto;
+  border: 1px solid #ddd;
+  max-width: 95vw;
+  box-sizing: border-box;
+  }
+  .last_modifications {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  }
+  .debts_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 8px;
+  width: 60%;
+  }
+  th {
+  background-color: #f2f2f2 !important;
+  padding: 10px;
+  text-align: left;
+  border-right: 2px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  }
+  td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  }
+  .tabla-con-fondo td:first-child,
+  .tabla-con-fondo th:first-child {
+  background-color: #fafafa;
+  }
+  th:last-child {
+  border-right: none;
+  }
+  .signature-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 40px auto;
+  max-width: 95vw;
+  box-sizing: border-box;
+  }
+  .signature-table td {
+  width: 33.33%;
+  }
+  .signature-line {
+  height: 1px;
+  border-bottom: 1px solid #333;
+  margin: 70px 0 10px 0;
+  width: 100%;
+  }
+  .page-break {
+  position: relative;
+  clear: both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+  .image_container {
+  display: flex;
+  align-items: center;
+  }
+  .data_not_found {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #c8341e;
+  }
+  .section_extra_data {
+  display: flex;
+  flex-wrap: wrap;
+  }
+  .extra_data {
+  flex: 50%;
+  }
+  .checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  margin-right: 10px;
+  }
+  .container-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  }
+  .logo {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  }
+    </style>
+   </head>
+   <body>
+    <main>
+     <div class="container-logo">
+      {{#if organization.logo_url}}
+      <img alt="{{organization.name}}" class="logo" src="{{organization.logo_url}}"/>
+      {{else}}
+      <img alt="Complif Logo" class="logo" src="https://api-qa.complif.com/storage/v1/object/public/logos/e566e609-55a7-46a7-9805-6cfc2a070fe5_celeri_ar_logo.png"/>
+      {{/if}}
+     </div>
+     <div class="container">
+      <div class="information_header_container">
+       <div class="section_title">
+        Datos de la cuenta
+       </div>
+      </div>
+      <div class="information_container">
+       <div class="section_information">
+        <div class="section_information_column">
+         {{#if data.account.name}}
+         <div class="information_title">
+          Nombre
+         </div>
+         <div class="information_value">
+          {{data.account.name}}
+         </div>
+         {{/if}}
+        </div>
+        <div class="section_information_column">
+         {{#if data.account.type}}
+         <div class="information_title">
+          Tipo de cuenta
+         </div>
+         <div class="information_value">
+          {{data.account.type}}
+         </div>
+         {{/if}}
+        </div>
+       </div>
+       <div class="section_extra_data">
+        {{#if data.account.extra_data}}
+  {{#each data.account.extra_data}}
+  {{#if this}}
+        <div class="extra_data">
+         <div class="information_title">
+          {{@key}}
+         </div>
+         <div class="information_value">
+          {{this}}
+         </div>
+        </div>
+        {{/if}}
+  {{/each}}
+  {{/if}}
+       </div>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        {{#if data.isHuman}}Titulares{{else}}Empresa{{/if}}
+       </div>
+      </div>
+      {{#each data.account.owners as |owner|}}
+  {{#ifCond owner.type "===" "HUMAN"}}
+  {{#if @index}}
+      <div class="divider">
+      </div>
+      {{/if}}
+      <div class="information_container">
+       <div class="section_sub_title_2">
+        {{owner.first_name}}{{#if owner.middle_name}} {{owner.middle_name}}{{/if}} {{owner.last_name}} ({{owner.ownership_type}})
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          Primer nombre
+         </div>
+         <div class="information_value">
+          {{#if owner.first_name}}{{owner.first_name}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Apellidos
+         </div>
+         <div class="information_value">
+          {{#if owner.last_name}}{{owner.last_name}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Nacionalidad
+         </div>
+         <div class="information_value">
+          {{#if owner.citizenship}}{{owner.citizenship}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Estado Civil
+         </div>
+         <div class="information_value">
+          {{#if owner.civil_status}}{{owner.civil_status}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Documento Tributario
+         </div>
+         <div class="information_value">
+          {{#if owner.tax_id_type}}{{owner.tax_id_type}} {{owner.tax_id_number}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Email
+         </div>
+         <div class="information_value">
+          {{#if owner.email}}{{owner.email}}{{else}}-{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Segundo nombre
+         </div>
+         <div class="information_value">
+          {{#if owner.middle_name}}{{owner.middle_name}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Fecha de Nacimiento
+         </div>
+         <div class="information_value">
+          {{#if owner.birth_date}}{{owner.birth_date}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          País de Nacimiento
+         </div>
+         <div class="information_value">
+          {{#if owner.birth_country}}{{owner.birth_country}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Género
+         </div>
+         <div class="information_value">
+          {{#if owner.gender}}{{owner.gender}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Documento de Identidad
+         </div>
+         <div class="information_value">
+          {{#if owner.id_type}}{{owner.id_type}} {{owner.id_number}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Teléfono
+         </div>
+         <div class="information_value">
+          {{#if owner.phone}}{{owner.phone}}{{else}}-{{/if}}
+         </div>
+        </div>
+       </div>
+       <div class="section_extra_data">
+        {{#if owner.extra_data}}
+  {{#each owner.extra_data}}
+  {{#if @key}}
+  {{#if this}}
+        <div class="extra_data">
+         <div class="information_title">
+          {{@key}}
+         </div>
+         <div class="information_value">
+          {{this}}
+         </div>
+        </div>
+        {{/if}}
+  {{/if}}
+  {{/each}}
+  {{/if}}
+       </div>
+      </div>
+      {{else}}
+      <div class="information_container">
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          Nombre Legal
+         </div>
+         <div class="information_value">
+          {{#if owner.legal_name}}{{owner.legal_name}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          País de Jurisdicción
+         </div>
+         <div class="information_value">
+          {{#if owner.incorporation_country}}{{owner.incorporation_country}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Documento Tributario
+         </div>
+         <div class="information_value">
+          {{#if owner.tax_id_type}}{{owner.tax_id_type}} {{owner.tax_id_number}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Email
+         </div>
+         <div class="information_value">
+          {{#if owner.email}}{{owner.email}}{{else}}-{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Fecha de Constitución
+         </div>
+         <div class="information_value">
+          {{#if owner.incorporation_date}}{{owner.incorporation_date}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Estado/Provincia de Jurisdicción
+         </div>
+         <div class="information_value">
+          {{#if owner.incorporation_state}}{{owner.incorporation_state}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Actividad Económica
+         </div>
+         <div class="information_value">
+          {{#if owner.economic_activity}}{{owner.economic_activity}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Teléfono
+         </div>
+         <div class="information_value">
+          {{#if owner.phone}}{{owner.phone}}{{else}}-{{/if}}
+         </div>
+        </div>
+       </div>
+       <div class="section_extra_data">
+        {{#if owner.extra_data}}
+  {{#each owner.extra_data}}
+  {{#if @key}}
+  {{#if this}}
+        <div class="extra_data">
+         <div class="information_title">
+          {{@key}}
+         </div>
+         <div class="information_value">
+          {{this}}
+         </div>
+        </div>
+        {{/if}}
+  {{/if}}
+  {{/each}}
+  {{/if}}
+       </div>
+      </div>
+      {{/ifCond}}
+  {{#each owner.addresses}}
+      <div class="information_container">
+       <div class="section_sub_title_2">
+        Dirección {{this.type}} de {{#if owner.legal_name}}{{owner.legal_name}}{{else}}{{owner.first_name}}{{#if owner.middle_name}} {{owner.middle_name}}{{/if}} {{owner.last_name}}{{/if}}
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          País
+         </div>
+         <div class="information_value">
+          {{#if this.country}}{{this.country}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Ciudad
+         </div>
+         <div class="information_value">
+          {{#if this.city}}{{this.city}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Número
+         </div>
+         <div class="information_value">
+          {{#if this.number}}{{this.number}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Departamento
+         </div>
+         <div class="information_value">
+          {{#if this.apartment}}{{this.apartment}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Detalle
+         </div>
+         <div class="information_value">
+          {{#if this.details}}{{this.details}}{{else}}-{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Estado/Provincia
+         </div>
+         <div class="information_value">
+          {{#if this.state}}{{this.state}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Calle
+         </div>
+         <div class="information_value">
+          {{#if this.street}}{{this.street}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Piso
+         </div>
+         <div class="information_value">
+          {{#if this.floor}}{{this.floor}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Código Postal
+         </div>
+         <div class="information_value">
+          {{#if this.zip_code}}{{this.zip_code}}{{else}}-{{/if}}
+         </div>
+        </div>
+       </div>
+      </div>
+      {{/each}}
+  {{#if owner.representatives}}
+      <div class="page-break" style="page-break-after: always">
+       <span style="display: none">
+       </span>
+      </div>
+      <div class="information_container">
+       <div class="section_sub_title">
+        Representantes de {{#if owner.legal_name}}{{owner.legal_name}}{{else}}{{owner.first_name}}{{#if owner.middle_name}} {{owner.middle_name}}{{/if}} {{owner.last_name}}{{/if}}
+       </div>
+       {{#each owner.representatives as |representative|}}
+  {{#ifCond representative.type "===" "HUMAN"}}
+       <div class="information_container">
+        <div class="section_sub_title_2">
+         {{representative.first_name}}{{#if representative.middle_name}} {{representative.middle_name}}{{/if}} {{representative.last_name}}
+        </div>
+        <div class="section_information">
+         <div class="section_information_column">
+          <div class="information_title">
+           Primer nombre
+          </div>
+          <div class="information_value">
+           {{#if representative.first_name}}{{representative.first_name}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Apellidos
+          </div>
+          <div class="information_value">
+           {{#if representative.last_name}}{{representative.last_name}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Nacionalidad
+          </div>
+          <div class="information_value">
+           {{#if representative.citizenship}}{{representative.citizenship}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Estado Civil
+          </div>
+          <div class="information_value">
+           {{#if representative.civil_status}}{{representative.civil_status}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Documento Tributario
+          </div>
+          <div class="information_value">
+           {{#if representative.tax_id_type}}{{representative.tax_id_type}} {{representative.tax_id_number}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Email
+          </div>
+          <div class="information_value">
+           {{#if representative.email}}{{representative.email}}{{else}}-{{/if}}
+          </div>
+         </div>
+         <div class="section_information_column">
+          <div class="information_title">
+           Segundo nombre
+          </div>
+          <div class="information_value">
+           {{#if representative.middle_name}}{{representative.middle_name}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Fecha de Nacimiento
+          </div>
+          <div class="information_value">
+           {{#if representative.birth_date}}{{representative.birth_date}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           País de Nacimiento
+          </div>
+          <div class="information_value">
+           {{#if representative.birth_country}}{{representative.birth_country}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Género
+          </div>
+          <div class="information_value">
+           {{#if representative.gender}}{{representative.gender}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Documento de Identidad
+          </div>
+          <div class="information_value">
+           {{#if representative.id_type}}{{representative.id_type}} {{representative.id_number}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Teléfono
+          </div>
+          <div class="information_value">
+           {{#if representative.phone}}{{representative.phone}}{{else}}-{{/if}}
+          </div>
+         </div>
+        </div>
+        <div class="section_extra_data">
+         {{#if representative.extra_data}}
+  {{#each representative.extra_data}}
+  {{#if @key}}
+  {{#if this}}
+         <div class="extra_data">
+          <div class="information_title">
+           {{@key}}
+          </div>
+          <div class="information_value">
+           {{this}}
+          </div>
+         </div>
+         {{/if}}
+  {{/if}}
+  {{/each}}
+  {{/if}}
+        </div>
+       </div>
+       {{else}}
+       <div class="information_container">
+        <div class="section_sub_title_2">
+         {{representative.legal_name}}
+        </div>
+        <div class="section_information">
+         <div class="section_information_column">
+          <div class="information_title">
+           Nombre Legal
+          </div>
+          <div class="information_value">
+           {{#if representative.legal_name}}{{representative.legal_name}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           País de Jurisdicción
+          </div>
+          <div class="information_value">
+           {{#if representative.incorporation_country}}{{representative.incorporation_country}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Documento Tributario
+          </div>
+          <div class="information_value">
+           {{#if representative.tax_id_type}}{{representative.tax_id_type}} {{representative.tax_id_number}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Email
+          </div>
+          <div class="information_value">
+           {{#if representative.email}}{{representative.email}}{{else}}-{{/if}}
+          </div>
+         </div>
+         <div class="section_information_column">
+          <div class="information_title">
+           Fecha de Constitución
+          </div>
+          <div class="information_value">
+           {{#if representative.incorporation_date}}{{representative.incorporation_date}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Estado/Provincia de Jurisdicción
+          </div>
+          <div class="information_value">
+           {{#if representative.incorporation_state}}{{representative.incorporation_state}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Actividad Económica
+          </div>
+          <div class="information_value">
+           {{#if representative.economic_activity}}{{representative.economic_activity}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Teléfono
+          </div>
+          <div class="information_value">
+           {{#if representative.phone}}{{representative.phone}}{{else}}-{{/if}}
+          </div>
+         </div>
+        </div>
+        <div class="section_extra_data">
+         {{#if representative.extra_data}}
+  {{#each representative.extra_data}}
+  {{#if @key}}
+  {{#if this}}
+         <div class="extra_data">
+          <div class="information_title">
+           {{@key}}
+          </div>
+          <div class="information_value">
+           {{this}}
+          </div>
+         </div>
+         {{/if}}
+  {{/if}}
+  {{/each}}
+  {{/if}}
+        </div>
+       </div>
+       {{/ifCond}}
+  {{#each representative.addresses as |address|}}
+       <div class="information_container">
+        <div class="section_sub_title_2">
+         Dirección {{address.type}}
+        </div>
+        <div class="section_information">
+         <div class="section_information_column">
+          <div class="information_title">
+           País
+          </div>
+          <div class="information_value">
+           {{#if address.country}}{{address.country}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Ciudad
+          </div>
+          <div class="information_value">
+           {{#if address.city}}{{address.city}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Número
+          </div>
+          <div class="information_value">
+           {{#if address.number}}{{address.number}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Departamento
+          </div>
+          <div class="information_value">
+           {{#if address.apartment}}{{address.apartment}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Detalle
+          </div>
+          <div class="information_value">
+           {{#if address.details}}{{address.details}}{{else}}-{{/if}}
+          </div>
+         </div>
+         <div class="section_information_column">
+          <div class="information_title">
+           Estado/Provincia
+          </div>
+          <div class="information_value">
+           {{#if address.state}}{{address.state}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Calle
+          </div>
+          <div class="information_value">
+           {{#if address.street}}{{address.street}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Piso
+          </div>
+          <div class="information_value">
+           {{#if address.floor}}{{address.floor}}{{else}}-{{/if}}
+          </div>
+          <div class="information_title">
+           Código Postal
+          </div>
+          <div class="information_value">
+           {{#if address.zip_code}}{{address.zip_code}}{{else}}-{{/if}}
+          </div>
+         </div>
+        </div>
+       </div>
+       {{/each}}
+  {{/each}}
+      </div>
+      {{/if}}
+  {{#if owner.shareholders}}
+      <div class="page-break" style="page-break-after: always">
+       <span style="display: none">
+       </span>
+      </div>
+      <div class="information_container">
+       <div class="section_sub_title">
+        Beneficiarios Finales de {{#if owner.legal_name}}{{owner.legal_name}}{{else}}{{owner.first_name}}{{#if owner.middle_name}} {{owner.middle_name}}{{/if}} {{owner.last_name}}{{/if}}
+       </div>
+      </div>
+      <div class="information_container">
+       {{#each owner.shareholders as |shareholder|}}
+  {{#ifCond shareholder.type "===" "HUMAN"}}
+       <div class="section_sub_title_2">
+        {{shareholder.first_name}}{{#if shareholder.middle_name}} {{shareholder.middle_name}}{{/if}} {{shareholder.last_name}} (porcentaje de titularidad: {{getPercentageOwnership shareholder.ownership}})
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          Primer nombre
+         </div>
+         <div class="information_value">
+          {{#if shareholder.first_name}}{{shareholder.first_name}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Apellidos
+         </div>
+         <div class="information_value">
+          {{#if shareholder.last_name}}{{shareholder.last_name}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Nacionalidad
+         </div>
+         <div class="information_value">
+          {{#if shareholder.citizenship}}{{shareholder.citizenship}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Estado Civil
+         </div>
+         <div class="information_value">
+          {{#if shareholder.civil_status}}{{shareholder.civil_status}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Documento Tributario
+         </div>
+         <div class="information_value">
+          {{#if shareholder.tax_id_type}}{{shareholder.tax_id_type}} {{shareholder.tax_id_number}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Email
+         </div>
+         <div class="information_value">
+          {{#if shareholder.email}}{{shareholder.email}}{{else}}-{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Segundo nombre
+         </div>
+         <div class="information_value">
+          {{#if shareholder.middle_name}}{{shareholder.middle_name}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Fecha de Nacimiento
+         </div>
+         <div class="information_value">
+          {{#if shareholder.birth_date}}{{shareholder.birth_date}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          País de Nacimiento
+         </div>
+         <div class="information_value">
+          {{#if shareholder.birth_country}}{{shareholder.birth_country}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Género
+         </div>
+         <div class="information_value">
+          {{#if shareholder.gender}}{{shareholder.gender}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Documento de Identidad
+         </div>
+         <div class="information_value">
+          {{#if shareholder.id_type}}{{shareholder.id_type}} {{shareholder.id_number}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Teléfono
+         </div>
+         <div class="information_value">
+          {{#if shareholder.phone}}{{shareholder.phone}}{{else}}-{{/if}}
+         </div>
+        </div>
+       </div>
+       {{else}}
+       <div class="section_sub_title_2">
+        {{shareholder.legal_name}} (porcentaje de titularidad: {{getPercentageOwnership shareholder.ownership}})
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          Nombre Legal
+         </div>
+         <div class="information_value">
+          {{#if shareholder.legal_name}}{{shareholder.legal_name}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          País de Jurisdicción
+         </div>
+         <div class="information_value">
+          {{#if shareholder.incorporation_country}}{{shareholder.incorporation_country}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Documento Tributario
+         </div>
+         <div class="information_value">
+          {{#if shareholder.tax_id_type}}{{shareholder.tax_id_type}} {{shareholder.tax_id_number}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Email
+         </div>
+         <div class="information_value">
+          {{#if shareholder.email}}{{shareholder.email}}{{else}}-{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Fecha de Constitución
+         </div>
+         <div class="information_value">
+          {{#if shareholder.incorporation_date}}{{shareholder.incorporation_date}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Estado/Provincia de Jurisdicción
+         </div>
+         <div class="information_value">
+          {{#if shareholder.incorporation_state}}{{shareholder.incorporation_state}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Actividad Económica
+         </div>
+         <div class="information_value">
+          {{#if shareholder.economic_activity}}{{shareholder.economic_activity}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Teléfono
+         </div>
+         <div class="information_value">
+          {{#if shareholder.phone}}{{shareholder.phone}}{{else}}-{{/if}}
+         </div>
+        </div>
+       </div>
+       {{/ifCond}}
+       <div class="section_extra_data">
+        {{#if shareholder.extra_data}}
+  {{#each shareholder.extra_data}}
+  {{#if @key}}
+  {{#if this}}
+        <div class="extra_data">
+         <div class="information_title">
+          {{@key}}
+         </div>
+         <div class="information_value">
+          {{this}}
+         </div>
+        </div>
+        {{/if}}
+  {{/if}}
+  {{/each}}
+  {{/if}}
+       </div>
+       {{#each shareholder.addresses as |address|}}
+       <div class="section_sub_title_2">
+        Dirección {{address.type}}
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          País
+         </div>
+         <div class="information_value">
+          {{#if address.country}}{{address.country}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Ciudad
+         </div>
+         <div class="information_value">
+          {{#if address.city}}{{address.city}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Número
+         </div>
+         <div class="information_value">
+          {{#if address.number}}{{address.number}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Departamento
+         </div>
+         <div class="information_value">
+          {{#if address.apartment}}{{address.apartment}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Detalle
+         </div>
+         <div class="information_value">
+          {{#if address.details}}{{address.details}}{{else}}-{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Estado/Provincia
+         </div>
+         <div class="information_value">
+          {{#if address.state}}{{address.state}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Calle
+         </div>
+         <div class="information_value">
+          {{#if address.street}}{{address.street}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Piso
+         </div>
+         <div class="information_value">
+          {{#if address.floor}}{{address.floor}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Código Postal
+         </div>
+         <div class="information_value">
+          {{#if address.zip_code}}{{address.zip_code}}{{else}}-{{/if}}
+         </div>
+        </div>
+       </div>
+       {{/each}}
+  {{/each}}
+      </div>
+      {{/if}}
+  {{/each}}
+  {{#if data.account.third_party_accounts}}
+      <div class="page-break" style="page-break-after: always">
+       <span style="display: none">
+       </span>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        Cuentas en terceros
+       </div>
+      </div>
+      {{#each data.account.third_party_accounts}}
+      <div class="information_container">
+       <div class="section_sub_title_2">
+        {{this.name}}
+       </div>
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          Dirección
+         </div>
+         <div class="information_value">
+          {{#if this.routing}}{{this.routing}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Alias
+         </div>
+         <div class="information_value">
+          {{#if this.details}}{{this.details}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Banco
+         </div>
+         <div class="information_value">
+          {{#if this.financial_entity}}{{this.financial_entity}}{{else}}-{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column">
+         <div class="information_title">
+          Tipo de cuenta
+         </div>
+         <div class="information_value">
+          {{#if this.type}}{{this.type}}{{else}}-{{/if}}
+         </div>
+         <div class="information_title">
+          Moneda
+         </div>
+         <div class="information_value">
+          {{#if this.currency}}{{this.currency}}{{else}}-{{/if}}
+         </div>
+        </div>
+       </div>
+      </div>
+      {{/each}}
+  {{/if}}
+      <div class="information_container">
+       <div class="section_information">
+        <div class="section_information_column">
+        </div>
+       </div>
+      </div>
+      {{#if data.account.investor_profile.id_investor_risk_type}}
+      <div class="page-break" style="page-break-after: always">
+       <span style="display: none">
+       </span>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        Perfil del inversor
+       </div>
+      </div>
+      <div class="information_container">
+       <div class="section_sub_title_2">
+        Resultado: {{data.account.investor_profile.description}}
+       </div>
+       <div class="section_information">
+        <div style="width: 100%">
+         {{#each data.account.investor_profile.data.questions as |question|}}
+         <div style="margin: 10px 0">
+          <div class="information_title">
+           {{question.text}}
+          </div>
+          <div class="information_value">
+           {{#each question.answers as |answer|}}
+  {{#if answer.isSelected}}{{answer.text}}{{/if}}
+  {{/each}}
+          </div>
+         </div>
+         {{/each}}
+        </div>
+       </div>
+      </div>
+      {{/if}}
+      <div class="information_container">
+       <div class="section_information">
+        <div class="section_information_column">
+        </div>
+       </div>
+      </div>
+      {{#if data.terms_and_conditions}}
+      <div class="page-break" style="page-break-after: always">
+       <span style="display: none">
+       </span>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        Términos y condiciones
+       </div>
+      </div>
+      <div class="information_container">
+       {{#each data.terms_and_conditions}}
+       <div class="checkbox-container">
+        <input class="checkbox" disabled="" if}}="" this.value}}checked{{="" type="checkbox" {{#if=""/>
+        <label>
+         {{this.label}}
+        </label>
+       </div>
+       {{/each}}
+      </div>
+      {{/if}}
+      <div class="information_container">
+       <div class="section_information">
+        <div class="section_information_column">
+        </div>
+       </div>
+      </div>
+      {{#if data.sworn_declarations}}
+      <div class="information_header_container">
+       <div class="section_title">
+        Declaraciones juradas
+       </div>
+      </div>
+      <div class="information_container">
+       {{#each data.sworn_declarations}}
+       <div class="checkbox-container">
+        <input class="checkbox" disabled="" if}}="" this.value}}checked{{="" type="checkbox" {{#if=""/>
+        <label>
+         {{this.label}}
+        </label>
+       </div>
+       {{/each}}
+      </div>
+      {{/if}}
+      <div class="information_header_container">
+       <div class="section_title">
+        Firmas
+       </div>
+      </div>
+      <div class="information_container">
+       {{#each data.account.owners as |owner|}}
+  {{#ifCond owner.type "===" "HUMAN"}}
+       <div class="signature-block">
+        <h3>
+         {{owner.first_name}} {{owner.last_name}}
+        </h3>
+        <div class="section_information">
+         <div class="section_information_column">
+          <p>
+           Firma:
+          </p>
+          <div class="signature-line">
+          </div>
+         </div>
+         <div class="section_information_column">
+          <p>
+           Aclaración:
+          </p>
+          <div class="signature-line">
+          </div>
+         </div>
+         <div class="section_information_column">
+          <p>
+           Fecha de Firma:
+          </p>
+          <div class="signature-line">
+          </div>
+         </div>
+        </div>
+       </div>
+       {{else}}
+  {{#each owner.representatives as |representative|}}
+       <div class="signature-block">
+        <h3>
+         {{representative.first_name}} {{representative.last_name}}
+        </h3>
+        <div class="section_information">
+         <div class="section_information_column">
+          <p>
+           Firma:
+          </p>
+          <div class="signature-line">
+          </div>
+         </div>
+         <div class="section_information_column">
+          <p>
+           Aclaración:
+          </p>
+          <div class="signature-line">
+          </div>
+         </div>
+         <div class="section_information_column">
+          <p>
+           Fecha de Firma:
+          </p>
+          <div class="signature-line">
+          </div>
+         </div>
+        </div>
+       </div>
+       {{/each}}
+  {{/ifCond}}
+  {{/each}}
+      </div>
+     </div>
+    </main>
+   </body>
+  </html>

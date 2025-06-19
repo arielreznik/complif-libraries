@@ -1,0 +1,65 @@
+name: '[PORTAL] OTP'
+description: "Este correo brinda a tus clientes un c\xF3digo \xFAnico de acceso al portal de usuario\
+  \ donde podr\xE1n continuar o comenzar nuevas aperturas, o contestar requerimientos\
+  \ pendientes."
+category: PORTAL DE USUARIO
+code: COMPLIF_OTP
+subtitle: "C\xF3digo de verificaci\xF3n para acceder al portal de usuario"
+video_link: ''
+add_advisor_in_copy: false
+id_operating_country: None
+export_data_declared: None
+export_terms_conditions: None
+code_pdf_template: None
+sendgrid_data:
+  bcc: []
+  cc: []
+  from:
+    email: ''
+    name: ''
+  id_document: ''
+  reply_to:
+    email: ''
+    name: ''
+  subject: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+      <head>
+          <meta charset="UTF-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <title>
+              Email Verification
+          </title>
+          <style>
+              body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f9f9f9; } .container { width: 100%; max-width: 600px; padding: 20px; background-color: #ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center; box-sizing: border-box; } .heading { font-size: 18px; margin-top: 20px; color: #333333; } .subheading { font-size: 14px; margin-top: 10px; color: #777777; } .button { display: inline-block; margin-top: 20px; padding: 10px 20px; color: #ffffff; text-decoration: none; border-radius: 5px; } .code { display: inline-block; margin-top: 20px; padding: 10px; border: 1px solid #cccccc; border-radius: 5px; font-size: 18px; letter-spacing: 5px; background-color: #f3f3f3; } .footer { font-size: 12px; margin-top: 20px; color: #777777; }
+          </style>
+      </head>
+      <body>
+          <div class="container">
+              <table>
+                  <tr>
+                      <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
+                          <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:30% !important; width:30%; height:auto !important;" width="180" alt="" data-proportionally-constrained="true" data-responsive="true" src="{{logo_url}}"/>
+                      </td>
+                  </tr>
+              </table>
+              <div class="heading">
+                  Tu link de ingreso seguro está listo
+              </div>
+              <div class="subheading">
+                  Haz click en el botón de abajo para verificar tu correo electrónico e ingresar el Portal de Usuario.
+              </div>
+              <a href="{{url}}" class="button" style="background-color: {{primary_color}}; color: #ffffff !important;">Verificar e ingresar</a>
+                  <div class="subheading">
+                      O puedes copiar y pegar manualmente el siguiente código:
+                  </div>
+                  <div class="code">
+                      {{code}}
+                  </div>
+                  <div class="footer">
+                      ¿No reconoces esta actividad? Ponte en contacto con soporte.
+                  </div>
+              </div>
+          </body>
+      </html>

@@ -1,0 +1,562 @@
+name: On Demand Screening US
+code: complif_default_on_demand_screenings_us
+config: {}
+description: On Demand Screening US
+entity: complif_default_on_demand_screenings_us
+footer: ''
+header: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="en">
+   <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&amp;display=swap" rel="stylesheet"/>
+    <style>
+     @page {
+  /* Format: margin: top right bottom left */
+  margin: 80px 40px 40px 40px;
+  }
+  /* forma de etiquetado generalizada, todos los componentes de este tipo tendran estos estilos */
+  body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  /* margin: 80px; */
+  padding: 20px;
+  margin: 0;
+  color: #333;
+  }
+  /* forma de etiquetado generalizada compuesta, todos los componentes h1 dentro del header tendran estos estilos, los h1 por fuera del header no los tendran */
+  header h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #555;
+  }
+  /* forma de aplicar estos estilos a todos los componentes que tengan esta clase */
+  .header {
+  background-color: black;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* position: fixed; */
+  }
+  /* forma para modificar un solo componente en especifico */
+  #white_text {
+  color: white;
+  margin-right: 5px;
+  font-size: 14px;
+  }
+  .container {
+  height: 100%;
+  }
+  .information_header_container {
+  background-color: #EFEFF0;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+  .section_title {
+  font-size: 18px;
+  font-weight: 600;
+  }
+  .section_sub_title {
+  color: #4674A0;
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 22px;
+  margin-bottom: 8px;
+  }
+  .section_information {
+  display: flex;
+  }
+  .section_information_column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  }
+  .information_container {
+  padding: 16px 8px;
+  }
+  .information_title {
+  display: flex;
+  width: 100%;
+  font-weight: 600;
+  }
+  .information_value {
+  margin: 10px;
+  width: 50%;
+  }
+  .divider {
+  width: 100%;
+  background-color: #CACACE;
+  height: 0.5px;
+  margin: 15px 0;
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  }
+  .last_modifications {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  }
+  .debts_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 8px;
+  width: 60%;
+  }
+  th {
+  background-color: #f2f2f2 !important;
+  padding: 10px;
+  text-align: left;
+  border-right: 2px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  }
+  td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  /* LÃ­nea entre filas */
+  }
+  .tabla-con-fondo td:first-child,
+  .tabla-con-fondo th:first-child {
+  background-color: #FAFAFA;
+  ;
+  }
+  th:last-child {
+  border-right: none;
+  /* Elimina la lÃ­nea en la Ãºltima columna */
+  }
+  @media print {
+  /* Forzar salto de pÃ¡gina despuÃ©s de cada tabla */
+  /* Alternativamente, para agregar un salto de pÃ¡gina especÃ­fico */
+  }
+  .execution_container {
+  display: flex;
+  }
+  .execution_info_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  }
+  .image_container {
+  display: flex;
+  align-items: center;
+  }
+  .execution_title {
+  font-size: 15px;
+  font-weight: bold;
+  }
+  .execution_info {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  }
+  .error_container {
+  display: flex;
+  }
+  .error_text {
+  color: #C8341E;
+  margin-right: 15px;
+  }
+  .error {
+  color: #C8341E;
+  }
+  .data_not_found {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #C8341E;
+  }
+  .section_information {
+  display: flex;
+  flex-wrap: wrap;
+  /* Permite ajustar columnas en pantallas pequeÃ±as */
+  gap: 20px;
+  }
+  .section_information_column {
+  flex: 1;
+  /* Columna flexible que comparte el espacio disponible */
+  min-width: 250px;
+  /* TamaÃ±o mÃ­nimo de cada columna */
+  }
+  .column_title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 5px;
+  }
+  .no_content_message,
+  .no_matches_message {
+  font-style: italic;
+  color: #888;
+  }
+  .no_matches_message {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #c00;
+  }
+    </style>
+   </head>
+   <body>
+    <main>
+     <div class="container">
+      <div class="information_header_container">
+       <div class="section_title">
+        Execution
+       </div>
+       {{#if success}}
+       <div class="image_container">
+        <img alt="success_chip" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDkiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCA0OSAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDkiIGhlaWdodD0iMTYiIHJ4PSI4IiBmaWxsPSIjNTE5MjczIi8+CiAgPHBhdGggZD0iTTEwLjUgMi42QzcuNSAyLjYgNS4xIDUgNS4xIDhDNS4xIDExIDcuNSAxMy40IDEwLjUgMTMuNEMxMy41IDEzLjQgMTUuOSAxMSAxNS45IDhDMTUuOSA1IDEzLjUgMi42IDEwLjUgMi42Wk0xMC41IDEyLjNDOC4xIDEyLjMgNi4yIDEwLjQgNi4yIDhDNi4yIDUuNiA4LjEgMy43IDEwLjUgMy43QzEyLjkgMy43IDE0LjggNS42IDE0LjggOEMxNC44IDEwLjQgMTIuOSAxMi4zIDEwLjUgMTIuM1pNMTMgNS42TDkuNCA5LjJMOCA3LjhMNy4yNSA4LjU1TDkuNCAxMC43TDEzLjc1IDYuMzc1TDEzIDUuNloiIGZpbGw9IndoaXRlIi8+CiAgPHRleHQgeD0iMTgiIHk9IjExLjUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI4IiBmaWxsPSJ3aGl0ZSI+U3VjY2VzczwvdGV4dD4KPC9zdmc+Cg==" style="height:25px;"/>
+       </div>
+       {{else}}
+       <div class="error_container">
+        <div class="error_text">
+         {{message}}
+        </div>
+        <div class="image_container">
+         <img alt="error_chip" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDkiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCA0OSAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDkiIGhlaWdodD0iMTYiIHJ4PSI4IiBmaWxsPSIjQzgzNDFFIi8+CiAgPHBhdGggZD0iTTEwLjQ5OTkgMi41ODMzMUM3LjUwMDkyIDIuNTgzMzEgNS4wODMyNSA1LjAwMDk4IDUuMDgzMjUgNy45OTk5OEM1LjA4MzI1IDEwLjk5OSA3LjUwMDkyIDEzLjQxNjYgMTAuNDk5OSAxMy40MTY2QzEzLjQ5ODkgMTMuNDE2NiAxNS45MTY2IDEwLjk5OSAxNS45MTY2IDcuOTk5OThDMTUuOTE2NiA1LjAwMDk4IDEzLjQ5ODkgMi41ODMzMSAxMC40OTk5IDIuNTgzMzFaTTEwLjQ5OTkgMTIuMzMzM0M4LjExMDU4IDEyLjMzMzMgNi4xNjY1OSAxMC4zOTQyIDYuMTY2NTkgNy45OTk5OEM2LjE2NjU5IDUuNjA1ODcgOC4xMTA1OCAzLjY2NjcxIDEwLjQ5OTkgMy42NjY3MUMxMi44ODk0IDMuNjY2NzEgMTQuODMzMyA1LjYwNTg3IDE0LjgzMzMgNy45OTk5OEMxNC44MzMzIDEwLjM5NDIgMTIuODg5NCAxMi4zMzMzIDEwLjQ5OTkgMTIuMzMzM1pNOS45NTgyNSA1LjI5MTcxSDExLjA0MTZWOC41NDE3MUg5Ljk1ODI1VjUuMjkxNzFaTTkuOTU4MjUgOS42MjUwNEgxMS4wNDE2VjEwLjcwODRIOC45NTgyNVY5LjYyNTA0WiIgZmlsbD0id2hpdGUiLz4KICA8dGV4dCB4PSIxOCIgeT0iMTEuNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IndoaXRlIj5FcnJvcjwvdGV4dD4KPC9zdmc+Cg==
+  " style="height:25px;"/>
+        </div>
+       </div>
+       {{/if}}
+      </div>
+      <div class="information_container">
+       <div class="execution_container">
+        <div class="image_container">
+         <img alt="Your SVG Image" id="myImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA04AAADoCAYAAADYDbTvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAIghJREFUeNrs3e1120b6N2DEdj6v/hWEriB0BaYqsFyBpQosVSCrAlkViKnAcgWiK7BcgZkKlvmc5DwPxh5mYUUvfAHJe4DrOodH2WwsgzODwfwwg0FVAQAAAAAAAAAAABv0kyIAACCyp89+HtY/DurPr/Un/fPgnv90Vn9u8udT/Zn8/defMyWI4AQAQFfDUgpHb3NgGqzxq67qz0UdoCZKFcEJAIAuBabT+nPY8q+e1p8jAQrBCQCA0kPTcQ5Nexv8a65ygLKED8EJAICiAlMKSh/qz2hLf2UKTa/NPv1T/vPnxob5X71s/N8P1ck0f+b//Hvj3910LZwKTgAA7HrQftkYtG9Tmnka9zCkjnI4Gm44rH4LUNX/Nuq4EZwAAGC10HRdbXZpXu/DU35uLG2y8ara3qzefUFqUn8+1mV+JTgBANDWYPcwyOGM64HutOXvl8LS52q9HfOEp4fLOIWlNzk0RZOW8c13PCxiJkpwAgCIOegdVd9nYyLYb/t5oPr7pe82CjSI3y99KVmjbFPgPg0SShdxkwNU6PD6RLcEAMCWB/bHgUJTkma/LjtQrgf152v+LoOCDv3bc27p2PMsmeAEAEDvQ1MKKacRB+95pqbEMh3kGbwPhQWm29KxvxKcAADg+3Nbe0GP7bS0wsxhLz0rNupI+/giOAEAQFW9DXxsg/xsWSmhKS3JuwwcRFcR9jkzwQkAgG0N9OcvWo3sTQHluFd/0izTYdfaSOSXEgtOAABsy8gxrh+aqu+7LQ472D5C72ooOAEAsC0vCzjGQQ4nQpPgJDgBALCbUFLIcYYLJj0ITcmXyAcnOAEA0NtAco+IM04fOh6aEjNOAAAg4K3m6bOfz6vubDd+r8gbQwhOAAAQWN4e/bgHX/Um+gEKTgAAEDM0pSWDH3rydQUnAABgJadVt15u+5Av0Q9QcAIAgB9Ndn0A+WXBxz0qczNOAAAQJZAU5LxPXzb6xhCCEwAA2zQ1iH9c3hBi1KN2cVPCQQpOAABsy6cCjnES4BhOe9YuBCcAAAgWSh7zcZd/+dNnPw+qfs02JV9KOEjBCQCArfj7rz+n9Y+r4Ie56+N728OmYcYJAABuuYgcmnK426WDHgbqieAEAAD/HiRHHSif7fIvz5tCDHrWJG5KOVDBCQCAbTsJeEzv61C360H8qx62BcEJAADukgPKWaBDinI8Bz1sDl9KOVDBCQCAXYSnd/WPcYBDmdWfo/p4Zrs8iLyb3qCHTaGYGadnTlsAAHYUno7qwJD+8XCHoWk/wBK9ZFhItaUym1TfZ4om8/AzD575Oa359/kl/xw90AYmghMAAMQNT9P68zpIaCohOKWAc1GX19Uj9Tlp/Pf/qOs4LUN8daueb0pqq5bqAQCw8/BU/0ifbS2XS4P/F4FCU/IyaPWkgJlm5fYfC02P1PFVrufn1ffnyWaCEwAALD+wHqcwU212q/IUAtIs0+tdP9N0h0HAarnJAXPSYj1P8/NtKUBdlNRGBScAAKKEpzSo3q//cb/lAJUC01kOAVdBv3604JRC0/6mAmb6vcFm/B7lGScAAKIFqBSaJnmnubfV980Fln0GKA34U0j6GDgsfZO/ZySp7CLOyglOAABwR4CaVvlluXW42Kt+3KHt1/qz1/jP0+zFH/nntLDZjGjB6SKXPYITAACFhaj5NtgTpbFxY0Xwb55xAgCA3doLdCw3ZpsEJwAAiCjSO5wmqkNwAgAAHvZFEQhOAADAw6aKQHACAAAQnAAAAAQnAAAAwQkAAEBwAgAAEJwAAAAEJwAAAMEJAAAAwQkAAGAJzxRBVT199vOw/rH3wH8y/fuvP6dKKlSdpfoaPvCfzOo6u1FStNWu6vY0UUJrn5c3dTnOlFTv28mg/jHQTgDBKV4HPcoddPr8mgPSYxf3u37PD516Gpjnz5f880Zn3/rgax5oX+b/67GAu0idpQD8e/45NRjudfsaNfqE0ZLtadI4/+fn/rQnA975uflLo28drHBezhrn5RfnZCfPr/80rrWjJX/P/B+njc/vuc1M3RgDBKd2QtJ8MDRc5mK+pGboOrh1DPPBwKf8cyJMhai34QMX55v8+ZLrywW5e23sIAfwUbXkTZN7jG6f//XfMc2BKp37V1047xvn5stlb1wsYO+ecpyfk/Oy1IfGbiPDW22k7f77zmCe28mkcb3VToCN+6kjHfarasm7WVuWBlRXOvd/6m2QB0rzgexesEOcNerrysW46LD05vbNjS1Kbei3uv1cFVRme7m8XgU7N1MZfnQ+hjq3XuW2Eqn/njTaybQjZZ3Ow+sgh7NvRnijdf2u/nGqrgWnTYSl+WBoUGi5924QkAdkh7nuhuorTL2cR6mPumz3Wwrlb3NbizKgSwO43+rP+6jtJ0DIXMY4B9JJIedYOr/OSz2nbn2PtwHD0n3STNRF6f1214PTLs+PO6R+ZbzDYx4EGtfOl1EX22f1Ojg1Bt1vCw5LDw3Ki7or3eEBWecGbQvUT7ogj4IEp5/W+B6pXzjN/URUszyQCxGgcpnN+9W9AptvOgfPop+Luxz4rnNO3erD31axV3U8dt5d5bYyFZzCBadI3y+1kXeFHXOntNFnbVro7chT46w/l/U//jen+0EH20m6KH2ov+fXNE2bBzOlD8b36s9h+k7pu3UoNFV5oHldf7fP6Tvq5kK0tdRHfA0emqocTlK4+5wHozsLTI0yOy00NFV5IJ/Oxesu9JsBz61mHz4q+KvMb7x+zW1lpHaBTgWnHJiuc6Lvy+B0kAcxqXO/LHEgkAex7/KA7LKjQXcuTdVf5sArQO2mvR0XEpjuOtfTzZIPeTZ9F4GpS212lPvNd86K1q6/nzvahzfD9lBtA0UHp9xhf82BadTjejksLUA1AlPJd7BXHQQLUNtta8M8sDsvvK0d5PP8YMPltZefZetaYLrt1OzT2sH6Q77+dj1UpPHF53yN3VP7QFHB6dYMk4ve3QEqZOfeWM7Rt8B0X4CyFGSz7S3NMn3u0MAunTMfcrDZSN+ay+u4J01kPiA+cLasdF71rdzm19hjrQAIH5waS0f6PsNUXOee7/qneuv6krxVBm7X7mS23t728t3w845+xeO220wOY328GTUPowbDi12Dr6vyZ2/XbS/nZiuB0MGpcYfrUDUs1bl/3vXa7Lws77Owu1DYdee7hcFdDgAHPWgz1+uGpzwY7tMs033O84057m4nh/rxH6Ry+CxwA6GCkztcaxvmzv3dDupu/mzJqWpYOOxufROAjg3uhlW3luYtcn6vHJ56WF6PhlHh6c52kq6/l67Bd/bZ5/psIERwaswyjRT92k63OfvUwWdLtukgh11lt3wIuO7h4G6YB7XLltdBT8tLeFq8jezlG5dmVR7vs+28B+wmON16PsFFvd0B1vUmd3PrwbMl2zKoLAMRmpYYuC2zYUTuAz7oXx8MT8c9P6f2Ks8Tr3J9VV7A9oJTYwDkWY/NSBfDN+quGOc2jni03Q0qMyfJ8SLPyOXQZEZlsXPvoKfn1Dw0mUFZ/vp67VUTwFaCU2PpiM56s442GJrUXfsOqxY2AejwAM/Myf88GLLzeWo2eLnyHAhNrNBuhCdgc8HJ0pGtOfv7rz+nG6i7z+puo+abfBjM3BqgGOD9YO++YGQ548rl2ZvZOaFJeAIKCE6NHXvYrBSY3m8gNKm77RhUHkButr13lWWhdzm8/ZxFHhDbFW01ox497yQ0CU9A5OCUdy/yAPx2nPz9158zoaloe8LTP2xzv3jZmJlbszx7slRWGxGegKjBKYcmHcp2TOrQdCU0CU/0wmg+65RnS8zMrX/OCeqsE5701yA4CU2FSLNMRy3WndAkPBHf27yxgQF/O477tlEErbrWfkBwWnXgfSw0bdVFWxtCCE3hwpM31nOfNMtkw512CaHor4HtBac88LYd7vZM69D0rqXQNBSawhlUtirnfmYkWw6jzjXWPB+Nf0BwMvAOrJUleo2XjOJiDH2VQtOhYmANh319sTIITssNvPcMvLfu6u+//py0EJq8ZLSMi7HdKWHz3igC1nRp5hIEp8d48eJ2pQ0hTlr6XWk2w5Kf+M5tFgEbN3SesaZevVgZBKcl5RdVutBsVysbQuRn0g4VZzE8fAybZ9aJdR1YsgeC010D71FlJ6Jta2VDiPxck2dnyqLOYAuDXkVAC87d6ALBqTnwNh29G229synVnU69PB4+hs0aWK5HG+2o/ng2FQSnf5zmjoHtaWtDiNSZjxRnsdzJhM3SP9KGUy/Ghe56tsTAO92N68qdlJv8+b3+zEPJTR1QZo+UwSAHx/nnZfX9Wa9NDWjT8aw925SP+7QjdfYl/5zV9XXzwHfey3XTrKuSB0bzOjypgE14VX/eK4a1rlepT/7U6KMnj1ybRo3Q+mujzy4+PFXtrRQBSgxOVdnPWUzrz1X9+bjO7E3enGF6T6gc5cF5m0uqzh4Lc0vUXYmzFd/qLIXbZTfGyOU2uedCnQZIhwWWyXF9/K1sEtJx8/P0UyN0N8+j+WDtlzxIGymyO01y2f3RGBTPzW8Y/Sf/87AqfxmwdrD6tfW3h25kPdBPTxpt7fb19E1V7iZUaXn1mb66s1Jb39/A731Txdm86+RWn88ywSnvxFbaRSVd6MerduhLdv7z2ZD3eaYjhae3a3b6aQZs7bufOSiU9HxMutD8lsqypdB414U6fU7yc0NvC2vblxvqsEs3D9lXC7SbhwL1QdXf5cg3jTK8WaEMB7n8ih3wpnbQxtLonpxvF5soq1vX02Huow8LLCOzTh11343ZlsZrYa4H+sK7PVmiAyhp4H1UV/j/1Z+TTYemu06o+jOuPy/q//k8h7dV035bnXdJ9fY87SC4idB0R12lAeJ+DiKldBCjYJ3rrttMOk/Suf46n3ezFdvCJPcX6Zx9XVB7aEPqo16kPiufezcrlmHa/fN9C33fLtkg4vHA9Dyfbxs/R1JbrD9HhbanQ886QQ+DU55tKuHknzUG3iE62DyQWKXTH7e0IUSquxIG2Wd54DbeUT1NcoB6Xd2xFDOgvm9Pns71s3yutz4z2QjUR9WPS/y6ZpIHwUdt32C61feVFEJ/NSy407elSTkwbb2PLLg9HWo60LPgVJUxYzG/CzaOeHCNTv/FAp1+Gqj1ZbbpJgemrcwwLTJgznUU/QHxYQ7FfTSZt5kttIdxgQO1RYNnGgDvb3oQnPu+/aqcTU0GhgX/cpZnI3d+HjTaUyk3Nd5qPtCj4FTAbNN8APA6wsB7gU7/pjGImD1wkVr7uxRQd+/zxfgmWB2lpZapfl4HvzD38YJ8so3B/h3tIZ2z4w4Fz+f5JsE2z6v3VRnPe4wMC364vu5v4ybFCu0pnY/pJlf0h9f3enyTC/oXnKrYMxbT3KlflVboeRBxV6ffyoYQ2ZvARXCUw0nkOkrtaj9weBr26Fmn+Q2S9ztsD0cdCE/jHDxnOyrDcQnhyfvSvl+LcsCeBO6jp7mPjj4GeKM5QQ+CU95xbBC4Uw83W7Fsp58fom4OxloJE3lAHXVQfRR1SeUddXRTxb6r2YdZp/ld76sA7SEN+ieFluM4H/+uy3BcxV+21/cNIubPM5WwiiPNCL+uYt/UGNkkAnoQnAIPyorp1JcYjKXP+xbv7kW9w1VMaGoG3Crusr2DHlyQT4LdIIm+hDNsaGqcU2nm8KrC9bXd62jka8uBpgUdDk55MDYKeLyzLoWmRqc/bmvpWl5mcig0tR6eoi7b6/Ks01m0NpP7npLezXITKTQ1+4PAAXRU9dO05OtrbudRVwdYrgddDk5V3C00OxeaNiBi3Y1LDU2Ni3K6IEdcYtTVO5mTiA+l57aQZksmBZTht2fDgpbhrCpnp70+mD9HWPr1db+K+UqJoWfnoNvBKeLdkZOSn2naomh1FzVwrDLYS+EvWgAc5OcRuzaIiz6rU8Ks09ku3rmz5Pk0rYjSVoq/vgafEbZcD7oYnOpBWHowdhDsOCe73FGrFHmJZbQHm486Nkt4EnCw96pjTfki8oA/D9DS8U0CH+K0kD7zTM/t+tryuZnOy4jf56WmBh0MTlW8uyKlPVOwS9Hq7n3XZgmDLjHq0p3MWRX/BcT/BDyBZO3zaVyVt9lG13Tx+pra/zTYMY00NehmcIp29zr83edAIi3Tm1UdvZsc8BmXvTxT3AXjUmYoczuIeKzTwp4ptMPeDgNGF6+vuQ+Jdv0Z2JYcOhac8sOLkQZgJd193qmAdXfR8Y08ol2UuzLr9Fthx3vlmNb2UQ/u+rqB8JRuHkyCHdZIs4MOBaeAJ/XYLnpFdsidD7x5HX2ki3IX1s9PC1za+Un4XPtcMuO0Gxc9uL5GOxd+1eygW8Ep2uDrQhUVOXDuS+CN1D5HHSjPEgfQk2DHMyv0ucJJxdb76a5/wYA7Nw41O+hWcIp0Uk8821TswPm3PhR4tGdcnj77ufTw9KXANjCtYj3nVOpmLF41sV1XPbq+RroejTQ96FZwMvguV5TQO+3Z+7bG2kB7bcegf22fCi3DP3Thrq896KMrL8KFjgSngLtyTVTPwh1xpMDbt+cVIj3YXvT6+fzcWIlmjkV/X9i5dtWj7zqtYt3csFwPuhCcqlgvvb2xTK/YjrhXO2TlwX6UwerAqbATkZYYWvLGY/q4GUekYK6fho4Ep1DPN6mapYSZ+i941qALg1V3MoGSgv62RLqhJzhBR4LTf3TsxYqyo15fA2+U50qsnQf00/8WaSb2F00QuhGcIt2tnqqaIgfMfa23MAORDuysB2xQH1cF5NdjRLk+DbRC6EZw0rGXK0ro/b2n5S/oA/oq3x3oUXAaBTmmmWopVi8Db7CNTAaaISA8/Isl1UCrwSkKu0It4emznw2UDUgEJ0BwKoNNfEBwwkC596HXgASI7vcef3c3ZQHBiTjyA7gAEI3rE9DJ4OSuEAAAIDg94g/VAgAACE4AAACC01q8VRsAABCcHjFQLQAAgOBEJz199rMX+wEQkesTIDgRaovVPr/Yb6ApAsH1eSm8F88CnQxOI9WyuL//+tP27YJT01RVAMH7qT6bKALoRnAyAEfoXcHTZz9HGowITsB9+rxc7aXqB9oMTmGWfNUD0ZGqKXKw/J+elv9AEwQK0Oflap5xAroZnAxEiw1Ofb0ohwn6f//158TpANynxzcmo1yfPmmF0I3g9CXQcZlSLzM49fWC/GuQ45g5FYBCAoSwCBQdnKaBjksnt5zfXaC018pzisDjfu3hd450XZpogiA4tW0Q7IH76CINmF/1qeDrdpru3u5pB0AhDnr4nSNdl6wMgI4Ep2iDrgPVU+SAuW/19ibQsXxxKgCP2Ms3fHoh34QN8329QgQ6EpzqkzndBZkakJanrrtUb1HuYg36dFEOFhRdkAHXV300sOngFPCkHlquV2yH/LYPBV63z3RBjtJGZ+5kAgs67NF3jXQ90kdDx4JTtG0yT1XRwiLV3UEdKvrwzoxIF+SJUwBYUFqu1/nwlDcrGgQ6JMupoWPBKdrg67AnA/CuDZxTnR13/IKcLsYjwRko1Knv2OvrNLBucMpLfaLt+GLWaQH5xaeR6u5tx0PvZbDjuXIWAEsYdHnWKc82jQIdkuXU0LXglE2CHeOxZ50WFqnuUmg6d0Heipu8QQjAMk47fIMr2vVnorlBN4PTx4DHeamqFhKt7g679kLcPMiI1h5dkIFVDKoOLquu++n0naLt7vpRc4NuBqeIS35GuSPkYRHr7rJjdzRPq1gPGye/afrAqn1al14hkVeoRFziP9HUoIPBKb/PKeIA/LwP7weqv+P5qksTg9Zd+i7nHambtP14tAB/Y908sKYPHbrB9aH6vlQ8Wj891cyglbFY2hX0II+Xr+vP1/rz/+75pP8/3cA/bitDPLvn36cp5YOA5ZUK4EUXO6DGErCD3OkfrfirItZdWrL3qa63ccH1M6xiLhk12wSsa5ADx37h19HUR0e8waqfhvXP78P6x6slx7ijW79jms/H8apZ4sk9/z7NWswCllsKFB+69jBrnmG6bjSGlZ8NyuEkYt1dlrqDU25vEe9iJuMKYH2jHDxKvY6m1QBRrzF2PYUVx1/15139+W/1v8mFdaTxdlrK+zXPRA1aCU6Bl+sl6W7SdVfCUw5In6t/3yVbZ4121MH0ZWmbReR2dl3Fe67pWz3ncxWgDYclhqd8Uy7qkvAry/RgrfFxGg9vYsyf+o3PKZitHZyyi8DlOcxfdlhwg0gp+jwPyu9qEKP8TM0qItfddSkzT42ZwKjt7EzXCvQ5POVBT+TjtZseLH9ez8fHgw3/VWn8nTbI+bzo7NO9wSk/cD4JXK6Dkgbh96ToxzYaWOkOWr67NQ5cBJfLJvwd1NGwunsmMIqJu5jABsNT6JUd+eZjCkyngctxVvKzvbCj83qR8XHbFp6QefLI/x/9jvZeHoQX8dxTSrO5o180RQ/W2Ib9InhxnEattxzqPlcxn2kq5dwEyjaqgq7syMeUrqOHwcvwQjOCxUNTtdtVPt/+/sdWez0YnP7+689J/WNaQHmnL/k16uzT/OG2PBhf9hhXerN7ATOGzXo7CFJPw3SXtYp9BzOZ5HMTYJMGOTy9i3KTq3EtLWGp/lgTgoVFeDRiPiEzXCk4ZSeFFPj8y4YJUHmGKS23+1qt/nDb3hoD+ZNC6u1DXhYy2mGwvcwX41EBZWa2Cdim0xygdnZtTX93ur5X8W9s/ROaLKeGhc/v8yrOzZD5zNNgpeBUn/hpd71JQeU/aASo41VfJrtmA0gv5vqQA9Nxtf6Sr5W+R551GhdSb6PcUK+3NQPVWDqZtrk8LKScxmabgADX1o3PQOWbWvPAdFnF3N30Pm5wwYJj5mr7zzQtEp4uVwpOBXcAqYP9NtuTd8s43tRa7Ubnfpn3mk+hqe3B/6pbraa6K2nL6hSgPuSL83nbdZbD0nF++PBrQYGpyvXoYgxEuLb+N1/zDtoOUfl3XuY+urTAlJhtggXHz1XcVwmM7pplf7bIn0x3uOs/PC5skNk0zJ9USWnwOak/X+pPmpGZLXMHP8/8DPLv+7X5uzcsXUhGy842pM67/nPpAdXTwupskO9AHN+qs/RzushFKZ+Qw0ZdjQq8ADdduBgDgRzOxwV1f5v65k/5ujrNKx4WuaYOG9fUl1UZy6Uf4wYXLOY4+Lgshbrx0sEpS8/LpFmU0l88u5e/x0Gj457/4yx3+ncmzwDHflqtsGyyvoClB3tfVWU8TPtYnZ3eqrPJPaFrUHVLGoi808cCQY2a18lGH31T/XvVw17B16PHvHeDCxb2Jvr4M806NV8rsHBwqv/QrP7DZ1XcKbW2BuijwMc3ul2BSwbf645erPvgSP8KFGjYo+9qOTUsKD/bNCjgUN9WjVmnJ8v8yXrA/r4qa6OILlppyV1e4qdDL9N7G0IAhHeWbjIrBljIq0KOc9jcoO3JCr/gdVXWZgNdM8jvsVglPKU/d6MIi3JT19uJYgAIbZJvLgOLGZV4rEsHp3w3xbKh3Xq7xi5GR4JvMZxrAPpq6JQ8hh0UdMgvVw5OOTyldzu5s7I7K78UN+90pIMvw8miO1MBsDNnNoSApZT27ONgreCUB+Bp+dBE3e/Myi/3FXyL8H7FTUAA2B5L9GCNIFJa0Huy5i9KzztN1f/OrLzDYQ6+V4owpCvPNQGEN8vjIKDbwWmvleCUn3eyWcTufHsp7hp/Pi3ZsxQsFkspAcqwbxc96Jd1Z5zmz8zsC087c7pG3c1y3QlPcUKTCzFAfEeeQQXBaZ3wZLp6N769FFd4Kt5MaAIogmdQQXBaOzxNKkuMduV0zboTnoQmAB439gwqCE5thadx5ZmnXVj5pbjC087Nl+cpd4D4ockNYljfpNTjfdL2b85bXXvmafvWeSmu8CQ0ASA0wTbMSj3eJ5v47Y0NI6baxtak0DRsoe7m4clW5Zs1qSzPAxCaoGcKvGH8ZaPBqVEoLyqzF9swzYPwSUt1N6s/acmll/pt7iIsNAEITdBXVyUe65NN/i15AP7CAHyjUtm+aCs03aq/9ABsumAY4LcjleORizCww+uFm5mLO9Nfw8Z8KuQ4p80Zsifb+BvzANymES1XZPV9lulkkzMXecMPzz2tb/4801hRADvyR76ZqR962Pwm1ztFARtTSj/0w8zYk239rXnTiNRhT7SVtZ1VG5pluqfubswcruV9ZRMIIIg8i6I/v9u0cpMLttEPzQoJTxc7CU65kNJ0V5q9SDNQZp+Wl4LS83QXbBfPx+SZQ5t+LH8BPvE8ExBs0GIp9r+lQdwLN7lga86CH1962fV0Z8Gp0WF/ey6nMvu0TGDazxsK7DS05FmuFwU09p2fbNUWZwUBVujPU1CwFPt7eHydZuLc5IKt9kHTKu7s9+yuse6TXRZWnn0yg3G/VC5HOTBNAjX0WV77/Vz4vTPkvjDLBBQycOn7UuwUHp/nxwmA7UvhJOLNmztvpDzZ9VGlQFB/0gDc8r0fB9/p7tfzyOushd8fzDd/8CwTUGKAmi/F7kv/Ne+zzTLBbvueb5uxBMsAZ/fdTHkSqODS3a7nOXn2tRMbNwbfVwU1+nn4PephgJrmuxKW5QGlD2Amefapyzcy9dkQr+/5diMjSL8zfmhHzSfBCm6WNz74vx4Nwqc5LD7Pd74mBTf8cSNAdf2CNMkh97ndl4CODWK6eCNzHpj02SA8PRSaHnx325PABTgfhKdC7Nra4/kWjPOB97tdb/qwgbpL9TZ/X8isY/X2ItpzZwAt9+PNZ1lLDlATgQmKC0+7WDJ8ssgLr58VUIip05s8ffbzXv3zoP68rT/DQgfdKQB+7MtDqPkEOKrr7iTX3av8szTf6i397OBaeM9jrW9axZlhLbV9zgKV4VST/jFA1T/e1f34+4KuwfPr7UUHnjmNdG7MnPuuJdsYO9b9TQpPp/XneEvjoKNF+4qfSuxF6gId1D9GeSCefu4FHpSmAffE7MQ/dbfXCFFR627ekXc1LAHb6/NSP3cd5HDOHlq7v8R3SsHpTe7LB8HC0kc75EFn+s/U15zn8eImgurZsjPRP3WoYFOhvqy+3wnbRUc+y0HpUx503xhwF1V3k3nd2RUPEJxW6sPTz23dDGtec6/029D5fjTdrDls4delvuJi1aW7P3W0gPfyIDx9fsk/5/+ujQKfd9h/5AH3tEvPKHW47qb5o+4AwWkz33fefw9ymGqj/57k6+6X3H9PBSXo7RjxoPrfjZrBAn+seXP8at0x3089LfhBtdzMxkwnre4ABKe1Q9WiM1JuagHr9iutr/561sdCzp2xDlndAbC9/ttNLKDofuWJIgcAABCcAAAABCcAAADBCQAAQHACAAAQnAAAAAQnAAAAwQkAAEBwAgAAQHACAAAQnAAAAAQnAAAAwQkAAEBwAgAAEJwAAAAEJwAAAMEJAAAAwQkAAEBwAgAAEJwAAAAEJwAAAMEJAABAcAIAABCcAAAABCcAAAAEJwAAAMEJAABAcAIAABCcAAAABCcAAADBCQAAQHACAAAQnAAAAAQnAAAABCcAAADBCQAAQHACAAAQnAAAAAQnAAAAwQkAAEBwAgAAEJwAAAAQnAAAAAQnAACA1jxTBACwMdP6cxbkWCaqAwAAAICN+f8CDAAIThxWYtJyLAAAAABJRU5ErkJggg==" style="height:30px; width: 100px;"/>
+        </div>
+        <div class="execution_info_container">
+         <div class="execution_info">
+          <div class="execution_title">
+           Execution Type
+          </div>
+          <div>
+           OnDemand Screening
+          </div>
+         </div>
+         <div class="execution_info">
+          <div class="execution_title">
+           Execution Date
+          </div>
+          <div>
+           {{formatDate created_at "YYYY-MM-DD HH:mm"}}
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        Submitted Information
+       </div>
+      </div>
+      <div class="information_container">
+       <div class="section_information">
+        <div class="section_information_column" style="display: flex; flex-direction: column; min-width: 250px;">
+         <div class="information_title">
+          Lists Screened
+         </div>
+         <div class="information_value">
+          {{total_lists}}
+         </div>
+         <div class="information_title">
+          Full Name
+         </div>
+         <div class="information_value">
+          {{body.full_name}}
+         </div>
+        </div>
+        <div class="section_information_column" style="display: flex; flex-direction: column; min-width: 250px;">
+         <div class="information_title">
+          Identification Number
+         </div>
+         {{#if body.id_number}}
+         <div class="information_value">
+          {{body.id_number}}
+         </div>
+         {{else}}
+         <div class="information_value">
+          -
+         </div>
+         {{/if}}
+         <div class="information_title">
+          Tax Identification Number
+         </div>
+         {{#if body.tax_id_number}}
+         <div class="information_value">
+          {{body.id_number}}
+         </div>
+         {{else}}
+         <div class="information_value">
+          -
+         </div>
+         {{/if}}
+        </div>
+       </div>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        Matches
+       </div>
+      </div>
+      {{#each matches}}
+      <div class="information_container">
+       <h2 class="section_sub_title">
+        List: {{name}}
+       </h2>
+       <!-- Configuration Section -->
+       <div class="section_title" style="font-size: 18px; margin-bottom: 16px; color: #4674A0; font-weight: 600; border-bottom: 2px solid #4674A0; padding-bottom: 8px;">
+        List Configuration
+       </div>
+       <div class="section_information">
+        <div class="section_information_column" style="flex: 1; min-width: 250px;">
+         <div class="information_title">
+          List Name
+         </div>
+         <div class="information_value">
+          {{#if name}}{{name}}{{else}}No information{{/if}}
+         </div>
+         <div class="information_title">
+          List Description
+         </div>
+         <div class="information_value">
+          {{#if description}}{{description}}{{else}}No information{{/if}}
+         </div>
+         <div class="information_title">
+          Search Configuration
+         </div>
+         <div class="information_value">
+          {{#if match_by_name}}By name{{/if}}
+  {{#if match_by_id}}
+  {{#if match_by_name}} / {{/if}}
+  By ID
+  {{/if}}
+  {{#if match_by_tax_id}}
+  {{#if match_by_name}} / {{else}}
+  {{#if match_by_id}} / {{/if}}
+  {{/if}}
+  By Tax ID
+  {{/if}}
+  {{#if match_by_name_exact}}
+  {{#if match_by_name}} / {{else}}
+  {{#if match_by_id}} / {{else}}
+  {{#if match_by_tax_id}} / {{/if}}
+  {{/if}}
+  {{/if}}
+  By exact name
+  {{else}}
+  {{#unless match_by_name}}
+  {{#unless match_by_id}}
+  {{#unless match_by_tax_id}}
+  No information
+  {{/unless}}
+  {{/unless}}
+  {{/unless}}
+  {{/if}}
+         </div>
+         <div class="information_title">
+          Minimum Required Score
+         </div>
+         <div class="information_value">
+          {{#if min_score}}{{min_score}}%{{else}}No information{{/if}}
+         </div>
+        </div>
+        <!--
+  <div class="section_information_column" style="flex: 1; min-width: 250px;">
+  <div class="information_title">Records in List</div>
+  <div class="information_value">
+  {{#if listInfo.count_subjects}}{{listInfo.count_subjects}}{{else}}No information{{/if}}
+  </div>
+  <div class="information_title">Last Update</div>
+  <div class="information_value">
+  {{#if listInfo.last_updated_at}}{{formatDate listInfo.last_updated_at "YYYY-MM-DD HH:mm"}}{{else}}No information{{/if}}
+  </div>
+  <div class="information_title">Last Addition</div>
+  <div class="information_value">
+  {{#if listInfo.last_insert_at}}{{formatDate listInfo.last_insert_at "YYYY-MM-DD HH:mm"}}{{else}}No information{{/if}}
+  </div>
+  <div class="information_title">Source</div>
+  <div class="information_value">
+  {{#if listInfo.source}}
+  <a href="{{listInfo.source}}" target="_blank">Link</a>
+  {{else}}
+  No information
+  {{/if}}
+  </div>
+  </div>
+  -->
+       </div>
+       <div class="divider">
+       </div>
+       <!-- Match Results Section -->
+       <div class="section_title" style="font-size: 18px; margin-bottom: 16px; color: #4674A0; font-weight: 600; border-bottom: 2px solid #4674A0; padding-bottom: 8px;">
+        Match Results
+       </div>
+       <div class="section_information">
+        <div class="section_information_column" style="display: flex; flex-direction: column; min-width: 250px;">
+         <div class="information_title">
+          Match Score
+         </div>
+         <div class="information_value">
+          {{toFixed score 2}}
+         </div>
+        </div>
+        <div class="section_information_column" style="display: flex; flex-direction: column; min-width: 250px;">
+         <div class="information_title">
+          Full Name
+         </div>
+         <div class="information_value">
+          {{#if full_name_subject}}{{full_name_subject}}{{else}}No information{{/if}}
+         </div>
+        </div>
+       </div>
+       <div class="section_information">
+        <div class="section_information_column" style="display: flex; flex-direction: column; min-width: 250px;">
+         <div class="information_title">
+          Identification Type
+         </div>
+         <div class="information_value">
+          {{#if id_type_subject}}{{id_type_subject}}{{else}}No information{{/if}}
+         </div>
+         <div class="information_title">
+          Identification Number
+         </div>
+         <div class="information_value">
+          {{#if id_number_subject}}{{id_number_subject}}{{else}}No information{{/if}}
+         </div>
+        </div>
+        <div class="section_information_column" style="flex: 1; min-width: 250px;">
+         <div class="information_title">
+          Tax Identification Type
+         </div>
+         <div class="information_value">
+          {{#if tax_id_type_subject}}{{tax_id_type_subject}}{{else}}No information{{/if}}
+         </div>
+         <div class="information_title">
+          Tax Identification Number
+         </div>
+         <div class="information_value">
+          {{#if tax_id_number_subject}}{{tax_id_number_subject}}{{else}}No information{{/if}}
+         </div>
+        </div>
+       </div>
+      </div>
+      {{/each}}
+  {{#if no_match_lists}}
+  {{#each no_match_lists}}
+      <h2 class="section_sub_title">
+       List: {{name}}
+      </h2>
+      <!-- Configuration Section -->
+      <div class="section_title" style="font-size: 18px; margin-bottom: 16px; color: #4674A0; font-weight: 600; border-bottom: 2px solid #4674A0; padding-bottom: 8px;">
+       List Configuration
+      </div>
+      <div class="section_information">
+       <div class="section_information_column" style="flex: 1; min-width: 250px;">
+        <div class="information_title">
+         List Name
+        </div>
+        <div class="information_value">
+         {{#if name}}{{name}}{{else}}No information{{/if}}
+        </div>
+        <div class="information_title">
+         List Description
+        </div>
+        <div class="information_value">
+         {{#if description}}{{description}}{{else}}No information{{/if}}
+        </div>
+        <div class="information_title">
+         Search Configuration
+        </div>
+        <div class="information_value">
+         {{#if match_by_name}}By name{{/if}}
+  {{#if match_by_id}}
+  {{#if match_by_name}} / {{/if}}
+  By ID
+  {{/if}}
+  {{#if match_by_tax_id}}
+  {{#if match_by_name}} / {{else}}
+  {{#if match_by_id}} / {{/if}}
+  {{/if}}
+  By Tax ID
+  {{/if}}
+  {{#if match_by_name_exact}}
+  {{#if match_by_name}} / {{else}}
+  {{#if match_by_id}} / {{else}}
+  {{#if match_by_tax_id}} / {{/if}}
+  {{/if}}
+  {{/if}}
+  By exact name
+  {{else}}
+  {{#unless match_by_name}}
+  {{#unless match_by_id}}
+  {{#unless match_by_tax_id}}
+  No information
+  {{/unless}}
+  {{/unless}}
+  {{/unless}}
+  {{/if}}
+        </div>
+        <div class="information_title">
+         Minimum Required Score
+        </div>
+        <div class="information_value">
+         {{#if min_score}}{{min_score}}%{{else}}No information{{/if}}
+        </div>
+       </div>
+       <!--
+  <div class="section_information_column" style="flex: 1; min-width: 250px;">
+  <div class="information_title">Records in List</div>
+  <div class="information_value">
+  {{#if listInfo.count_subjects}}{{listInfo.count_subjects}}{{else}}No information{{/if}}
+  </div>
+  <div class="information_title">Last Update</div>
+  <div class="information_value">
+  {{#if listInfo.last_updated_at}}{{formatDate listInfo.last_updated_at "YYYY-MM-DD HH:mm"}}{{else}}No information{{/if}}
+  </div>
+  <div class="information_title">Last Addition</div>
+  <div class="information_value">
+  {{#if listInfo.last_insert_at}}{{formatDate listInfo.last_insert_at "YYYY-MM-DD HH:mm"}}{{else}}No information{{/if}}
+  </div>
+  <div class="information_title">Source</div>
+  <div class="information_value">
+  {{#if listInfo.source}}
+  <a href="{{listInfo.source}}" target="_blank">Link</a>
+  {{else}}
+  No information
+  {{/if}}
+  </div>
+  </div>
+  -->
+      </div>
+      <div class="divider">
+      </div>
+      <!-- Match Results Section -->
+      <div class="section_title" style="font-size: 18px; margin-bottom: 16px; color: #4674A0; font-weight: 600; border-bottom: 2px solid #4674A0; padding-bottom: 8px;">
+       Match Results
+      </div>
+      <div class="section_information">
+       <div class="section_information_column" style="display: flex; flex-direction: column; min-width: 250px;">
+        <div class="information_title">
+         Result
+        </div>
+        <div class="information_value">
+         No matches
+        </div>
+       </div>
+      </div>
+      {{/each}}
+  {{/if}}
+     </div>
+    </main>
+   </body>
+  </html>

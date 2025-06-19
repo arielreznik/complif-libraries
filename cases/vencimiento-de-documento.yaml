@@ -1,0 +1,13 @@
+category: LEGAJOS
+code: COMPLIF_CREATE_CASE_BY_DOC_EXPIRED
+default_priority: LOW
+description: 'La plantilla **Documentación vencida** sirve para facilitar la gestión
+  de los vencimientos de los documentos. Cada vez que un documento llegue a su fecha
+  de vencimiento, se generará un caso vinculándolo.
+
+  '
+id_operating_country: null
+name: Vencimiento de Documento
+resolution_interval: 60 days
+subtitle: Gestiona el vencimiento de los documentos de tus clientes
+video_link: ''

@@ -1,0 +1,204 @@
+name: WEB SCRAPING
+code: 
+config: {}
+description: WEB SCRAPING
+entity: web_scraping
+footer: ''
+header: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+   <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&amp;display=swap" rel="stylesheet"/>
+    <style>
+     @page {
+  margin-left: 0;
+  margin-right: 0;
+  }
+  body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  }
+  header h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #555;
+  }
+  .header {
+  background-color: black;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  }
+  #white_text {
+  color: white;
+  margin-right: 5px;
+  font-size: 14px;
+  }
+  .container {
+  padding: 20px;
+  }
+  .information_header_container {
+  background-color: #EFEFF0;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+  .section_title {
+  font-size: 18px;
+  font-weight: 600;
+  }
+  .section_information {
+  display: flex;
+  flex-direction: column;
+  }
+  .section_information_column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  }
+  .information_container {
+  padding: 16px 8px;
+  }
+  .information_title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  }
+  .information_value {
+  margin: 4px 0 16px;
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  }
+  th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  }
+  th {
+  background-color: #f2f2f2;
+  }
+  @media print {
+  .page-break {
+  page-break-before: always;
+  }
+  }
+  .execution_container {
+  display: flex;
+  }
+  .execution_info_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  }
+  .image_container {
+  display: flex;
+  align-items: center;
+  }
+  .execution_title {
+  font-size: 15px;
+  font-weight: bold;
+  }
+  .execution_info {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  }
+    </style>
+   </head>
+   <body>
+    <main>
+     <div class="container">
+      <div class="information_header_container">
+       <div class="section_title">
+        Ejecución
+       </div>
+      </div>
+      <div class="information_container">
+       <div class="execution_container">
+        <div class="image_container">
+         <img id="myImage" src="https://statics-files.complif.com/demo_ar/images.png" style="height:85px; width: 85px;"/>
+        </div>
+        <div class="execution_info_container">
+         <div class="execution_info">
+          <div class="execution_title">
+           Tipo de Ejecución
+          </div>
+          <div>
+           Web scraping
+          </div>
+         </div>
+         <div class="execution_info">
+          <div class="execution_title">
+           Fecha de Ejecución
+          </div>
+          <div>
+           {{formatDate created_at "YYYY-MM-DD HH:mm"}}
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="information_header_container">
+       <div class="section_title">
+        Resultado
+       </div>
+      </div>
+      <div class="information_container">
+       <div class="section_information">
+        <div class="section_information_column">
+         <div class="information_title">
+          URL Consultada
+         </div>
+         <div class="information_value">
+          {{url}}
+         </div>
+         <div class="information_title">
+          Descripción de la web
+         </div>
+         <div class="information_value">
+          {{description}}
+         </div>
+         <div class="information_title">
+          Actividad declarada
+         </div>
+         <div class="information_value">
+          {{economic_activity}}
+         </div>
+         <div class="information_title">
+          Actividad Identificada en la Web
+         </div>
+         <div class="information_value">
+          {{identified_economic_activity}}
+         </div>
+         <div class="information_title">
+          Coincide Actividad
+         </div>
+         <div class="information_value">
+          {{has_match}}
+         </div>
+         <div class="information_title">
+          Riesgo de la actividad
+         </div>
+         <div class="information_value">
+          {{risk_level}}
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </main>
+   </body>
+  </html>

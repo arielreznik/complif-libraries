@@ -1,0 +1,701 @@
+name: "Reporte de An\xE1lisis Crediticio"
+code: 
+config: {}
+description: "Reporte de An\xE1lisis Crediticio"
+entity: CREDIT_RISK
+footer: ''
+header: ''
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+   <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&amp;display=swap" rel="stylesheet"/>
+    <style>
+     @page {
+  /* Márgenes de 0 en los costados */
+  margin-left: 0;
+  margin-right: 0;
+  }
+  /* forma de etiquetado generalizada, todos los componentes de este tipo tendran estos estilos */
+  body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  /* margin: 80px; */
+  padding: 0;
+  margin: 0;
+  color: #333;
+  }
+  /* forma de etiquetado generalizada compuesta, todos los componentes h1 dentro del header tendran estos estilos, los h1 por fuera del header no los tendran */
+  header h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #555;
+  }
+  /* forma de aplicar estos estilos a todos los componentes que tengan esta clase */
+  .header {
+  background-color: black;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* position: fixed; */
+  }
+  /* forma para modificar un solo componente en especifico */
+  #white_text {
+  color: white;
+  margin-right: 5px;
+  font-size: 14px;
+  }
+  .container {
+  height: 100%;
+  padding: 20px 20px 0 20px;
+  }
+  .information_header_container {
+  background-color: #EFEFF0;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+  .css-rejected {
+  max-width: 100%;
+  font-family: Roboto, "Roboto Mono", sans-serif;
+  font-size: 0.8125rem;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: unset;
+  vertical-align: middle;
+  box-sizing: border-box;
+  min-width: 100px;
+  height: 25px;
+  background-color: rgb(200, 52, 30);
+  color: rgb(255, 255, 255);
+  border-radius: 16px;
+  white-space: nowrap;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: 0px;
+  text-decoration: none;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  padding: 0px;
+  font-weight: bold;
+  }
+  .css-accepted {
+  max-width: 100%;
+  font-family: Roboto, "Roboto Mono", sans-serif;
+  font-size: 0.8125rem;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: unset;
+  vertical-align: middle;
+  box-sizing: border-box;
+  min-width: 100px;
+  height: 25px;
+  background-color: rgb(81, 146, 115);
+  color: rgb(255, 255, 255);
+  border-radius: 16px;
+  white-space: nowrap;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: 0px;
+  text-decoration: none;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  padding: 0px;
+  font-weight: bold;
+  }
+  .css-revision {
+  max-width: 100%;
+  font-family: Roboto, "Roboto Mono", sans-serif;
+  font-size: 0.8125rem;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: unset;
+  vertical-align: middle;
+  box-sizing: border-box;
+  min-width: 100px;
+  height: 25px;
+  background-color: rgb(232, 128, 53);
+  color: rgb(255, 255, 255);
+  border-radius: 16px;
+  white-space: nowrap;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: 0px;
+  text-decoration: none;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  padding: 0px;
+  font-weight: bold;
+  }
+  .css-atencion {
+  width: 1.3em; /* Mantiene el tamaño del círculo */
+  height: 1.3em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold; /* Hace el signo de exclamación más grueso */
+  color: rgb(255, 255, 255);
+  background-color: rgb(232, 128, 53);
+  border-radius: 50%;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .css-critical {
+  width: 1.3em; /* Mantiene el tamaño del círculo */
+  height: 1.3em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold; /* Hace el signo de exclamación más grueso */
+  color: rgb(255, 255, 255);
+  background-color: rgb(200, 52, 30);
+  border-radius: 50%;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .css-circle-info {
+  width: 1.3em; /* Mantiene el tamaño del círculo */
+  height: 1.3em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold; /* Hace el signo de exclamación más grueso */
+  color: rgb(255, 255, 255);
+  background-color: rgb(25, 112, 204);
+  border-radius: 50%;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .css-circle-pending {
+  width: 1.3em; /* Mantiene el tamaño del círculo */
+  height: 1.3em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold; /* Hace el signo de exclamación más grueso */
+  color: rgb(255, 255, 255);
+  background-color: rgb(248, 218, 114);
+  border-radius: 50%;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .css-circle-approved {
+  width: 1.3em; /* Mantiene el tamaño del círculo */
+  height: 1.3em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold; /* Hace el signo de exclamación más grueso */
+  color: rgb(255, 255, 255);
+  background-color: rgb(81, 146, 115);
+  border-radius: 50%;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .section_title {
+  font-size: 18px;
+  font-weight: 600;
+  }
+  .section_sub_title {
+  color: #4674A0;
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 18px;
+  margin-bottom: 8px;
+  }
+  .section_information {
+  display: flex;
+  }
+  .section_information_column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  }
+  .section_information_column_parameters {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  }
+  .information_container {
+  padding: 16px 8px;
+  }
+  .information_title {
+  font-weight: 600;
+  }
+  .information_value {
+  width: 100%;
+  }
+  .information_value_last_part {
+  width: 100%;
+  margin-bottom: 10px;
+  }
+  .divider {
+  width: 100%;
+  background-color: #CACACE;
+  height: 0.5px;
+  margin: 15px 0;
+  margin-bottom: 0px;
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  }
+  .last_modifications {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  }
+  .debts_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 8px;
+  width: 60%;
+  }
+  th {
+  background-color: #f2f2f2 !important;
+  padding: 10px;
+  text-align: left;
+  border-right: 2px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  }
+  td {
+  padding: 10px;
+  text-align: left;
+  /*border-bottom: 1px solid #ddd; */
+  border: 1px solid #ddd;
+  }
+  .tabla-con-fondo td:first-child,
+  .tabla-con-fondo th:first-child {
+  background-color: #FAFAFA;
+  }
+  th:last-child {
+  border-right: none;
+  /* Elimina la línea en la última columna */
+  }
+  @media print {
+  /* Forzar salto de página después de cada tabla */
+  /* Alternativamente, para agregar un salto de página específico */
+  .page-break {
+  page-break-before: always;
+  }
+  }
+  .execution_container {
+  display: flex;
+  }
+  .execution_info_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  }
+  .image_container {
+  display: flex;
+  align-items: center;
+  }
+  .execution_title {
+  font-size: 15px;
+  font-weight: bold;
+  }
+  .execution_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 50%;
+  }
+  .execution_info:not(:last-child) {
+  margin-right: 5%; /* Aplica espacio entre las columnas, excepto a la última */
+  }
+  .error_container {
+  display: flex;
+  align-items: center; /* Centra verticalmente el círculo y el texto */
+  }
+  .error_text {
+  color: #C8341E;
+  margin-right: 15px;
+  }
+  .error {
+  color: #C8341E;
+  }
+  .data_not_found {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #C8341E;
+  }
+    </style>
+   </head>
+   <body>
+    <main>
+     <div class="container">
+      <div class="information_header_container">
+       <div class="section_title">
+        Resumen de análisis crediticio
+       </div>
+       {{#if creditRiskInformation.status}}
+  {{#ifCond creditRiskInformation.status "===" "APPROVED"}}
+       <div class="error_container">
+        <div class="css-accepted">
+         Aceptado
+        </div>
+       </div>
+       {{/ifCond}}
+  {{#ifCond creditRiskInformation.status "===" "REJECTED"}}
+       <div class="error_container">
+        <div class="css-rejected">
+         Rechazado
+        </div>
+       </div>
+       {{/ifCond}}
+  {{#ifCond creditRiskInformation.status "===" "REVIEW"}}
+       <div class="error_container">
+        <div class="css-revision">
+         Revisión
+        </div>
+       </div>
+       {{/ifCond}}
+  {{else}}
+       <div class="error_container">
+        <div class="image_container">
+         <img alt="error_chip" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDkiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCA0OSAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ5IiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI0M4MzQxRSIvPgo8cGF0aCBkPSJNOS45NTgyNSA5LjYyNTA0SDExLjA0MTZWMTAuNzA4NEg5Ljk1ODI1VjkuNjI1MDRaTTkuOTU4MjUgNS4yOTE3MUgxMS4wNDE2VjguNTQxNzFIOS45NTgyNVY1LjI5MTcxWk0xMC40OTQ1IDIuNTgzMzdDNy41MDQ1IDIuNTgzMzcgNS4wODMyNSA1LjAxMDA0IDUuMDgzMjUgOC4wMDAwNEM1LjA4MzI1IDEwLjk5IDcuNTA0NSAxMy40MTY3IDEwLjQ5NDUgMTMuNDE2N0MxMy40ODk5IDEzLjQxNjcgMTUuOTE2NiAxMC45OSAxNS45MTY2IDguMDAwMDRDMTUuOTE2NiA1LjAxMDA0IDEzLjQ4OTkgMi41ODMzNyAxMC40OTQ1IDIuNTgzMzdaTTEwLjQ5OTkgMTIuMzMzNEM4LjEwNTc1IDEyLjMzMzQgNi4xNjY1OSAxMC4zOTQyIDYuMTY2NTkgOC4wMDAwNEM2LjE2NjU5IDUuNjA1ODcgOC4xMDU3NSAzLjY2NjcxIDEwLjQ5OTkgMy42NjY3MUMxMi44OTQxIDMuNjY2NzEgMTQuODMzMyA1LjYwNTg3IDE0LjgzMzMgOC4wMDAwNEMxNC44MzMzIDEwLjM5NDIgMTIuODk0MSAxMi4zMzM0IDEwLjQ5OTkgMTIuMzMzNFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNC44Mzg0IDEwLjEyNTVWMTFIMjEuNDQxNFYxMC4xMjU1SDI0LjgzODRaTTIxLjc1MzQgNC42MDE1NlYxMUgyMC42NTA0VjQuNjAxNTZIMjEuNzUzNFpNMjQuMzk0NSA3LjI3MzQ0VjguMTM0NzdIMjEuNDQxNFY3LjI3MzQ0SDI0LjM5NDVaTTI0LjgxNjQgNC42MDE1NlY1LjQ4MDQ3SDIxLjQ0MTRWNC42MDE1NkgyNC44MTY0Wk0yNi44NTczIDcuMTUwMzlWMTFIMjUuNzk4MlY2LjI0NTEySDI2LjgwODlMMjYuODU3MyA3LjE1MDM5Wk0yOC4zMTE5IDYuMjE0MzZMMjguMzAzMSA3LjE5ODczQzI4LjIzODYgNy4xODcwMSAyOC4xNjgzIDcuMTc4MjIgMjguMDkyMSA3LjE3MjM2QzI4LjAxODkgNy4xNjY1IDI3Ljk0NTYgNy4xNjM1NyAyNy44NzI0IDcuMTYzNTdDMjcuNjkwOCA3LjE2MzU3IDI3LjUzMTEgNy4xODk5NCAyNy4zOTM0IDcuMjQyNjhDMjcuMjU1NyA3LjI5MjQ4IDI3LjE0IDcuMzY1NzIgMjcuMDQ2MiA3LjQ2MjRDMjYuOTU1NCA3LjU1NjE1IDI2Ljg4NTEgNy42NzA0MSAyNi44MzUzIDcuODA1MThDMjYuNzg1NSA3LjkzOTk0IDI2Ljc1NjIgOC4wOTA4MiAyNi43NDc0IDguMjU3ODFMMjYuNTA1NyA4LjI3NTM5QzI2LjUwNTcgNy45NzY1NiAyNi41MzUgNy42OTk3MSAyNi41OTM2IDcuNDQ0ODJDMjYuNjUyMiA3LjE4OTk0IDI2Ljc0MDEgNi45NjU4MiAyNi44NTczIDYuNzcyNDZDMjYuOTc3NCA2LjU3OTEgMjcuMTI2OCA2LjQyODIyIDI3LjMwNTUgNi4zMTk4MkMyNy40ODcxIDYuMjExNDMgMjcuNjk2NiA2LjE1NzIzIDI3LjkzMzkgNi4xNTcyM0MyNy45OTg0IDYuMTU3MjMgMjguMDY3MiA2LjE2MzA5IDI4LjE0MDUgNi4xNzQ4QzI4LjIxNjYgNi4xODY1MiAyOC4yNzM4IDYuMTk5NzEgMjguMzExOSA2LjIxNDM2Wk0zMC4xOTg5IDcuMTUwMzlWMTFIMjkuMTM5OFY2LjI0NTEySDMwLjE1MDZMMzAuMTk4OSA3LjE1MDM5Wk0zMS42NTM1IDYuMjE0MzZMMzEuNjQ0NyA3LjE5ODczQzMxLjU4MDMgNy4xODcwMSAzMS41MDk5IDcuMTc4MjIgMzEuNDMzOCA3LjE3MjM2QzMxLjM2MDUgNy4xNjY1IDMxLjI4NzMgNy4xNjM1NyAzMS4yMTQgNy4xNjM1N0MzMS4wMzI0IDcuMTYzNTcgMzAuODcyNyA3LjE4OTk0IDMwLjczNSA3LjI0MjY4QzMwLjU5NzMgNy4yOTI0OCAzMC40ODE2IDcuMzY1NzIgMzAuMzg3OSA3LjQ2MjRDMzAuMjk3MSA3LjU1NjE1IDMwLjIyNjcgNy42NzA0MSAzMC4xNzY5IDcuODA1MThDMzAuMTI3MSA3LjkzOTk0IDMwLjA5NzggOC4wOTA4MiAzMC4wODkgOC4yNTc4MUwyOS44NDczIDguMjc1MzlDMjkuODQ3MyA3Ljk3NjU2IDI5Ljg3NjYgNy42OTk3MSAyOS45MzUyIDcuNDQ0ODJDMjkuOTkzOCA3LjE4OTk0IDMwLjA4MTcgNi45NjU4MiAzMC4xOTg5IDYuNzcyNDZDMzAuMzE5IDYuNTc5MSAzMC40Njg0IDYuNDI4MjIgMzAuNjQ3MSA2LjMxOTgyQzMwLjgyODggNi4yMTE0MyAzMS4wMzgzIDYuMTU3MjMgMzEuMjc1NiA2LjE1NzIzQzMxLjM0IDYuMTU3MjMgMzEuNDA4OSA2LjE2MzA5IDMxLjQ4MjEgNi4xNzQ4QzMxLjU1ODMgNi4xODY1MiAzMS42MTU0IDYuMTk5NzEgMzEuNjUzNSA2LjIxNDM2Wk0zMi4xNjA3IDguNjc1MjlWOC41NzQyMkMzMi4xNjA3IDguMjMxNDUgMzIuMjEwNSA3LjkxMzU3IDMyLjMxMDEgNy42MjA2MUMzMi40MDk3IDcuMzI0NzEgMzIuNTUzMiA3LjA2ODM2IDMyLjc0MDcgNi44NTE1NkMzMi45MzEyIDYuNjMxODQgMzMuMTYyNiA2LjQ2MTkxIDMzLjQzNTEgNi4zNDE4QzMzLjcxMDUgNi4yMTg3NSAzNC4wMjEgNi4xNTcyMyAzNC4zNjY3IDYuMTU3MjNDMzQuNzE1NCA2LjE1NzIzIDM1LjAyNTkgNi4yMTg3NSAzNS4yOTg0IDYuMzQxOEMzNS41NzM4IDYuNDYxOTEgMzUuODA2NyA2LjYzMTg0IDM1Ljk5NzEgNi44NTE1NkMzNi4xODc1IDcuMDY4MzYgMzYuMzMyNSA3LjMyNDcxIDM2LjQzMjEgNy42MjA2MUMzNi41MzE4IDcuOTEzNTcgMzYuNTgxNiA4LjIzMTQ1IDM2LjU4MTYgOC41NzQyMlY4LjY3NTI5QzM2LjU4MTYgOS4wMTgwNyAzNi41MzE4IDkuMzM1OTQgMzYuNDMyMSA5LjYyODkxQzM2LjMzMjUgOS45MjE4OCAzNi4xODc1IDEwLjE3ODIgMzUuOTk3MSAxMC4zOTc5QzM1LjgwNjcgMTAuNjE0NyAzNS41NzUyIDEwLjc4NDcgMzUuMzAyOCAxMC45MDc3QzM1LjAzMDMgMTEuMDI3OCAzNC43MjEyIDExLjA4NzkgMzQuMzc1NSAxMS4wODc5QzM0LjAyNjkgMTEuMDg3OSAzMy43MTQ5IDExLjAyNzggMzMuNDM5NSAxMC45MDc3QzMzLjE2NyAxMC43ODQ3IDMyLjkzNTYgMTAuNjE0NyAzMi43NDUxIDEwLjM5NzlDMzIuNTU0NyAxMC4xNzgyIDMyLjQwOTcgOS45MjE4OCAzMi4zMTAxIDkuNjI4OTFDMzIuMjEwNSA5LjMzNTk0IDMyLjE2MDcgOS4wMTgwNyAzMi4xNjA3IDguNjc1MjlaTTMzLjIxOTcgOC41NzQyMlY4LjY3NTI5QzMzLjIxOTcgOC44ODkxNiAzMy4yNDE3IDkuMDkxMzEgMzMuMjg1NyA5LjI4MTc0QzMzLjMyOTYgOS40NzIxNyAzMy4zOTg1IDkuNjM5MTYgMzMuNDkyMiA5Ljc4MjcxQzMzLjU4NiA5LjkyNjI3IDMzLjcwNjEgMTAuMDM5MSAzMy44NTI2IDEwLjEyMTFDMzMuOTk5IDEwLjIwMzEgMzQuMTczNCAxMC4yNDQxIDM0LjM3NTUgMTAuMjQ0MUMzNC41NzE4IDEwLjI0NDEgMzQuNzQxNyAxMC4yMDMxIDM0Ljg4NTMgMTAuMTIxMUMzNS4wMzE4IDEwLjAzOTEgMzUuMTUxOSA5LjkyNjI3IDM1LjI0NTYgOS43ODI3MUMzNS4zMzk0IDkuNjM5MTYgMzUuNDA4MiA5LjQ3MjE3IDM1LjQ1MjIgOS4yODE3NEMzNS40OTkgOS4wOTEzMSAzNS41MjI1IDguODg5MTYgMzUuNTIyNSA4LjY3NTI5VjguNTc0MjJDMzUuNTIyNSA4LjM2MzI4IDM1LjQ5OSA4LjE2NDA2IDM1LjQ1MjIgNy45NzY1NkMzNS40MDgyIDcuNzg2MTMgMzUuMzM3OSA3LjYxNzY4IDM1LjI0MTIgNy40NzExOUMzNS4xNDc1IDcuMzI0NzEgMzUuMDI3NCA3LjIxMDQ1IDM0Ljg4MDkgNy4xMjg0MkMzNC43MzczIDcuMDQzNDYgMzQuNTY1OSA3LjAwMDk4IDM0LjM2NjcgNy4wMDA5OEMzNC4xNjc1IDcuMDAwOTggMzMuOTk0NiA3LjA0MzQ2IDMzLjg0ODIgNy4xMjg0MkMzMy43MDQ2IDcuMjEwNDUgMzMuNTg2IDcuMzI0NzEgMzMuNDkyMiA3LjQ3MTE5QzMzLjM5ODUgNy42MTc2OCAzMy4zMjk2IDcuNzg2MTMgMzMuMjg1NyA3Ljk3NjU2QzMzLjI0MTcgOC4xNjQwNiAzMy4yMTk3IDguMzYzMjggMzMuMjE5NyA4LjU3NDIyWk0zOC42OTI3IDcuMTUwMzlWMTFIMzcuNjMzN1Y2LjI0NTEySDM4LjY0NDRMMzguNjkyNyA3LjE1MDM5Wk00MC4xNDczIDYuMjE0MzZMNDAuMTM4NSA3LjE5ODczQzQwLjA3NDEgNy4xODcwMSA0MC4wMDM4IDcuMTc4MjIgMzkuOTI3NiA3LjE3MjM2QzM5Ljg1NDQgNy4xNjY1IDM5Ljc4MTEgNy4xNjM1NyAzOS43MDc5IDcuMTYzNTdDMzkuNTI2MiA3LjE2MzU3IDM5LjM2NjYgNy4xODk5NCAzOS4yMjg5IDcuMjQyNjhDMzkuMDkxMiA3LjI5MjQ4IDM4Ljk3NTQgNy4zNjU3MiAzOC44ODE3IDcuNDYyNEMzOC43OTA5IDcuNTU2MTUgMzguNzIwNiA3LjY3MDQxIDM4LjY3MDggNy44MDUxOEMzOC42MjEgNy45Mzk5NCAzOC41OTE3IDguMDkwODIgMzguNTgyOSA4LjI1NzgxTDM4LjM0MTIgOC4yNzUzOUMzOC4zNDEyIDcuOTc2NTYgMzguMzcwNSA3LjY5OTcxIDM4LjQyOTEgNy40NDQ4MkMzOC40ODc3IDcuMTg5OTQgMzguNTc1NSA2Ljk2NTgyIDM4LjY5MjcgNi43NzI0NkMzOC44MTI5IDYuNTc5MSAzOC45NjIzIDYuNDI4MjIgMzkuMTQxIDYuMzE5ODJDMzkuMzIyNiA2LjIxMTQzIDM5LjUzMjEgNi4xNTcyMyAzOS43Njk0IDYuMTU3MjNDMzkuODMzOCA2LjE1NzIzIDM5LjkwMjcgNi4xNjMwOSAzOS45NzU5IDYuMTc0OEM0MC4wNTIxIDYuMTg2NTIgNDAuMTA5MiA2LjE5OTcxIDQwLjE0NzMgNi4yMTQzNloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=" style="height:25px;"/>
+        </div>
+       </div>
+       {{/if}}
+      </div>
+      <div class="information_container">
+       <div class="execution_container">
+        <div class="image_container">
+         <img alt="Your SVG Image" id="myImage" src="https://api-uat.complif.com/storage/v1/object/public/logos/4f7b9d62-1efd-4945-b404-31126a9d722c_demo_sales_logo.png" style="height:auto; width: 85px;"/>
+        </div>
+        <div class="execution_info_container">
+         <div class="execution_info">
+          <div class="execution_title">
+           Análisis
+          </div>
+          <div>
+           {{creditRiskInformation.name}}
+          </div>
+         </div>
+         <div class="execution_info">
+          <div class="execution_title">
+           Monto
+          </div>
+          <div>
+           {{formatCurrency creditRiskInformation.final_amount 'ARS' 0 'es-AR' 'currency' 'symbol'}}
+          </div>
+         </div>
+         <div class="execution_info">
+          <div class="execution_title">
+           Fecha de Ejecución
+          </div>
+          <div>
+           {{formatDate creditRiskInformation.updated_at "YYYY-MM-DD HH:mm"}}
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      {{#if internalStatus.0.description}}
+      <div class="divider">
+      </div>
+      <div class="information_container" style="padding: 5px 8px 30px 8px;">
+       <div class="section_sub_title">
+        Detalle del estado:
+       </div>
+       {{#each internalStatus as |register|}}
+  {{#ifCond register.type "===" "01_ESTADO_ANALISIS_CREDITICIO"}}
+       <div>
+        {{register.display}}
+       </div>
+       {{/ifCond}}
+  {{/each}}
+      </div>
+      {{#ifCond creditRiskInformation.status "!==" "APPROVED"}}
+      <div class="information_header_container">
+       <div class="section_title">
+        Reglas de rechazo y/o revisión
+       </div>
+      </div>
+      <div class="information_container">
+       <table>
+        <thead>
+         <tr>
+          <th>
+           Estado
+          </th>
+          <th>
+           Regla
+          </th>
+          <th>
+           Descripción
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         {{else}}
+         <div class="information_header_container">
+          <div class="section_title">
+           Reglas de rechazo y/o revisión
+          </div>
+         </div>
+         <div class="information_container">
+          <table>
+           <thead>
+            <tr>
+             <th>
+              Estado
+             </th>
+             <th>
+              Regla
+             </th>
+             <th>
+              Descripción
+             </th>
+            </tr>
+           </thead>
+           <tbody>
+            <tr>
+             <td colspan="3">
+              <div class="data_not_found">
+               No hay reglas para revisar.
+              </div>
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{#each internalStatus as |register|}}
+  {{#ifCond register.status "===" "CRITICAL"}}
+            <tr>
+             <td style="text-align: center;">
+              <div ;="" class="error_container" style="display: initial">
+               <div class="css-critical">
+                !
+               </div>
+              </div>
+             </td>
+             <td>
+              {{register.description}}
+             </td>
+             <td>
+              {{register.display}}
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{#ifCond register.status "===" "WARNING"}}
+            <tr>
+             <td style="text-align: center;">
+              <div ;="" class="error_container" style="display: initial">
+               <div class="css-atencion">
+                !
+               </div>
+              </div>
+             </td>
+             <td>
+              {{register.description}}
+             </td>
+             <td>
+              {{register.display}}
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{/each}}
+           </tbody>
+          </table>
+         </div>
+         <div class="information_header_container">
+          <div class="section_title">
+           Detalle del análisis
+          </div>
+         </div>
+         <div class="information_container">
+          <table>
+           <thead>
+            <tr>
+             <th>
+              Estado
+             </th>
+             <th>
+              Nombre
+             </th>
+             <th>
+              Descripción
+             </th>
+            </tr>
+           </thead>
+           <tbody>
+            {{#each internalStatus as |register|}}
+  {{#ifCond register.status "===" "PENDING"}}
+            <tr>
+             <td style="text-align: center;">
+              <div ;="" class="error_container" style="display: initial">
+               <div class="css-circle-pending">
+                !
+               </div>
+              </div>
+             </td>
+             <td>
+              {{register.description}}
+             </td>
+             <td>
+              {{register.display}}
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{/each}}
+           </tbody>
+           <tbody>
+            {{#each internalStatus as |register|}}
+  {{#ifCond register.status "===" "OK"}}
+            <tr>
+             <td style="text-align: center;">
+              <div ;="" class="error_container" style="display: initial">
+               <div class="css-circle-approved">
+                !
+               </div>
+              </div>
+             </td>
+             <td>
+              {{register.description}}
+             </td>
+             <td>
+              {{register.display}}
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{/each}}
+           </tbody>
+           <tbody>
+            {{#each internalStatus as |register|}}
+  {{#ifCond register.status "===" "INFO"}}
+            <tr>
+             <td style="text-align: center;">
+              <div ;="" class="error_container" style="display: initial">
+               <div class="css-circle-info">
+                !
+               </div>
+              </div>
+             </td>
+             <td>
+              {{register.description}}
+             </td>
+             <td>
+              {{register.display}}
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{/each}}
+           </tbody>
+          </table>
+         </div>
+         {{/if}}
+         <div class="information_header_container">
+          <div class="section_title">
+           Fuentes de Información (Documentos)
+          </div>
+         </div>
+         <div class="information_container">
+          <table>
+           <thead>
+            <tr>
+             <th>
+              Fecha
+             </th>
+             <th>
+              Documento
+             </th>
+            </tr>
+           </thead>
+           <tbody>
+            {{#if documents.0.document_type}}
+  {{#each documents as |doc|}}
+  {{#ifCond doc.document_type "===" "REPORTE_AFIP"}}
+            <tr>
+             <td>
+              {{formatDate doc.created_at "YYYY-MM-DD HH:mm"}}
+             </td>
+             <td>
+              Reporte con información traida de AFIP
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{#ifCond doc.document_type "===" "REPORTE_BCRA_DEUDORES"}}
+            <tr>
+             <td>
+              {{formatDate doc.created_at "YYYY-MM-DD HH:mm"}}
+             </td>
+             <td>
+              Reporte con información traida del BCRA
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{#ifCond doc.document_type "===" "ESTATUTO_AR"}}
+            <tr>
+             <td>
+              {{formatDate doc.created_at "YYYY-MM-DD HH:mm"}}
+             </td>
+             <td>
+              Estatuto obtenido
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{#ifCond doc.document_type "===" "BALANCE_AR"}}
+            <tr>
+             <td>
+              {{formatDate doc.created_at "YYYY-MM-DD HH:mm"}}
+             </td>
+             <td>
+              Balance obtenido
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{#ifCond doc.document_type "===" "LUFE"}}
+            <tr>
+             <td>
+              {{formatDate doc.created_at "YYYY-MM-DD HH:mm"}}
+             </td>
+             <td>
+              Reporte con información traida de LUFE
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{#ifCond doc.document_type "===" "REPORTE_NOSIS"}}
+            <tr>
+             <td>
+              {{formatDate doc.created_at "YYYY-MM-DD HH:mm"}}
+             </td>
+             <td>
+              Reporte con información traida de NOSIS
+             </td>
+            </tr>
+            {{/ifCond}}
+  {{/each}}
+  {{else}}
+            <tr>
+             <td colspan="2">
+              <div class="data_not_found">
+               No hay documentos
+              </div>
+             </td>
+            </tr>
+            {{/if}}
+           </tbody>
+          </table>
+         </div>
+        </tbody>
+       </table>
+      </div>
+     </div>
+    </main>
+   </body>
+  </html>

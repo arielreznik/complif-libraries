@@ -1,0 +1,14 @@
+category: CRUCE DE LISTADOS
+code: MATCH_ONGOING_SCREENING
+default_priority: HIGH
+description: "La plantilla **Coincidencia monitoreo continuo** sirve para facilitar\
+  \ la gestión de tus coincidencias con tu lista negra. \nLa coincidencia con una\
+  \ lista negra es un componente crucial del cumplimiento normativo y ayuda a prevenir\
+  \ que las empresas \nse involucren en actividades ilícitas o con personas y entidades\
+  \ sancionadas. Haciendo uso de esta plantilla vas a poder \nminimizar la posibilidad\
+  \ de que tus clientes esten asociados a actividades ilícitas o no deseadas.\n"
+id_operating_country: null
+name: Coincidencia monitoreo continuo
+resolution_interval: 10 days
+subtitle: Gestioná las coincidencias del monitoreo continuo contra listtas
+video_link: ''

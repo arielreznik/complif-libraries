@@ -1,0 +1,14 @@
+name: "Documentación - Origen de fondos"
+type: FILE_UPLOAD
+subtitle: ""
+video_link: ""
+advisor_action: "NULL"
+autocomplete_with_actual_data: false
+automatic_approval: false
+category: "Documentación"
+code: COMPLIF_DOCUMENTACIÓN_ORIGEN_DE_FONDOS
+config: |
+  {}
+description: ""
+expiration_days: 180
+instructions: "Por favor, complete los datos solicitados."

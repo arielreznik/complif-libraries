@@ -1,0 +1,324 @@
+# 🎯 Gitignore - Templates Repository
+
+# ==========================================
+# Sistema Operativo
+# ==========================================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ==========================================
+# IDEs y Editores
+# ==========================================
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDEs
+.idea/
+*.swp
+*.swo
+*~
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ==========================================
+# Archivos de Backup y Temporales
+# ==========================================
+
+# Backups automáticos
+backups/
+*.backup
+*.bak
+*.orig
+*.tmp
+*.temp
+*.old
+
+# Archivos temporales de scripts
+*.log
+*.out
+*.err
+temp/
+tmp/
+
+# ==========================================
+# Variables de Entorno y Configuración
+# ==========================================
+
+# Variables de entorno
+.env
+.env.local
+.env.development
+.env.staging
+.env.production
+.env.test
+
+# Configuraciones específicas del entorno
+config/local.yml
+config/secrets.yml
+config/database.yml
+config/production.conf
+
+# Archivos de configuración sensibles
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# ==========================================
+# Base de Datos
+# ==========================================
+
+# Archivos de base de datos locales
+*.db
+*.sqlite
+*.sqlite3
+dump.sql
+database.sql
+
+# Backups de BD
+*.dump
+*.sql.gz
+*.sql.bz2
+
+# ==========================================
+# Archivos CSV Legacy (mantener para migración)
+# ==========================================
+
+# Templates CSV antiguos
+**/cases_templates_[0-9]*.csv
+**/email_templates_[0-9]*.csv
+**/pdf_templates_[0-9]*.csv
+**/requirement_templates_[0-9]*.csv
+
+# Mantener archivos específicos durante migración
+!cases/cases_templates_202506181543.csv
+!emails/email_templates_202506181544.csv
+!pdfs/pdf_templates_202506181545.csv
+!requirements/requirement_templates_202506181542.csv
+
+# ==========================================
+# Python
+# ==========================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# ==========================================
+# Node.js (si se usa para tooling)
+# ==========================================
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# ==========================================
+# Logs y Monitoreo
+# ==========================================
+
+# Logs generales
+*.log
+logs/
+log/
+
+# Logs de aplicación
+application.log
+error.log
+access.log
+debug.log
+
+# Logs de scripts
+export.log
+import.log
+validation.log
+
+# ==========================================
+# Archivos de Testing y Desarrollo
+# ==========================================
+
+# Datos de testing
+test_data/
+fixtures/
+mocks/
+*.test.yaml
+*.mock.json
+
+# Reportes de coverage
+coverage/
+.nyc_output
+
+# ==========================================
+# Docker
+# ==========================================
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# ==========================================
+# Archivos del Sistema de CI/CD
+# ==========================================
+
+# Artifacts de build
+.build/
+dist/
+out/
+
+# Caché de CI
+.cache/
+.tmp/
+
+# ==========================================
+# Otros
+# ==========================================
+
+# Archivos comprimidos temporales
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Documentos generados automáticamente
+generated-docs/
+
+# Archivos de configuración local de herramientas
+.tool-versions
+.nvmrc
+
+# ==========================================
+# MANTENER SIEMPRE
+# ==========================================
+
+# Archivos importantes que nunca deben ser ignorados
+!README.md
+!recommendations.md
+!scripts/manage_templates.py
+!docs/CHANGELOG.md
+!env.example
+!requirements.txt
+
+# Estructura de directorios (mantener archivos .gitkeep si existen)
+!**/.gitkeep 

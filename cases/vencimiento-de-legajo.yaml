@@ -1,0 +1,14 @@
+category: LEGAJOS
+code: COMPLIF_CREATE_CASE_BY_ACCOUNT_LAST_UPDATED_AT
+default_priority: LOW
+description: 'La plantilla **Legajo vencido** sirve para gestionar el vencimiento
+  de los legajos. Cada vez que un documento llegue a su fecha de vencimiento, se generará
+  un caso vinculando a la cuenta para que pueda gestionar los pedidos de documentación
+  y actualizaciones desde un solo lugar.
+
+  '
+id_operating_country: null
+name: Vencimiento de Legajo
+resolution_interval: 60 days
+subtitle: Gestiona el vencimiento de los legajos de tus clientes
+video_link: ''

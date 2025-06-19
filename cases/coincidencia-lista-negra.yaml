@@ -1,0 +1,14 @@
+category: CRUCE DE LISTADOS
+code: COMPLIF_BLACKLIST
+default_priority: HIGH
+description: "La plantilla **Coincidencia Lista Negra** sirve para facilitar la gestión\
+  \ de tus coincidencias con tu lista negra. \nLa coincidencia con una lista negra\
+  \ es un componente crucial del cumplimiento normativo y ayuda a prevenir que las\
+  \ empresas \nse involucren en actividades ilícitas o con personas y entidades sancionadas.\
+  \ Haciendo uso de esta plantilla vas a poder \nminimizar la posibilidad de que tus\
+  \ clientes esten asociados a actividades ilícitas o no deseadas.\n"
+id_operating_country: null
+name: Coincidencia Lista Negra
+resolution_interval: 5 days
+subtitle: Gestioná las coincidencias con tu lista negra
+video_link: https://www.loom.com/embed/0ab32205af8b48a0b9e2de2917ebcfc3

@@ -1,0 +1,49 @@
+name: "[PORTAL] Env\xEDo de mensajes"
+description: "Notifica a los usuarios y analista la recepci\xF3n de un mensaje nuevo"
+category: PORTAL DE USUARIO
+code: COMPLIF_MESSAGE_USER_PORTAL
+subtitle: "Notifica a los usuarios y analista la recepci\xF3n de un mensaje nuevo"
+video_link: ''
+add_advisor_in_copy: false
+id_operating_country: None
+export_data_declared: None
+export_terms_conditions: None
+code_pdf_template: None
+sendgrid_data:
+  from:
+    email: noreply@complif.com
+    name: Notificaciones complif
+  reply_to:
+    email: noreply@complif.com
+    name: Notificaciones complif
+  subject: Tienes un nuevo mensaje
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+      <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>
+              Mensaje Nuevo
+          </title>
+          <style>
+              body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #F0F0F0; } .container { background-color: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 100%; max-width: 600px; overflow: hidden; } .container-logo { padding: 20px; text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; } .logo { max-width: 100%; height: auto; max-height: 75px; object-fit: contain; margin: auto; } .header { background-color: {{primary_color}}; color: white; padding: 20px; font-size: 24px; font-weight: bold; } .content { padding: 20px; text-align: center; } h1 { margin-top: 0; font-size: 15px; font-weight: 500; color: #000; padding-right: 20px; padding-left: 20px; } p { color: #666; } .message-box { border: 1px solid #ccc; border-radius: 4px; padding: 20px; margin: 20px 0; text-align: left; color: #666; } .button { display: inline-block; background-color: {{primary_color}}; color: white !important; padding: 10px 30px; text-decoration: none; border-radius: 4px; font-weight: bold; min-width: 150px; font-size: 14px; }
+          </style>
+      </head>
+      <body>
+          <div class="container">
+              <div class="container-logo">
+                  <img src="{{logo_url}}" class="logo" />
+              </div>
+              <div class="content">
+                  <h1>
+                      {{description}}
+                  </h1>
+                  <div class="message-box">
+                      {{message}}
+                  </div>
+                  <a href="{{url}}" class="button">Ir a la apertura</a>
+                  </div>
+              </div>
+          </body>
+      </html>

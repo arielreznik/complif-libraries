@@ -1,0 +1,50 @@
+name: Nuevo requerimiento a asesor
+description: "Este email se env\xEDa cuando el cliente de un asesor recibe un requerimiento."
+category: REQUERIMIENTOS
+code: COMPLIF_NEW_REQUIREMENT_ADVISOR
+subtitle: "Configura el mail que recibir\xE1 el asesor cuando un cliente suyo reciba un requerimiento."
+video_link: ''
+add_advisor_in_copy: false
+id_operating_country: None
+export_data_declared: None
+export_terms_conditions: None
+code_pdf_template: None
+sendgrid_data:
+  from:
+    email: noreply@complif.com
+    name: Notificaciones Complif
+  reply_to:
+    email: noreply@complif.com
+    name: Notificaciones complif
+  subject: Nuevo requerimiento
+html: |
+  <!DOCTYPE html>
+  <html lang="es">
+      <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>
+              Notificación de Requerimiento
+          </title>
+      </head>
+      <body style=" font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; margin: 0; background-color: #f9f9f9; " >
+          <div class="container" style=" width: 100%; max-width: 600px; padding: 20px; background-color: #ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center; box-sizing: border-box; margin: 10px auto; " >
+              <figure class="image image_resized" style="margin: 0 auto; width: 30%"> <img class="max-width" style=" color: #000000; display: block; font-family: Helvetica, arial, sans-serif; font-size: 16px; height: auto !important; margin: 0 auto; text-decoration: none; " src="{{logo_url}}" alt="" border="0" width="180" data-proportionally-constrained="true" data-responsive="true" />
+          </figure>
+          <div class="heading" style="font-size: 18px; margin-top: 20px; color: #333333" >
+              Nuevo requerimiento
+          </div>
+          <div class="subheading" style="font-size: 14px; margin-top: 10px; color: #777777" >
+              Tu cliente {{account.name}} tiene un nuevo requerimiento para completar.
+          </div>
+          <a href="{{magic_link}}" class="button" style="display:inline-block;margin-top:20px;padding:10px 20px;text-decoration:none;border-radius:5px;background-color: {{primary_color}}; color: #ffffff !important;border: 2px solid {{primary_color}};" >Ir al requerimiento</a >
+              <div class="footer" style="font-size: 12px; margin-top: 20px; color: #777777" >
+                  ¿No reconoces esta actividad? Ponte en contacto con soporte.
+              </div>
+              <!-- Warning Banner -->
+              <div style=" background-color: #f5f5f5; border: 1px solid #e0e0e0; color: #666666; padding: 12px; margin-top: 20px; border-radius: 4px; font-size: 12px; text-align: left; " >
+                  :warning: No reenvíes este mensaje a nadie. Este correo contiene un enlace de acceso válido únicamente para tu correo electrónico.
+              </div>
+          </div>
+      </body>
+  </html>

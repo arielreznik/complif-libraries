@@ -1,0 +1,14 @@
+category: LEGAJOS
+code: COMPLIF_ADD_ACCOUNT_PEOPLE
+default_priority: MEDIUM
+description: 'La plantilla **Agregado de Condómino** sirve para facilitar la gestión
+  del alta de un nuevo condómino en una cuenta. El caso se complementará con los requerimientos
+  necesarios para solicitar datos básicos y consentmimiento al titular, así como sus
+  datos personales y documentación al condómino.
+
+  '
+id_operating_country: null
+name: Agregado de Condómino
+resolution_interval: 60 days
+subtitle: Gestiona el alta de condóminos en tus cuentas
+video_link: ''

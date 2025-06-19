@@ -1,0 +1,117 @@
+name: "Actualización de domicilio"
+type: FORM_LEGAL_TEXT
+subtitle: ""
+video_link: ""
+advisor_action: "NULL"
+autocomplete_with_actual_data: false
+automatic_approval: false
+category: "Acciones sobre personas"
+code: COMPLIF_ACTUALIZACIÓN_DE_DOMICILIO
+config: |
+  {
+    "schema": {
+      "type": "object",
+      "required": [
+        "tipo",
+        "pais",
+        "provincia",
+        "calle",
+        "altura",
+        "ciudad",
+        "codigo_postal"
+      ],
+      "properties": {
+        "tipo": {
+          "enum": [
+            "REAL",
+            "LEGAL"
+          ],
+          "type": "string"
+        },
+        "pais": {
+          "type": "string"
+        },
+        "provincia": {
+          "type": "string"
+        },
+        "ciudad": {
+          "type": "string"
+        },
+        "calle": {
+          "type": "string"
+        },
+        "altura": {
+          "type": "string"
+        },
+        "depto": {
+          "type": "string"
+        },
+        "codigo_postal": {
+          "type": "string"
+        }
+      }
+    },
+    "ui_schema": {
+      "type": "VerticalLayout",
+      "elements": [
+        {
+          "text": "Domicilio",
+          "type": "Label"
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Tipo de domicilio",
+              "scope": "#/properties/tipo"
+            },
+            {
+              "type": "Control",
+              "label": "País",
+              "scope": "#/properties/pais"
+            },
+            {
+              "type": "Control",
+              "label": "Provincia",
+              "scope": "#/properties/provincia"
+            },
+            {
+              "type": "Control",
+              "label": "Ciudad o Localidad",
+              "scope": "#/properties/ciudad"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "label": "Calle",
+              "scope": "#/properties/calle"
+            },
+            {
+              "type": "Control",
+              "label": "Altura",
+              "scope": "#/properties/altura"
+            },
+            {
+              "type": "Control",
+              "label": "Departamento",
+              "scope": "#/properties/depto"
+            },
+            {
+              "type": "Control",
+              "label": "Código Postal",
+              "scope": "#/properties/codigo_postal"
+            }
+          ]
+        }
+      ]
+    },
+    "legal_text": "Hola,\n\nSres. Complif SRL \n\n#### Presente\n\nMe comunico con ustedes a fin de actualizar el domicilio de mi legajo, con la siguiente información:\n\nTipo de domicilio: **{{submission.data.form.tipo}}**\n\nPaís: **{{submission.data.form.pais}}**\n\nProvincia: **{{submission.data.form.provincia}}**\n\nCiudad o Localidad: **{{submission.data.form.ciudad}}**\n\nCalle: **{{submission.data.form.calle}}**\n\nAltura: **{{submission.data.form.altura}}**\n\nDepartamento: **{{submission.data.form.depto}}**\n\nCódigo Postal: **{{submission.data.form.codigo_postal}}**\n\nLos saludo atentamente. Muchas gracias, \n\n**{{person.name}}**"
+  }
+description: ""
+expiration_days: 60
+instructions: "Por favor, complete los datos solicitados."

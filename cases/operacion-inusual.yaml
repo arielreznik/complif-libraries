@@ -1,0 +1,15 @@
+category: AML
+code: OPERACION_INUSUAL
+default_priority: MEDIUM
+description: 'La plantilla **Operación inusual** te servirá para enmarcar el análisis
+  de aquellas transacciones que rompan las reglas de monitoreo correspondientes.
+
+  Recuerda que debe tener asociada una regla de monitoreo transaccional ("Exceso de
+  fondeo", por ejemplo), aunque siempre podrás crear el caso manualmente.
+
+  '
+id_operating_country: null
+name: Operación inusual
+resolution_interval: 90 days
+subtitle: Controla las transacciones de tus clientes para detectar operaciones inusuales
+video_link: ''
